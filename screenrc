@@ -1,0 +1,7 @@
+activity "something going on in %n"
+autodetach off
+startup_message off
+#attrcolor u "G"
+defshell bash
+vbell on
+vbell_msg "slap! slap!"
