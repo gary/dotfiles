@@ -1,0 +1,5 @@
+#ignore duplicate history entries
+export HISTCONTROL=ignoreboth;
+
+# easy access to the various svn repositories
+repos="$HOME/repos"
