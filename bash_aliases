@@ -78,17 +78,18 @@ alias la='ls -Gla'
 alias l='ls -Gl | less'
 
 # getting around faster
+alias dirs='dirs -v'
 alias pd='pushd'
 alias pd2='pushd +2'
 alias pd3='pushd +3'
 alias pd4='pushd +4'
 alias pd5='pushd +5'
-alias dirs='dirs -v'
 
-# tomcat aliases
-alias tomcatup="sudo /Library/StartupItems/Tomcat/tomcatCtrl.pl start"
-alias tomcatdown="sudo /Library/StartupItems/Tomcat/tomcatCtrl.pl stop"
-alias tomcatlog="tail -f /usr/local/tomcat/logs/catalina.out"
+alias po='popd'
+alias po2='popd +2'
+alias po3='popd +3'
+alias po4='popd +4'
+alias po5='popd +5'
 
 # iTunes cli hack
 alias play="itunes play"
@@ -99,3 +100,7 @@ alias cur="itunes status"
 #alias restart="itunes pause prev next"
 
 alias ts='du -h -d0 $HOME/.Trash'
+
+if [ $cfgfiles ]; then
+	alias svncfg='svn commit $cfgfiles'
+fi
