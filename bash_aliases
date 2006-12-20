@@ -104,3 +104,7 @@ alias ts='du -h -d0 $HOME/.Trash'
 if [ $cfgfiles ]; then
 	alias svncfg='svn commit $cfgfiles'
 fi
+
+if [ -d /Applications/Aquamacs\ Emacs.app/ ]; then
+	alias aquamacs='open -a /Applications/Aquamacs\ Emacs.app/'
+fi

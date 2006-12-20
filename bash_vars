@@ -6,8 +6,8 @@ if [ -e ~/repos ] && [ -h ~/repos ]; then
 	repos="$HOME/repos"
 fi
 
-# i keep my cfg files hard linked to a checked out dir, making for easy
-# repo updating when changes are made
+# cfg files hard linked to a checked out dir, making for easy repo updating 
+# when changes are made
 if [ -e ~/Documents/etc/config ] && [ -d ~/Documents/etc/config ]; then
 	cfgfiles="$HOME/Documents/etc/config"
 fi
