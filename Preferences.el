@@ -22,8 +22,8 @@
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
 
-;; lose the UI
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+;; lose the UI - percent issues with Aquamacs, for now
+;; (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
