@@ -101,7 +101,7 @@ alias cur="itunes status"
 
 alias ts='du -h -d0 $HOME/.Trash'
 
-if [ $cfgfiles ]; then
+if [ $CFGFILES ]; then
 	alias svncfg='svn commit $cfgfiles'
 fi
 
