@@ -1,21 +1,16 @@
 set -o emacs
-# TODO: general way to id osx system
-if [ $OSTYPE = "darwin8.0" ] && [ -d /Applications/Aquamacs\ Emacs.app/ ]; then
-     	export EDITOR=aquamacs
-else
-	export EDITOR=emacs
-fi
+EDITOR=vim
 
 #ignore duplicate history entries
 export HISTCONTROL=ignoreboth;
 
 # easy access to the various vc repositories
-if [ -e ~/repos ] && [ -h ~/repos ]; then
+if [ -h ~/repos ]; then
 	REPOS="$HOME/repos"
 fi
 
 # cfg files hard linked to a checked out dir, making for easy repo updating 
 # when changes are made
-if [ -e ~/Documents/etc/config ] && [ -d ~/Documents/etc/config ]; then
-	CFGFILES="$HOME/Documents/etc/config"
-fi
+#if [ -e ~/Documents/etc/config ] && [ -d ~/Documents/etc/config ]; then
+	CFGFILES="$HOME/.config"
+#fi
