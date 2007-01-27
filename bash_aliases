@@ -60,22 +60,34 @@ bash_prompt() {
 	local MC=$EMB
 	[ $UID -eq "0" ] && UC=$R   # root's color
 
-	PS1="${EMW}${UC}\u${EMW}@${MC}\h ${Y}\${NEW_PWD}\n${EMW}${BGR}\!${BGK}|${BGM}\#${BGK}${G} \\$ ${NONE}"
-	# without colors: PS1="[\u@\h \${NEW_PWD}]\\$ "
-	# extra backslash in front of \$ to make bash colorize the prompt
+	# emacs doesn't like colorful prompts
+	if [ -z $EMACS ]; then
+	     	# backslash in front of \$ to make bash colorize the prompt
+		PS1="${EMW}${UC}\u${EMW}@${MC}\h ${Y}\${NEW_PWD}\n${EMW}${BGR}\!${BGK}|${BGM}\#${BGK}${G} \\$ ${NONE}"
+	else
+		PS1="\u@\h \w\n\!|\# \\$ "
+	fi
 }
 
 PROMPT_COMMAND=bash_prompt_command
 bash_prompt
 unset bash_prompt
 
+irb='irb -r irb/completion -r rubygems'
+alias rdb='ruby -r debug'
+
+alias grep='grep --color=always'
+
 # dir specific ls
 alias lsd='ls **/ | Egrep "\/:$" | tr -d ":"'
-# colorful directory listing 
+# colorful directory listing
 alias ll='ls -Gl'
 alias ls='ls -G'
 alias la='ls -Gla'
 alias l='ls -Gl | less'
+
+# resolve ' escape issue
+# alias cps=`ps aux | awk '$3 != "0.0"'`
 
 # getting around faster
 alias dirs='dirs -v'
@@ -91,20 +103,24 @@ alias po3='popd +3'
 alias po4='popd +4'
 alias po5='popd +5'
 
-# iTunes cli hack
-alias play="itunes play"
-alias pause="itunes pause"
-alias next="itunes next"
-alias prev="itunes prev"
-alias cur="itunes status"
-#alias restart="itunes pause prev next"
+if [ -f ~/bin/itunes ]; then
+   # iTunes cli hack
+   alias play="itunes play"
+   alias pause="itunes pause"
+   alias next="itunes next"
+   alias prev="itunes prev"
+   alias cur="itunes status"
+   #alias restart="itunes pause prev next"
+fi
 
-alias ts='du -h -d0 $HOME/.Trash'
+if [ -d ~/.Trash ]; then
+   alias ts='du -h -d0 $HOME/.Trash'
+fi
 
 if [ $CFGFILES ]; then
-	alias svncfg='svn commit $cfgfiles'
+   alias cicfg='svn commit $CFGFILES'
 fi
 
 if [ -d /Applications/Aquamacs\ Emacs.app/ ]; then
-	alias aquamacs='open -a /Applications/Aquamacs\ Emacs.app/'
+   alias aquamacs='open -a /Applications/Aquamacs\ Emacs.app/'
 fi
