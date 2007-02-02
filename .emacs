@@ -8,6 +8,8 @@
 
 (transient-mark-mode 1)
 (iswitchb-mode 1)
+(winner-mode 1)
+
 
 ;; invoke M-x with the Alt key
 (global-set-key "\C-x\C-m" 'execute-extended-command)
