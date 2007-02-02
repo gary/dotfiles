@@ -76,7 +76,9 @@ unset bash_prompt
 irb='irb -r irb/completion -r rubygems'
 alias rdb='ruby -r debug'
 
-alias grep='grep --color=always'
+if [ -z $EMACS ]; then
+	alias grep='grep --color=always'
+fi
 
 # dir specific ls
 alias lsd='ls **/ | Egrep "\/:$" | tr -d ":"'
