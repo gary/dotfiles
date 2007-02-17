@@ -1,9 +1,18 @@
 (setq load-path (cons "~/.emacs.d/" load-path))
 
+(fset 'yes-or-no-p 'y-or-n-p)
+
+(defun iwb()
+  "indent whole buffer"
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max)))
+
 ;; ruby
 (load-library "ruby-mode")
 (load-library "inf-ruby")
-(setq ri-ruby-script "/Users/sm41Eg01/ri-emacs.rb")
+(setq ri-ruby-script "/Users/sm41Eg01/.emacs.d/ri-emacs.rb")
 (load-library "ri-ruby")
 
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
