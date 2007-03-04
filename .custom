@@ -1,0 +1,28 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; functionality customizations
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(fset 'yes-or-no-p 'y-or-n-p)
+(put 'dired-find-alternate-file 'disabled nil)
+
+;; search result summary
+(define-key isearch-mode-map (kbd "C-o")
+  (lambda ()
+    (interactive)
+    (let ((case-fold-search isearch-case-fold-search))
+      (occur (if isearch-regexp isearch-string
+               (regexp-quote isearch-string))))))
+
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+
+(icomplete-mode 1)
+(transient-mark-mode 1)
+(iswitchb-mode 1)
+(winner-mode 1)
+
+;; lose the UI
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
