@@ -1,4 +1,4 @@
-set -o emacs
+set -o vi
 EDITOR=vim
 
 #ignore duplicate history entries
@@ -11,6 +11,6 @@ fi
 
 # cfg files hard linked to a checked out dir, making for easy repo updating 
 # when changes are made
-if [ -e ~/Documents/etc/config ] && [ -d ~/Documents/etc/config ]; then
+if [ -d ~/Documents/etc/config ]; then
 	CFGFILES="$HOME/.config"
 fi

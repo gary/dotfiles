@@ -69,11 +69,11 @@ bash_prompt() {
 	fi
 }
 
-resetvisor() {
-    defaults write com.apple.Terminal VisorTerminal -dict-add Rows 20
-    ~/bin/visor &
-    killall Terminal
-}
+# resetvisor() {
+#     defaults write com.apple.Terminal VisorTerminal -dict-add Rows 20
+#     ~/bin/visor &
+#     killall Terminal
+# }
 
 PROMPT_COMMAND=bash_prompt_command
 bash_prompt
