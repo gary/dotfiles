@@ -1,5 +1,6 @@
 set -o vi
 EDITOR=vim
+SVN_EDITOR=$EDITOR
 
 #ignore duplicate history entries
 export HISTCONTROL=ignoreboth;
