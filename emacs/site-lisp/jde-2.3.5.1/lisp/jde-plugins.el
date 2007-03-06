@@ -98,7 +98,8 @@ a file named jde-PLUGIN.el. This function loads jde-PLUGIN.el."
 			(not (string= file-name "."))
 			(not (string= file-name ".."))
 			(not (string= file-name "CVS"))
-			(not (string= file-name "RCS")))
+			(not (string= file-name "RCS"))
+			(not (string= file-name ".svn")))
 		       file-name)))
 	       (directory-files jde-plugins-directory t)))))
 	(loop for plugin in plugins do
