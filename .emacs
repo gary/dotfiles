@@ -12,8 +12,9 @@
   (add-path "emacs")
   (add-path "emacs/modes")		;; additional modes
   (add-path "emacs/site-lisp")		;; elisp from the intarnet
-  ;; (add-path "emacs/site-lisp/jde-2.3.5.1") ;; java ide support
-  ;; (add-path "emacs/site-lisp/cedet")
+  (add-path "emacs/site-lisp/jde-2.3.5.1/lisp") ;; java ide support
+  (add-path "emacs/site-lisp/elib-1.0/")
+  (add-path "emacs/site-lisp/cedet-1.0pre3/common")
 )
 
 (load-library "modes")
