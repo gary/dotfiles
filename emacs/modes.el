@@ -1,33 +1,52 @@
+(add-hook 'text-mode-hook '(lambda ()
+			(turn-on-auto-fill)))
+			;; (turn-on-setnu-mode))) ;; yes, i prefer vi-style line numbering
+
+(if (boundp 'aquamacs-version)
+    (add-hook 'help-mode-hook '(lambda ()
+			    (my-color-theme))))
+;; shell-mode
+;; TODO: tim's crazy .bbprofileshared still not cooperating
+(autoload 'ansi-color-for-comint-mode-on "ansi-color"
+  "Set `ansi-color-for-comint-mode' to t." t)
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+
+(add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
+
 ;; java, jsp and friends
-;; highlight .prooerties files
-;; (add-hook 'conf-javaprop-mode-hook 
-;;           '(lambda () (conf-quote-normal nil)))
+;; highlight .properties files
+(add-hook 'conf-javaprop-mode-hook 
+          '(lambda () (conf-quote-normal nil)))
 
-;; ;; jde setup--temporary for now
-;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/site-lisp/jde-2.3.5.1/lisp"))
-;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/site-lisp/cedet/common"))
-;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/site-lisp/elib"))
-;; ;; TODO: speedbar info (require 'sb-info)? breaking info startup
-;; (load-file (expand-file-name "~/.emacs.d/site-lisp/cedet/common/cedet.el"))
+;; TODO: speedbar info (require 'sb-info)? breaking info startup
+;; initialize CEDET
+(load-library "cedet")
 
-;; ;; overkill, plan on always autoloading
-;; (setq defer-loading-jde t)
-;; (if defer-loading-jde
-;;     (progn
-;;       (autoload 'jde-mode "jde" "JDE mode." t)
-;;       (setq auto-mode-alist
-;; 	    (append
-;; 	     '(("\\.java\\'" . jde-mode))
-;; 	     auto-mode-alist)))
-;;   (require 'jde))
+;; jde-mode
+;; TODO: classpath scanning issue; unable to complete/view any non-core classes (Bb, Log4J, Muohio)
+;; overkill, plan on always autoloading
+(setq defer-loading-jde t)
+(if defer-loading-jde
+    (progn
+      (autoload 'jde-mode "jde" "JDE mode." t)
+      (setq auto-mode-alist
+	    (append
+	     '(("\\.java\\'" . jde-mode))
+	     auto-mode-alist)))
+  (require 'jde))
 
-;; ;; bash as default shell, beware the zsh
-;; (setq shell-file-name "bash")
-;; (setq shell-command-switch "-c")
-;; (setq explicit-shell-file-name shell-file-name)
-;; (setenv "SHELL" shell-file-name)
-;; (setq explicit-sh-args '("-login" "-i"))
-;; ;; end jde setup
+(add-hook 'jde-mode-hook
+	  '(lambda ()
+	     (c-subword-mode)
+	     (c-toggle-auto-hungry-state)))
+
+;; bash as default shell, beware the zsh
+(setq shell-file-name "bash")
+(setq shell-command-switch "-c")
+(setq explicit-shell-file-name shell-file-name)
+(setenv "SHELL" shell-file-name)
+(setq explicit-sh-args '("-login" "-i"))
+;; end jdee
 
 ;; TODO: mmm-mode replacement
 ;; (defun jsp-mode () (interactive)
@@ -61,12 +80,18 @@
   "Set local key defs for inf-ruby in ruby-mode")
 (add-hook 'ruby-mode-hook
 	  '(lambda ()
-	     (inf-ruby-keys)
-))
+	     (inf-ruby-keys)))
 (setq ri-ruby-script (concat emacs-root "/modes/ri-emacs.rb"))
-(autoload 'ri "ri-ruby"
-  "Ruby api reference" t)
+(autoload 'ri "ri-ruby" "Ruby api reference" t)
 
-;; psvn
 (autoload 'svn-status "psvn"
-  "Examine the status of a Subversion working copy in a diretory." t)
+  "Examine the status of a Subversion working copy in a directory." t)
+
+(autoload 'ssh "ssh"
+	  "Open a network login connection via ssh with args input-args." t)
+
+(autoload 'wget "wget" "wget interface for Emacs." t)
+(autoload 'wget-web-page "wget" "wget interface to download whole web page." t)
+(if (eq system-type "darwin")
+    (add-hook 'wget-load-hook
+	      (setq wget-download-directory "~/dls")))
