@@ -3,7 +3,9 @@
 			    (mouse-color      . "gold")
 			    (foreground-color . "cornsilk2")
 			    (background-color . "grey7")
-			    (top . 10) (left . 650) (width . 123) (height . 60))
+			    (active-alpha         . 0.875)
+			    (inactive-alpha       . 0.75)
+			    (top . 25) (left . 10) (width . 125) (height . 50))
       )
 
 (setq default-frame-alist '(
@@ -13,7 +15,7 @@
 		      (cursor-type          . box)
 		      (active-alpha         . 0.875)
 		      (inactive-alpha       . 0.75)
-		      (top . 20) (left . 150) (width . 89) (height . 56))
+		      (top . 25) (left . 10) (width . 125) (height . 50))
       )
 
 ;; aquamacs pretty
@@ -26,9 +28,7 @@
       (my-color-theme)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
 ;; functionality customizations
-;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (fset 'yes-or-no-p 'y-or-n-p)
 (put 'dired-find-alternate-file 'disabled nil)
@@ -60,21 +60,3 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-  
-;; ;; jdee
-;; (setq jde-global-classpath (quote ("/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/"
-;; 				   "/opt/blackboard/b2/shared/bbjars/6.3/"
-;; 				   "/opt/blackboard/b2/shared/bbjars/hibernatedeps/"
-;; 				   "/opt/blackboard/b2/shared/bbjars/jstl/"
-;; 				   "/opt/blackboard/b2/shared/bbjars/logging/"
-;; 				   "/opt/blackboard/b2/shared/bbjars/muohio/")))
-;; (setq jde-jdk-registry (quote (("1.5.0" . "/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0")
-;; 			       ("1.4.2" . "/System/Library/Frameworks/JavaVM.framework/Versions/1.4.2")
-;; 			       ("1.3.1" . "/System/Library/Frameworks/JavaVM.framework/Versions/1.3.1"))))
-;; (setq jde-jdk nil)
-;; (setq jde-compiler (quote ("javac" "")))
-;; (setq jde-jdk-doc-url "http://java.sun.com/j2se/1.5.0/docs/api")
-;; (setq jde-complete-function (quote jde-complete-minibuf))
-;; (setq jde-enable-abbrev-mode t)
-;; (setq jde-ant-home "/Developer/Java/bin")
-;; (setq jde-ant-program "ant")
