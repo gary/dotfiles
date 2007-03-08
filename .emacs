@@ -15,12 +15,18 @@
   (add-path "emacs/site-lisp/jde-2.3.5.1/lisp") ;; java ide support
   (add-path "emacs/site-lisp/elib-1.0/")
   (add-path "emacs/site-lisp/cedet-1.0pre3/common")
+  (add-path "emacs/site-lisp/emacs-wget-0.5.0")
 )
 
 (load-library "modes")
 (load-library "ekeys")
 
-;; functionality customizations
-(load-library "~/.custom")
+;; replacements, extensions
+(require 'setnu)
+(require 'dabbrev-highlight)
+(require 'browse-kill-ring)
+(require 'shell-command)
+
+(load-library "customizations")
  
 (shell)
