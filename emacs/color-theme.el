@@ -48,14 +48,23 @@
      (border ((t (:background "black"))))
      (buffer-menu-buffer ((t (:bold t :weight bold))))
      (button ((t (:underline t))))
+     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     ;; comint
+     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
      (comint-highlight-input ((t (:bold t :weight bold))))
-     (comint-highlight-prompt ((t (:foreground "dark blue"))))
-     (completions-common-part ((t (:family "apple-monaco" :width normal :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "grey10" :background "gray7" :stipple nil :height 120))))
-     (completions-first-difference ((t (:bold t :weight bold))))
+     (comint-highlight-prompt ((t (:foreground "red1"))))
+     (completions-common-part ((t (:family "apple-monaco" :width normal :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "chartreuse1" :background "gray7" :stipple nil :height 120))))
+     (completions-first-difference ((t (:bold t :weight bold :foreground "firebrick3"))))
+     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     ;; cua
+     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
      (cua-global-mark ((t (:background "yellow1" :foreground "black"))))
      (cua-rectangle ((t (:background "maroon" :foreground "white"))))
      (cua-rectangle-noselect ((t (:background "dimgray" :foreground "white"))))
      (cursor ((t (:background "khaki"))))
+     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     ;; custom
+     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
      (custom-button ((t (:background "lightgrey" :foreground "black" :box (:line-width 2 :style released-button)))))
      (custom-button-mouse ((t (:background "grey90" :foreground "black" :box (:line-width 2 :style released-button)))))
      (custom-button-pressed ((t (:background "lightgrey" :foreground "black" :box (:line-width 2 :style pressed-button)))))
@@ -115,13 +124,13 @@
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
      ;; font-lock-mode
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-     (font-lock-builtin-face ((t (:foreground "Orchid"))))
+     (font-lock-builtin-face ((t (:foreground "DarkSeaGreen"))))
      (font-lock-comment-delimiter-face ((t (:foreground "OrangeRed"))))
      (font-lock-comment-face ((t (:foreground "OrangeRed"))))
      (font-lock-constant-face ((t (:foreground "CadetBlue"))))
      (font-lock-doc-face ((t (:foreground "RosyBrown"))))
-     (font-lock-function-name-face ((t (:foreground "Blue1"))))
-     (font-lock-keyword-face ((t (:foreground "Purple"))))
+     (font-lock-function-name-face ((t (:foreground "DeepSkyBlue3"))))
+     (font-lock-keyword-face ((t (:foreground "cyan2"))))
      (font-lock-negation-char-face ((t (nil))))
      (font-lock-preprocessor-face ((t (:foreground "turquoise1"))))
      (font-lock-regexp-grouping-backslash ((t (:bold t :weight bold))))
@@ -129,7 +138,7 @@
      (font-lock-string-face ((t (:foreground "RosyBrown"))))
      (font-lock-type-face ((t (:foreground "ForestGreen"))))
      (font-lock-variable-name-face ((t (:foreground "DarkGoldenrod"))))
-     (font-lock-warning-face ((t (:bold t :foreground "Red1" :weight bold))))
+     (font-lock-warning-face ((t (:bold t :foreground "red3" :weight bold))))
      (fringe ((t (:background "grey95"))))
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
      ;; gnus
@@ -178,14 +187,14 @@
      (help-argument-name ((t (:italic t :slant italic))))
      (hi-black-b ((t (:bold t :weight bold))))
      (hi-black-hb ((t (:bold t :family "apple-monaco" :weight bold :height 1.67))))
-     (hi-blue ((t (:background "light blue"))))
+     (hi-blue ((t (:background "grey7"))))
      (hi-blue-b ((t (:bold t :foreground "blue1" :weight bold))))
      (hi-green ((t (:background "green1"))))
      (hi-green-b ((t (:bold t :foreground "green1" :weight bold))))
      (hi-pink ((t (:background "pink"))))
      (hi-red-b ((t (:bold t :foreground "red1" :weight bold))))
      (hi-yellow ((t (:background "yellow1"))))
-     (highlight ((t (:background "darkseagreen2"))))
+     (highlight ((t (:background "firebrick1"))))
      (highlight-changes ((t (:foreground "red1"))))
      (highlight-changes-delete ((t (:foreground "red1" :underline t))))
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -197,7 +206,7 @@
      (iswitchb-single-match ((t (:foreground "Firebrick"))))
      (iswitchb-virtual-matches ((t (:foreground "turquoise1"))))
      (italic ((t (:italic t :slant italic))))
-     (lazy-highlight ((t (:background "paleturquoise"))))
+     (lazy-highlight ((t (:background "gray7"))))
      (link ((t (:foreground "blue1" :underline t))))
      (link-visited ((t (:underline t :foreground "magenta4"))))
      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -223,7 +232,7 @@
      (message-header-xheader ((t (:foreground "blue"))))
      (message-mml ((t (:foreground "ForestGreen"))))
      (message-separator ((t (:foreground "brown"))))
-     (minibuffer-prompt ((t (:foreground "dark blue"))))
+     (minibuffer-prompt ((t (:foreground "NavajoWhite2"))))
      (mode-line ((t (:background "grey75" :foreground "black" :box (:line-width -1 :style released-button)))))
      (mode-line-buffer-id ((t (:bold t :weight bold))))
      (mode-line-highlight ((t (:box (:line-width 2 :color "grey40" :style released-button)))))
