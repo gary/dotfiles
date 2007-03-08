@@ -60,13 +60,8 @@ bash_prompt() {
 	local MC=$EMB
 	[ $UID -eq "0" ] && UC=$R   # root's color
 
-	# emacs doesn't like colorful prompts
-	if [ -z $EMACS ]; then
-	     	# backslash in front of \$ to make bash colorize the prompt
-		PS1="${EMW}${UC}\u${EMW}@${MC}\h ${Y}\${NEW_PWD}\n${EMW}${BGR}\!${BGK}|${BGM}\#${BGK}${G} \\$ ${NONE}"
-	else
-		PS1="\u@\h \w\n\!|\# \\$ "
-	fi
+	# backslash in front of \$ to make bash colorize the prompt
+	PS1="${EMW}${UC}\u${EMW}@${MC}\h ${Y}\${NEW_PWD}\n${EMW}${BGR}\!${BGK}|${BGM}\#${BGK}${G} \\$ ${NONE}"
 }
 
 # resetvisor() {
