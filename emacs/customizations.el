@@ -3,8 +3,6 @@
 			    (mouse-color      . "gold")
 			    (foreground-color . "cornsilk2")
 			    (background-color . "grey7")
-			    (active-alpha         . 0.875)
-			    (inactive-alpha       . 0.75)
 			    (top . 25) (left . 10) (width . 125) (height . 50))
       )
 
@@ -13,22 +11,16 @@
 		      (foreground-color     . "cornsilk2")
 		      (cursor-color         . "gold2")
 		      (cursor-type          . box)
-		      (active-alpha         . 0.875)
-		      (inactive-alpha       . 0.75)
 		      (top . 25) (left . 10) (width . 125) (height . 50))
       )
 
-;; aquamacs pretty
-(if (boundp 'aquamacs-version)
+(if (boundp 'carbon-emacs-package-version)
     (progn
-      (one-buffer-one-frame-mode 0)
-      (cua-mode 0)
-      ;; TODO: test color them with non-darwin systems
-      (load-library "color-theme")
-      (my-color-theme)))
+      (add-to-list 'initial-frame-alist '(alpha . 80))
+      (add-to-list 'default-frame-alist '(alpha . 80))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; functionality customizations
+;; functionality
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (fset 'yes-or-no-p 'y-or-n-p)
 (put 'dired-find-alternate-file 'disabled nil)
@@ -36,7 +28,6 @@
 ;; \M-y calls browse-kill-ring
 (browse-kill-ring-default-keybindings)
 
-;; completion mode for shell-command
 (shell-command-completion-mode)
 
 ;; search result summary
