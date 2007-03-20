@@ -230,6 +230,8 @@
 
 (autoload 'wget "wget" "wget interface for Emacs." t)
 (autoload 'wget-web-page "wget" "wget interface to download whole web page." t)
-(if (eq system-type "darwin")
-    (add-hook 'wget-load-hook
-	      (setq wget-download-directory "~/dls")))
+;; TODO not working
+(add-hook 'wget-load-hook
+	  '(lambda ()
+	     (if (eq system-type "darwin")
+		 (setq wget-download-directory "~/dls"))))
