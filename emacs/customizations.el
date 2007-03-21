@@ -16,8 +16,8 @@
 
 (if (boundp 'carbon-emacs-package-version)
     (progn
-      (add-to-list 'initial-frame-alist '(alpha . 80))
-      (add-to-list 'default-frame-alist '(alpha . 80))))
+      (add-to-list 'initial-frame-alist '(alpha . 65))
+      (add-to-list 'default-frame-alist '(alpha . 65))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; functionality
