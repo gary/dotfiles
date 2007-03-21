@@ -7,5 +7,9 @@
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
 
+;; yank-pop on steroids
 (global-set-key "\M-y" 'yank-pop-forward)
 (global-set-key "\C-\M-y" 'yank-pop-backward)
+
+;; zap-to-char likes them too
+(global-set-key "\M-z" 'zap-up-to-char)
