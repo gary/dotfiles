@@ -24,8 +24,9 @@
 ;; replacements, extensions
 (require 'setnu)
 (require 'dabbrev-highlight)
-(require 'browse-kill-ring)
+;; (require 'browse-kill-ring)
 (require 'shell-command)
+;; (require 'power-macros) TODO: broken, erroring on ?g L354
 
 (load-library "customizations")
  
