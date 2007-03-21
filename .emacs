@@ -15,10 +15,10 @@
   (add-path "/site-lisp/jde-2.3.5.1/lisp") ;; java ide support
   (add-path "/site-lisp/elib-1.0/")
   (add-path "/site-lisp/cedet-1.0pre3/common")
-  (add-path "/site-lisp/wget-0.5.0")
-)
+  (add-path "/site-lisp/wget-0.5.0"))
 
 (load-library "modes")
+(load-library "efuncs")
 (load-library "ekeys")
 
 ;; replacements, extensions
