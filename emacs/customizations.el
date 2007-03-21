@@ -26,7 +26,9 @@
 (put 'dired-find-alternate-file 'disabled nil)
 
 ;; \M-y calls browse-kill-ring
-(browse-kill-ring-default-keybindings)
+;; (browse-kill-ring-default-keybindings)
+(autoload 'yank-pop-forward "yank-pop-summary" nil t)
+(autoload 'yank-pop-backward "yank-pop-summary" nil t)
 
 (shell-command-completion-mode)
 
