@@ -23,7 +23,9 @@
 
 ;; replacements, extensions
 (require 'setnu)
+(require 'highlight-beyond-fill-column)
 (require 'dabbrev-highlight)
+(require 'flash-paren)
 ;; (require 'browse-kill-ring)
 (require 'shell-command)
 ;; (require 'power-macros) TODO: broken, erroring on ?g L354
