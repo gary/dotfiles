@@ -1,7 +1,8 @@
-;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; functions stolen from others, with references and credit where possible.
 ;;
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; XSteve's Emacs page
 ;; Stefan Reichör, stefan@xsteve.at
 ;; http://www.xsteve.at/prg/index.html
@@ -78,8 +79,11 @@ This should probably be generalized in the future."
                 (message "Unbalanced defun."))
                (t nil)))))))
 
+;; end XSteve's Emacs Page
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Stevey's Home Page - my .emacs file
-;; Steven Yegge,
+;; Steven Yegge, steve.yegge@gmail.com
 ;; steve.yegge.googlepages.com/my-dot-emacs-file
 ;; someday might want to rotate windows if more than 2 of them
 (defun swap-windows ()
@@ -134,4 +138,7 @@ This should probably be generalized in the future."
 	(copy-file filename newname 1)
  	(delete-file filename)
 	(set-visited-file-name newname)
- 	(set-buffer-modified-p nil) t)))) 
+ 	(set-buffer-modified-p nil) t))))
+
+;; end Stevey's Home Page
+
