@@ -43,6 +43,9 @@
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
 (setq default-major-mode 'text-mode)
+;;(if (eq invocation-name 'Emacs)
+    ;; XEmacs has blink-paren builtin
+    (flash-paren-mode 1);)
 (global-font-lock-mode 1)
 (icomplete-mode 1)
 (transient-mark-mode 1)
@@ -53,3 +56,5 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+
+;; TODO: setup modes for highlight-beyond-fill-column
