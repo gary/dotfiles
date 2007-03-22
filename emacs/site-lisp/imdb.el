@@ -64,7 +64,7 @@
     ()
   (if (fboundp 'widget-minor-mode-map)
       (setq imdb-mode-map (copy-keymap widget-minor-mode-map))
-    (setq imdb-mode-map (copy-keymap widget-global-map))))
+    (setq imdb-mode-map (copy-keymap widget-browse-mode-map))))
 
 (define-key imdb-mode-map "q" 'bury-buffer)
 (define-key imdb-mode-map " " 'scroll-up)
