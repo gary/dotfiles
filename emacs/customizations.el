@@ -58,6 +58,7 @@
 ;; always-on modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq default-major-mode 'text-mode)
+(column-number-mode 1)
 ;;(if (eq invocation-name 'Emacs)
     ;; XEmacs has blink-paren builtin
     (flash-paren-mode 1);)
