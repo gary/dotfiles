@@ -1,4 +1,6 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; look and feel
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq initial-frame-alist '(
 			    (mouse-color      . "gold")
 			    (foreground-color . "cornsilk2")
@@ -19,8 +21,14 @@
       (add-to-list 'initial-frame-alist '(alpha . 65))
       (add-to-list 'default-frame-alist '(alpha . 65))))
 
+
+;; lose the UI
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; functionality
+;; functionality customizations
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (fset 'yes-or-no-p 'y-or-n-p)
 (put 'dired-find-alternate-file 'disabled nil)
@@ -40,8 +48,15 @@
       (occur (if isearch-regexp isearch-string
                (regexp-quote isearch-string))))))
 
-(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+;; TODO: setup modes for highlight-beyond-fill-column
 
+;; bm
+(setq bm-restore-reposistory-on-load t)
+(setq-default bm-buffer-persistence t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; always-on modes
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq default-major-mode 'text-mode)
 ;;(if (eq invocation-name 'Emacs)
     ;; XEmacs has blink-paren builtin
@@ -52,9 +67,13 @@
 (iswitchb-mode 1)
 (winner-mode 1)
 
-;; lose the UI
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-
-;; TODO: setup modes for highlight-beyond-fill-column
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; extensions to builtin hooks
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+(add-hook 'after-init-hook 'bm-repository-load)
+(add-hook 'find-file-hooks 'bm-buffer-restore)
+(add-hook 'kill-buffer-hook 'bm-buffer-save)
+(add-hook 'kill-emacs-hook '(lambda nil
+			      (bm-buffer-save-all)
+			      (bm-repository-save)))
