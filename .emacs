@@ -29,6 +29,7 @@
 ;; (require 'browse-kill-ring)
 (require 'shell-command)
 ;; (require 'power-macros) TODO: broken, erroring on ?g L354
+(require 'bm)
 
 (load-library "customizations")
  
