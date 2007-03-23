@@ -13,3 +13,8 @@
 
 ;; zap-to-char likes them too
 (global-set-key "\M-z" 'zap-up-to-char)
+
+;; enhanced bookmarks
+(global-set-key (kbd "<M-f2>") 'bm-toggle)
+(global-set-key (kbd "<f2>") 'bm-next)
+(global-set-key (kbd "<S-f2>") 'bm-previous)
