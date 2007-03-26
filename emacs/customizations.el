@@ -78,3 +78,11 @@
 (add-hook 'kill-emacs-hook '(lambda nil
 			      (bm-buffer-save-all)
 			      (bm-repository-save)))
+
+(setq interpreter-mode-alist (append '(("ruby" . ruby-mode)
+				       interpreter-mode-alist)))
+
+(if (not (boundp 'carbon-emacs-package-version))
+    (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode)))
+(add-to-list 'auto-mode-alist '("\\.rhtml\\'" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.jsp\\'" . html-mode))
