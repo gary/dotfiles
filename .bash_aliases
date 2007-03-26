@@ -57,7 +57,7 @@ bash_prompt() {
 	local BGW='\[\033[47m\]'
 
 	local UC=$EMG                 # user's color
-	local MC=$EMB
+	local MC=$EMC
 	[ $UID -eq "0" ] && UC=$R   # root's color
 
 	# backslash in front of \$ to make bash colorize the prompt
