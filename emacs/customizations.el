@@ -48,12 +48,12 @@
       (occur (if isearch-regexp isearch-string
                (regexp-quote isearch-string))))))
 
-;; TODO: setup modes for highlight-beyond-fill-column
-
 ;; bm
 (setq bm-restore-reposistory-on-load t)
 (setq-default bm-buffer-persistence t)
 
+(speedbar-add-supported-extension ".jsp")
+(speedbar-add-supported-extension ".r\\(b\\|html\\)")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; always-on modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
