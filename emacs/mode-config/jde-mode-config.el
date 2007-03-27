@@ -1,7 +1,6 @@
-;; initialize CEDET
-(load-library "cedet")
-
 ;; jde-mode
+(setq jde-run-working-directory "~/Documents/Work/svn/blackboard/buildingblocks")
+
 ;; overkill, plan on always autoloading
 (setq defer-loading-jde t)
 (if defer-loading-jde
@@ -290,7 +289,7 @@
 				 "/opt/blackboard/b2/shared/bbjars/7.2/tomcat_server_lib/tomcat-coyote.jar"
 				 "/opt/blackboard/b2/shared/bbjars/7.2/tomcat_server_lib/tomcat-http.jar"
 				 "/opt/blackboard/b2/shared/bbjars/7.2/tomcat_server_lib/tomcat-jkstatus-ant.jar"
-				 "/opt/blackboard/b2/shared/bbjars/7.2/tomcat_server_lib/tomcat-util.jar"))
+				 "/opt/blackboard/b2/shared/bbjars/7.2/tomcat_server_lib/tomcat-util.jar")))
       ;; other mymiami classpath
       (setq muoh-hibernate-deps (quote ("/opt/blackboard/b2/shared/bbjars/hibernatedeps/antlr-2.7.6rc1.jar"
 					"/opt/blackboard/b2/shared/bbjars/hibernatedeps/asm-attrs.jar"
@@ -313,7 +312,7 @@
 					"/opt/blackboard/b2/shared/bbjars/hibernatedeps/oscache-2.1.jar"
 					"/opt/blackboard/b2/shared/bbjars/hibernatedeps/proxool-0.8.3.jar"
 					"/opt/blackboard/b2/shared/bbjars/hibernatedeps/swarmcache-1.0rc2.jar"
-					"/opt/blackboard/b2/shared/bbjars/hibernatedeps/syndiag2.jar"))))
+					"/opt/blackboard/b2/shared/bbjars/hibernatedeps/syndiag2.jar")))
 
 (setq muoh-logging (quote ("/opt/blackboard/b2/shared/bbjars/logging/log4j-1.2.13.jar"
 			   "/opt/blackboard/b2/shared/bbjars/logging/commons-logging-1.0.5.a.jar"
