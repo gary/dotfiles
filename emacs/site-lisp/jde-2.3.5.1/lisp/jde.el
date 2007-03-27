@@ -2274,7 +2274,7 @@ only."
 	    files
 	    " -or "))
 	  (cmd 
-	   (format "find %s %s -type f | xargs grep %s %s -n \"%s\" /dev/null" 
+	   (format "find %s %s -type f -print0 | xargs -0 grep %s %s -n \"%s\" /dev/null" 
 		  directories-option
 		  file-regexp-option
 		  case-sensitive-option
