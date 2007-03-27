@@ -21,3 +21,7 @@
 (global-set-key (kbd "<M-f2>") 'bm-toggle)
 (global-set-key (kbd "<f2>") 'bm-next)
 (global-set-key (kbd "<S-f2>") 'bm-previous)
+
+;; custom defuns
+(global-set-key "\C-cl" 'xsteve-copy-line)
+(global-set-key "\C-cw" 'swap-windows)
