@@ -52,9 +52,7 @@
 (setq bm-restore-reposistory-on-load t)
 (setq-default bm-buffer-persistence t)
 
-(speedbar-add-supported-extension ".jsp")
-(speedbar-add-supported-extension ".r\\(b\\|html\\)")
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; always-on modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq default-major-mode 'text-mode)
@@ -69,7 +67,7 @@
 (winner-mode 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; extensions to builtin hooks
+;; extensions to preloaded functionality
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 (add-hook 'after-init-hook 'bm-repository-load)
@@ -78,6 +76,10 @@
 (add-hook 'kill-emacs-hook '(lambda nil
 			      (bm-buffer-save-all)
 			      (bm-repository-save)))
+
+(add-hook 'speedbar-load-hook '(lambda ()
+				 (speedbar-add-supported-extension ".jsp")
+				 (speedbar-add-supported-extension ".r\\(b\\|html\\)")))
 
 (setq interpreter-mode-alist (append '(("ruby" . ruby-mode)
 				       interpreter-mode-alist)))
