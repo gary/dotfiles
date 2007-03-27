@@ -35,27 +35,28 @@
 (require 'bm)
 
 (load-library "mode-config")
-(load-library "mmm-mode-config")
+;; TODO: (load-library "mmm-mode-config")
 (load-library "jde-mode-config")
 
 (load-library "customizations")
  
 (shell)
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(mmm-cleanup-submode-face ((t (:background "grey7" :foreground "cornsilk2"))))
- '(mmm-code-submode-face ((t (:background "grey7" :foreground "LightGray"))))
- '(mmm-comment-submode-face ((t (:background "grey7" :foreground "SkyBlue"))))
- '(mmm-declaration-submode-face ((t (:background "grey7" :foreground "Aquamarine"))))
- '(mmm-default-submode-face ((t (:background "grey7" :foreground "cornsilk2"))))
- '(mmm-init-submode-face ((t (:background "grey7" :foreground "Pink"))))
- '(mmm-output-submode-face ((t (:background "grey7" :foreground "Plum"))))
- '(mmm-special-submode-face ((t (:background "grey7" :foreground "MediumSpringGreen"))))))
+;; TODO:
+;; (custom-set-variables
+;;   ;; custom-set-variables was added by Custom.
+;;   ;; If you edit it by hand, you could mess it up, so be careful.
+;;   ;; Your init file should contain only one such instance.
+;;   ;; If there is more than one, they won't work right.
+;; (custom-set-faces
+;;   ;; custom-set-faces was added by Custom.
+;;   ;; If you edit it by hand, you could mess it up, so be careful.
+;;   ;; Your init file should contain only one such instance.
+;;   ;; If there is more than one, they won't work right.
+;;  '(mmm-cleanup-submode-face ((t (:background "grey7" :foreground "cornsilk2"))))
+;;  '(mmm-code-submode-face ((t (:background "grey7" :foreground "LightGray"))))
+;;  '(mmm-comment-submode-face ((t (:background "grey7" :foreground "SkyBlue"))))
+;;  '(mmm-declaration-submode-face ((t (:background "grey7" :foreground "Aquamarine"))))
+;;  '(mmm-default-submode-face ((t (:background "grey7" :foreground "cornsilk2"))))
+;;  '(mmm-init-submode-face ((t (:background "grey7" :foreground "Pink"))))
+;;  '(mmm-output-submode-face ((t (:background "grey7" :foreground "Plum"))))
+;;  '(mmm-special-submode-face ((t (:background "grey7" :foreground "MediumSpringGreen"))))))
