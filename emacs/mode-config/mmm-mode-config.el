@@ -47,7 +47,6 @@
     :back "\"")))
  
 ;; What features should be turned on in this html-mode?
-;; TODO: big mess, better understand how submodes are applied and cleanup accordingly.
 ;; (add-to-list 'mmm-mode-ext-classes-alist
 ;; 	     '(html-mode nil jsp))
 (add-to-list 'mmm-mode-ext-classes-alist
