@@ -24,6 +24,9 @@
 (load-library "ekeys")
 
 ;; replacements, extensions
+(require 'cedet)
+
+(require 'windmove)
 (require 'setnu)
 (require 'highlight-beyond-fill-column)
 (require 'dabbrev-highlight)
