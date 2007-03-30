@@ -3,7 +3,7 @@
 ;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; XSteve's Emacs page
+;; Xsteve's Emacs page
 ;; Stefan Reichör, stefan@xsteve.at
 ;; http://www.xsteve.at/prg/index.html
 ;; part of xsteve-functions.el
@@ -56,7 +56,7 @@ This should probably be generalized in the future."
     (insert line "\n")
     (move-to-column col)))
 
-;;; emacs lisp stuff
+;; emacs lisp stuff
 (defun balance-defuns (buffname)
   "Check that every defun in BUFF is balanced (current-buffer if interactive)."
   (interactive "bBuffer to balance: ")
@@ -79,6 +79,17 @@ This should probably be generalized in the future."
                 (message "Unbalanced defun."))
                (t nil)))))))
 
+;; TODO: only works with emacs 22... regex check
+(defun xsteve-ido-choose-from-recentf ()
+  "Use ido to select a recently opened file from the `recentf-list'"
+  (interactive)
+  (let ((home (expand-file-name (getenv "HOME"))))
+    (find-file
+     (ido-completing-read "Recentf open: "
+                          (mapcar (lambda (path)
+                                    (replace-regexp-in-string home "~" path))
+                                  recentf-list)
+                          nil t))))
 ;; end XSteve's Emacs Page
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -142,3 +153,17 @@ This should probably be generalized in the future."
 
 ;; end Stevey's Home Page
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; jwz.org
+;; Jamie Zawinski, jwz@jwz.org
+;; http://www.jwz.org/doc/tabs-vs-spaces.html
+;; renamed from java-mode-untabity
+(defun untabify-buffer ()
+    (save-excursion
+      (goto-char (point-min))
+      (while (re-search-forward "[ \t]+$" nil t)
+        (delete-region (match-beginning 0) (match-end 0)))
+      (goto-char (point-min))
+      (if (search-forward "\t" nil t)
+          (untabify (1- (point)) (point-max))))
+    nil)
