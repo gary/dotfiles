@@ -18,6 +18,10 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; steroids
+(global-set-key (kbd "<M-f1>") 'recentf-open-files)
+(if (eq emacs-major-version 22)
+    (global-set-key "\C-cr" 'xsteve-ido-choose-from-recentf))
+
 (global-set-key "\M-y" 'yank-pop-forward)
 (global-set-key "\C-\M-y" 'yank-pop-backward)
 
@@ -32,10 +36,9 @@
 (global-set-key "\C-cl" 'xsteve-copy-line)
 (global-set-key "\C-xc" 'copy-region-as-kill)
 (global-set-key "\C-cx" 'kill-paragraph)
-
 ;; frame navigation
 (global-set-key "\C-cw" 'swap-windows)
-(global-set-key "\C-xo" 'windmove-down)	;; other-buffer
+(global-set-key "\C-xo" 'windmove-down) ;; other-buffer
 (global-set-key "\C-cp" 'windmove-up)
 (global-set-key "\C-cn" 'windmove-down)
 (global-set-key "\C-cf" 'windmove-right)
