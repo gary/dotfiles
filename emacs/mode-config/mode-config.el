@@ -1,6 +1,11 @@
 (add-hook 'text-mode-hook '(lambda ()
-			(turn-on-auto-fill)))
+                             (turn-on-auto-fill)))
 
+(add-hook 'emacs-lisp-mode-hook '(lambda ()
+                                   (make-local-variable 'write-contents-functions)
+                                   (add-hook 'write-contents-functions '(lambda ()
+                                                                          (balance-defuns (buffer-name))
+                                                                          (untabify-buffer)))))
 ;; shell-mode
 ;; TODO: tim's crazy .bbprofileshared still not cooperating
 (autoload 'ansi-color-for-comint-mode-on "ansi-color"
@@ -11,8 +16,13 @@
 
 ;; java, jsp and friends
 ;; highlight .properties files
-(add-hook 'conf-javaprop-mode-hook 
+(add-hook 'conf-javaprop-mode-hook
           '(lambda () (conf-quote-normal nil)))
+
+(add-hook 'java-mode-hook
+          '(lambda ()
+             (c-subword-mode)
+             (c-toggle-hungry-state)))
 
 ;; TODO: mmm-mode replacement
 ;; (defun jsp-mode () (interactive)
@@ -30,19 +40,19 @@
 ;; (setq auto-mode-alist
 ;;       (append '(("\\.jsp$" . jsp-mode)) auto-mode-alist))
 ;; (setq interpreter-mode-alist (append '(("jsp" . jsp-mode)
-;; 				       interpreter-mode-alist)))
+;;                                     interpreter-mode-alist)))
 ;; end java crap
 
 (autoload 'svn-status "psvn"
   "Examine the status of a Subversion working copy in a directory." t)
 
 (autoload 'ssh "ssh"
-	  "Open a network login connection via ssh with args input-args." t)
+          "Open a network login connection via ssh with args input-args." t)
 
 (autoload 'wget "wget" "wget interface for Emacs." t)
 (autoload 'wget-web-page "wget" "wget interface to download whole web page." t)
 ;; TODO not working
-(add-hook 'wget-load-hook
-	  '(lambda ()
-	     (if (eq system-type "darwin")
-		 (setq wget-download-directory "~/dls"))))
+;;(add-hook 'wget-load-hook
+;;          '(lambda ()
+(if (eq system-type "darwin")
+    (setq wget-download-directory "~/dls"))
