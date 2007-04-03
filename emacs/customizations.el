@@ -32,6 +32,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; functionality customizations
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(show-paren-mode t)
+
 (fset 'yes-or-no-p 'y-or-n-p)
 (put 'dired-find-alternate-file 'disabled nil)
 
@@ -75,9 +77,6 @@
     (ido-mode 1))
 (recentf-mode 1)
 (column-number-mode 1)
-;;(if (eq invocation-name 'Emacs)
-    ;; XEmacs has blink-paren builtin
-    (flash-paren-mode 1);)
 (global-font-lock-mode 1)
 (icomplete-mode 1)
 (transient-mark-mode 1)
