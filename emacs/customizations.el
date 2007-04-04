@@ -26,14 +26,12 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
-(set-fringe-mode (quote (nil . 0)))
+(set-fringe-mode (quote (nil . (nil . nil))))
 (setq-default indicate-buffer-boundaries 'left)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; functionality customizations
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(show-paren-mode t)
-
 (fset 'yes-or-no-p 'y-or-n-p)
 (put 'dired-find-alternate-file 'disabled nil)
 
@@ -72,6 +70,7 @@
 ;; always-on modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq-default indent-tabs-mode nil)             ;; bad tabs, bad
+(show-paren-mode t)
 (setq default-major-mode 'text-mode)
 (if (eq emacs-major-version 22)
     (ido-mode 1))
