@@ -13,15 +13,24 @@
 
 (require 'ruby-electric)
 (add-hook 'ruby-mode-hook
-	  '(lambda ()
-	     (inf-ruby-keys)
-	     (define-key ruby-mode-map "\C-c\C-a" 'ruby-eval-buffer)
-	     ;; (pabbrev-mode t) doh
-	     (ruby-electric-mode t)))
+          '(lambda ()
+             (inf-ruby-keys)
+             (define-key ruby-mode-map "\C-c\C-a" 'ruby-eval-buffer)
+             ;; (pabbrev-mode t) doh
+             (ruby-electric-mode t))
+             (if (eq emacs-major-version 22)
+                 (progn
+                   (make-local-variable 'write-contents-functions)
+                   (add-hook 'write-contents-functions '(lambda ()
+                                                          (untabify-buffer)
+                                                          (delete-trailing-whitespace))))
+               (make-local-variable 'write-contents-hooks)
+               (add-hook'write-contents-hooks 'untabify-buffer)))
+)
 
 (add-hook 'ruby-inferior-mode-hook
-	  '(lambda ()
-	     (ruby-electric-mode t)))
+          '(lambda ()
+             (ruby-electric-mode t)))
 
 (setq ri-ruby-script (concat emacs-root "/modes/ri-emacs.rb"))
 (autoload 'ri "ri-ruby" "Ruby api reference" t)
