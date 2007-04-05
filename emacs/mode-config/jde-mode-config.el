@@ -16,7 +16,9 @@
              (if (eq emacs-major-version 22)
                  (progn
                    (make-local-variable 'write-contents-functions)
-                   (add-hook'write-contents-functions 'untabify-buffer))
+                   (add-hook 'write-contents-functions '(lambda ()
+                                                          (untabify-buffer)
+                                                          (delete-trailing-whitespace))))
                (make-local-variable 'write-contents-hooks)
                (add-hook'write-contents-hooks 'untabify-buffer))
              (local-set-key "\C-\M-a" 'beginning-of-defun)
