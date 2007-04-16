@@ -8,9 +8,12 @@
                                                                           (untabify-buffer)))))
 ;; shell-mode
 ;; TODO: tim's crazy .bbprofileshared still not cooperating
+;; TODO: parse .bash_aliases and dynamically add new abbrevs!
 (autoload 'ansi-color-for-comint-mode-on "ansi-color"
   "Set `ansi-color-for-comint-mode' to t." t)
-(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+(add-hook 'shell-mode-hook '(lambda ()
+                              ansi-color-for-comint-mode-on
+                              (abbrev-mode 1)))
 
 (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
 
@@ -51,8 +54,3 @@
 
 (autoload 'wget "wget" "wget interface for Emacs." t)
 (autoload 'wget-web-page "wget" "wget interface to download whole web page." t)
-;; TODO not working
-;;(add-hook 'wget-load-hook
-;;          '(lambda ()
-(if (eq system-type "darwin")
-    (setq wget-download-directory "~/dls"))
