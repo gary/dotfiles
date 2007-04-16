@@ -26,7 +26,6 @@
                                                           (delete-trailing-whitespace))))
                (make-local-variable 'write-contents-hooks)
                (add-hook'write-contents-hooks 'untabify-buffer)))
-)
 
 (add-hook 'ruby-inferior-mode-hook
           '(lambda ()
