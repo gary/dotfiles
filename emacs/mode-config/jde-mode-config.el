@@ -1,4 +1,4 @@
-;; jde-mode
+ ;; jde-mode
 
 ;; overkill, plan on always autoloading
 (setq defer-loading-jde t)
@@ -11,20 +11,23 @@
              auto-mode-alist)))
   (require 'jde))
 
-(add-hook 'jde-run-mode-hook
+(add-hook 'jde-mode-hook
           '(lambda ()
+             (setq tab-width 4)
+             (setq indent-tabs-mode t)
              (if (eq emacs-major-version 22)
                  (progn
                    (make-local-variable 'write-contents-functions)
-                   (add-hook 'write-contents-functions '(lambda ()
-                                                          (untabify-buffer)
-                                                          (delete-trailing-whitespace))))
+                   (add-hook 'write-contents-functions (tabify-buffer)))
                (make-local-variable 'write-contents-hooks)
-               (add-hook'write-contents-hooks 'untabify-buffer))
-             (local-set-key "\C-\M-a" 'beginning-of-defun)
-             (local-set-key "\C-\M-e" 'end-of-defun)
-             (c-subword-mode)
-             (c-toggle-hungry-state)))
+               (add-hook'write-contents-hooks 'untabify-buffer))))
+
+(add-hook 'jde-run-mode-hook
+         '(lambda ()
+            ;;(define-key jde-mode-map [tab] 'indent-or-complete-jde)
+            (c-subword-mode)
+            (c-toggle-hungry-state)))
+
 
 (setq jde-gen-k&r t)
 (setq jde-electric-return-p t)
