@@ -11,8 +11,8 @@
 ;; TODO: parse .bash_aliases and dynamically add new abbrevs!
 (autoload 'ansi-color-for-comint-mode-on "ansi-color"
   "Set `ansi-color-for-comint-mode' to t." t)
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on) ;; ?
 (add-hook 'shell-mode-hook '(lambda ()
-                              ansi-color-for-comint-mode-on
                               (abbrev-mode 1)))
 
 (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)

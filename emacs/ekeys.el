@@ -16,6 +16,11 @@
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
 
+(global-set-key "\C-s" 'isearch-forward-regexp)
+(global-set-key "\C-r" 'isearch-backward-regexp)
+(global-unset-key "\C-\M-s")
+(global-unset-key "\C-\M-r")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; steroids
 (global-set-key (kbd "<M-f1>") 'recentf-open-files)
