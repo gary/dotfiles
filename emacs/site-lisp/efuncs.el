@@ -176,10 +176,9 @@ This should probably be generalized in the future."
   (tabify (point-min) (point-max))
   (register-to-point 1))
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ola-bini.blogspot.com
-;; ola bini
+;; Ola Bini
 ;; http://ola-bini.blogspot.com/2006/06/few-hours-with-emacs.html
 (defun indent-or-complete-jde ()
   "Complete if point is at end of a line, otherwise indent line."
@@ -187,3 +186,29 @@ This should probably be generalized in the future."
   (if (looking-at "$")
       (jde-complete)
     (indent-for-tab-command)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; The Curious Mind | Articles / Emacs Tips
+;; Babar K. Zafar
+;; http://www.zafar.se/bkz/Articles/EmacsTips
+(defun kill-syntax-forward ()
+  "Kill characters with syntax at point."
+  (interactive)
+  (kill-region (point)
+               (progn (skip-syntax-forward (string (char-syntax (char-after))))
+                      (point))))
+
+(defun kill-syntax-backward ()
+  "Kill characters with syntax at point."
+  (interactive)
+  (kill-region (point)
+               (progn (skip-syntax-backward (string (char-syntax (char-before))))
+                      (point))))
+
+(defun vi-open-next-line (arg)
+  "Move to the next line (like vi) and then opens a line."
+  (interactive "p")
+  (end-of-line)
+  (open-line arg)
+  (next-line 1)
+  (indent-according-to-mode))

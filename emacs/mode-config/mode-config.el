@@ -6,11 +6,26 @@
                                    (add-hook 'write-contents-functions '(lambda ()
                                                                           (balance-defuns (buffer-name))
                                                                           (untabify-buffer)))))
+;; ido
+(if (eq emacs-major-version 22)
+    (progn
+      (setq ido-confirm-unique-completion t)
+      (setq ido-default-buffer-method 'samewindow)
+      (setq ido-use-filename-at-point t)
+      (set-face-background 'ido-first-match "blue3")
+      (set-face-foreground 'ido-subdir "SteelBlue1")
+      (set-face-foreground 'ido-only-match "blue3")
+      (set-face-background 'ido-only-match "white")
+      (set-face-foreground 'ido-incomplete-regexp "cornsilk1")
+      (set-face-background 'ido-incomplete-regexp "green")))
+
 ;; shell-mode
 ;; TODO: tim's crazy .bbprofileshared still not cooperating
 ;; TODO: parse .bash_aliases and dynamically add new abbrevs!
 (autoload 'ansi-color-for-comint-mode-on "ansi-color"
   "Set `ansi-color-for-comint-mode' to t." t)
+(setq ansi-color-names-vector
+      ["black" "red1" "green3" "yellow3" "DodgerBlue1" "magenta1" "cyan3" "white"])
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on) ;; ?
 (add-hook 'shell-mode-hook '(lambda ()
                               (abbrev-mode 1)))
@@ -44,7 +59,6 @@
 ;;       (append '(("\\.jsp$" . jsp-mode)) auto-mode-alist))
 ;; (setq interpreter-mode-alist (append '(("jsp" . jsp-mode)
 ;;                                     interpreter-mode-alist)))
-;; end java crap
 
 (autoload 'svn-status "psvn"
   "Examine the status of a Subversion working copy in a directory." t)

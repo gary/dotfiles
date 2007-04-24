@@ -21,11 +21,8 @@
   (add-path "/site-lisp/cedet-1.0pre3/common")
   (add-path "/site-lisp/wget-0.5.0"))
 
-(read-abbrev-file)
-(load-library "efuncs")
-(load-library "ekeys")
-
 ;; replacements, extensions
+(require 'hippie-exp)
 (require 'ffap)
 (require 'recentf)
 (require 'cedet)
@@ -39,12 +36,15 @@
 ;; (require 'power-macros) TODO: broken, erroring on ?g L354
 (require 'bm)
 
+(read-abbrev-file)
+(load-library "efuncs")
+(load-library "customizations")
+(load-library "ekeys")
+
 (load-library "mode-config")
 ;; TODO: (load-library "mmm-mode-config")
 (load-library "jde-mode-config")
 (load-library "ruby-mode-config")
-
-(load-library "customizations")
 
 (shell)
 ;; TODO:

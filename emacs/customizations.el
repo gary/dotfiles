@@ -5,16 +5,14 @@
                             (mouse-color      . "gold")
                             (foreground-color . "cornsilk2")
                             (background-color . "grey7")
-                            (top . 25) (left . 10) (width . 125) (height . 50))
-      )
+                            (top . 25) (left . 10) (width . 125) (height . 50)))
 
 (setq default-frame-alist '(
                       (background-color     . "grey7")
                       (foreground-color     . "cornsilk2")
                       (cursor-color         . "gold2")
                       (cursor-type          . box)
-                      (top . 25) (left . 10) (width . 125) (height . 50))
-      )
+                      (top . 25) (left . 10) (width . 125) (height . 50)))
 
 (if (boundp 'carbon-emacs-package-version)
     (progn
@@ -32,6 +30,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; functionality customizations
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq skeleton-pair t)
 (fset 'yes-or-no-p 'y-or-n-p)
 (put 'dired-find-alternate-file 'disabled nil)
 
@@ -81,13 +80,15 @@
 (show-paren-mode t)
 (setq default-major-mode 'text-mode)
 (if (eq emacs-major-version 22)
-    (ido-mode 1))
+    (progn
+      (ido-mode 1)
+      (ido-everywhere t))
+  (iswitchb-mode 1))
 (recentf-mode 1)
 (column-number-mode 1)
 (global-font-lock-mode 1)
 (icomplete-mode 1)
 (transient-mark-mode 1)
-(iswitchb-mode 1)
 (winner-mode 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
