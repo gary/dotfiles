@@ -19,6 +19,12 @@
       (set-face-foreground 'ido-incomplete-regexp "cornsilk1")
       (set-face-background 'ido-incomplete-regexp "green")))
 
+;; speedbar-mode
+(add-hook 'speedbar-load-hook '(lambda ()
+                                 (speedbar-add-supported-extension "\\(\\.xml\\|\\.tld\\)") ;; xml files
+                                 (speedbar-add-supported-extension ".jsp")
+                                 (speedbar-add-supported-extension ".r\\(b\\|html\\)")))
+
 ;; shell-mode
 ;; TODO: tim's crazy .bbprofileshared still not cooperating
 ;; TODO: parse .bash_aliases and dynamically add new abbrevs!
@@ -34,6 +40,7 @@
 
 ;; java, jsp and friends
 ;; highlight .properties files
+(add-to-list 'auto-mode-alist '("\\.jsp\\'" . html-mode))
 (add-hook 'conf-javaprop-mode-hook
           '(lambda () (conf-quote-normal nil)))
 
