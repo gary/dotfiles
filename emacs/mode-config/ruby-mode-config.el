@@ -6,10 +6,6 @@
 (autoload 'inf-ruby-keys "inf-ruby"
   "Set local key defs for inf-ruby in ruby-mode")
 
-(if (not (boundp 'carbon-emacs-package-version))
-    (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode)))
-(add-to-list 'auto-mode-alist '("\\.rhtml\\'" . html-mode))
-
 (defun ruby-eval-buffer ()
   (interactive)
   "Evaluate the buffer with ruby."
