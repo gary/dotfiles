@@ -109,4 +109,4 @@
     (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode)))
 (add-to-list 'auto-mode-alist '("\\.rhtml\\'" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.jsp\\'" . html-mode))
-(add-to-list 'auto-mode-alist '(("\\.cs$" . csharp-mode))
+(add-to-list 'auto-mode-alist '("\\.cs$" . csharp-mode))
