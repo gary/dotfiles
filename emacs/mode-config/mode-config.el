@@ -40,7 +40,6 @@
 
 ;; java, jsp and friends
 ;; highlight .properties files
-(add-to-list 'auto-mode-alist '("\\.jsp\\'" . html-mode))
 (add-hook 'conf-javaprop-mode-hook
           '(lambda () (conf-quote-normal nil)))
 
