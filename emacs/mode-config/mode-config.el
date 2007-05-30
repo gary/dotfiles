@@ -66,6 +66,10 @@
 ;; (setq interpreter-mode-alist (append '(("jsp" . jsp-mode)
 ;;                                     interpreter-mode-alist)))
 
+;; dired
+(put 'dired-find-alternate-file 'disabled nil)
+(setq 'dired-listing-switches "-alR")   ;; recursive listings
+
 (autoload 'svn-status "psvn"
   "Examine the status of a Subversion working copy in a directory." t)
 
