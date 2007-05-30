@@ -30,12 +30,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; functionality customizations
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (zone-when-idle 300)
 (setq skeleton-pair t)
 (fset 'yes-or-no-p 'y-or-n-p)
 (put 'dired-find-alternate-file 'disabled nil)
 
 (defconst use-backup-dir t)
-(setq backup-directory-alist (quote ((".*" . "~/tmp/emacs")))
+(setq backup-directory-alist (quote ((".*" . "~/emacs/tmp")))
       version-control t                ; Use version numbers for backups
       kept-new-versions 16             ; Number of newest versions to keep
       kept-old-versions 2              ; Number of oldest versions to keep
@@ -101,6 +102,12 @@
 (add-hook 'kill-emacs-hook '(lambda nil
                               (bm-buffer-save-all)
                               (bm-repository-save)))
+
+(add-hook 'speedbar-load-hook '(lambda ()
+                                 (speedbar-add-supported-extension ".js")
+                                 (speedbar-add-supported-extension ".jsp")
+                                 (speedbar-add-supported-extension "\\(\\.xml\\|\\.tld\\)") ;; xml files
+                                 (speedbar-add-supported-extension ".r\\(b\\|html\\)")))
 
 (setq interpreter-mode-alist (append '(("ruby" . ruby-mode)
                                        interpreter-mode-alist)))
