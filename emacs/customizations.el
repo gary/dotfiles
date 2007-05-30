@@ -33,7 +33,6 @@
 ;; (zone-when-idle 300)
 (setq skeleton-pair t)
 (fset 'yes-or-no-p 'y-or-n-p)
-(put 'dired-find-alternate-file 'disabled nil)
 
 (defconst use-backup-dir t)
 (setq backup-directory-alist (quote ((".*" . "~/emacs/tmp")))
