@@ -42,8 +42,7 @@
 (setq jde-help-docsets (quote (("User (javadoc)" "http://java.sun.com/j2se/1.5.0/docs/api/" nil)
                                ("User (javadoc)" "http://java.sun.com/javaee/5/docs/api/" nil)
                                ("User (javadoc)" "http://library.blackboard.com/docs/r6/6_1/sdk/b2api/" nil)
-                               ;;("User (javadoc)" "file://Users/giams/doc/bbas/bbas_r7_2_building_blocks_api_spec/api-documentation/" nil)
-                               )))
+                               ("User (javadoc)" "file://Users/giams/doc/bbas/bbas_r7_2_building_blocks_api_spec/api-documentation/" nil))))
 
 (setq jde-compiler (quote ("javac" "")))
 (setq jde-complete-function (quote jde-complete-minibuf))
