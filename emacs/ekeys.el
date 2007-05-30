@@ -67,7 +67,6 @@
 
 ;; killing and copying
 (global-set-key "\C-cl" 'xsteve-copy-line)
-(global-set-key "\C-xc" 'copy-region-as-kill)
 (global-set-key "\C-cx" 'kill-paragraph)
 
 ;; frame navigation
