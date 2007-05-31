@@ -68,7 +68,7 @@
 
 ;; dired
 (put 'dired-find-alternate-file 'disabled nil)
-(setq 'dired-listing-switches "-alR")   ;; recursive listings
+(setq dired-listing-switches "-alR")   ;; recursive listings
 
 (autoload 'svn-status "psvn"
   "Examine the status of a Subversion working copy in a directory." t)
