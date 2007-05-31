@@ -30,7 +30,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; functionality customizations
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (zone-when-idle 300)
+(zone-when-idle 300)
 (setq skeleton-pair t)
 (fset 'yes-or-no-p 'y-or-n-p)
 
