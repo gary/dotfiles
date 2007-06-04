@@ -33,9 +33,6 @@
 (setq ansi-color-names-vector
       ["black" "red1" "green3" "yellow3" "DodgerBlue1" "magenta1" "cyan3" "white"])
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on) ;; ?
-(add-hook 'shell-mode-hook '(lambda ()
-                              (abbrev-mode 1)))
-
 (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
 
 ;; java, jsp and friends
