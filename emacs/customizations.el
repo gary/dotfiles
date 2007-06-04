@@ -30,6 +30,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; functionality customizations
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq-default indent-tabs-mode nil)             ;; bad tabs, bad
 (zone-when-idle 300)
 (setq skeleton-pair t)
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -76,9 +77,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; always-on modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setq-default indent-tabs-mode nil)             ;; bad tabs, bad
-(show-paren-mode t)
 (setq default-major-mode 'text-mode)
+(display-time-mode 1)
+(show-paren-mode t)
 (if (eq emacs-major-version 22)
     (progn
       (ido-mode 1)
@@ -90,6 +91,7 @@
 (icomplete-mode 1)
 (transient-mark-mode 1)
 (winner-mode 1)
+(abbrev-mode 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; extensions to preloaded functionality
@@ -108,8 +110,12 @@
                                  (speedbar-add-supported-extension "\\(\\.xml\\|\\.tld\\)") ;; xml files
                                  (speedbar-add-supported-extension ".r\\(b\\|html\\)")))
 
-(setq interpreter-mode-alist (append '(("ruby" . ruby-mode)
-                                       interpreter-mode-alist)))
+(autoload 'perl-mode "cperl-mode" "alternate mode for editing Perl programs" t)
+
+(add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
+(add-to-list 'interpreter-mode-alist '("perl" . cperl-mode))
+(add-to-list 'interpreter-mode-alist '("perl5" . cperl-mode))
+(add-to-list 'interpreter-mode-alist '("miniperl" . cperl-mode))
 
 (if (not (boundp 'carbon-emacs-package-version))
     (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode)))
