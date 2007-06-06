@@ -71,7 +71,6 @@
 
 ;; frame navigation
 (global-set-key "\C-cw" 'swap-windows)
-(global-set-key "\C-xo" 'windmove-down) ;; other-buffer
 (global-set-key "\C-cp" 'windmove-up)
 (global-set-key "\C-cn" 'windmove-down)
 (global-set-key "\C-cf" 'windmove-right)
