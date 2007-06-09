@@ -5,6 +5,10 @@
   "Run an inferior Ruby process" t)
 (autoload 'inf-ruby-keys "inf-ruby"
   "Set local key defs for inf-ruby in ruby-mode")
+(autoload 'rdebug "rdebug" t
+  "Run rdebug on program FILE in buffer *gud-FILE*.
+The directory containing FILE becomes the initial working directory
+and source-file directory for your debugger.")
 
 (defun ruby-eval-buffer ()
   (interactive)
