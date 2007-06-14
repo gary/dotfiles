@@ -35,7 +35,7 @@
 (require 'shell-command)
 ;; (require 'power-macros) TODO: broken, erroring on ?g L354
 (require 'bm)
-(require 'zone)
+;; (require 'zone)
 
 (read-abbrev-file)
 (load-library "efuncs")
@@ -43,27 +43,16 @@
 (load-library "ekeys")
 
 (load-library "mode-config")
-;; TODO: (load-library "mmm-mode-config")
+(load-library "mmm-mode-config")
 (load-library "jde-mode-config")
 (load-library "ruby-mode-config")
 
 (shell)
-;; TODO:
-;; (custom-set-variables
-;;   ;; custom-set-variables was added by Custom.
-;;   ;; If you edit it by hand, you could mess it up, so be careful.
-;;   ;; Your init file should contain only one such instance.
-;;   ;; If there is more than one, they won't work right.
-;; (custom-set-faces
-;;   ;; custom-set-faces was added by Custom.
-;;   ;; If you edit it by hand, you could mess it up, so be careful.
-;;   ;; Your init file should contain only one such instance.
-;;   ;; If there is more than one, they won't work right.
-;;  '(mmm-cleanup-submode-face ((t (:background "grey7" :foreground "cornsilk2"))))
-;;  '(mmm-code-submode-face ((t (:background "grey7" :foreground "LightGray"))))
-;;  '(mmm-comment-submode-face ((t (:background "grey7" :foreground "SkyBlue"))))
-;;  '(mmm-declaration-submode-face ((t (:background "grey7" :foreground "Aquamarine"))))
-;;  '(mmm-default-submode-face ((t (:background "grey7" :foreground "cornsilk2"))))
-;;  '(mmm-init-submode-face ((t (:background "grey7" :foreground "Pink"))))
-;;  '(mmm-output-submode-face ((t (:background "grey7" :foreground "Plum"))))
-;;  '(mmm-special-submode-face ((t (:background "grey7" :foreground "MediumSpringGreen"))))))
+
+;; TODO
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(timeclock-modeline-display t nil (timeclock)))
