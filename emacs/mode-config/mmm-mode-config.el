@@ -1,59 +1,32 @@
 (setq mmm-global-mode 'maybe)
 (setq mmm-submode-decoration-level 2)
 
-(mmm-add-group 'jsp
-	       `((jsp-code
-		  :submode java
-		  :match-face (("<%!" . mmm-declaration-submode-face)
-			       ("<%=" . mmm-output-submode-face)
-			       ("<%"  . mmm-code-submode-face))
-		  :front "<%[!=]?"
-		  :back "%>"
-		  :insert ((?% jsp-code nil @ "<%" @ " " _ " " @ "%>" @)
-			   (?! jsp-declaration nil @ "<%!" @ " " _ " " @ "%>" @)
-			   (?= jsp-expression nil @ "<%=" @ " " _ " " @ "%>" @))
-		  )
-		 (jsp-directive
-		  :submode text-mode
-		  :face mmm-special-submode-face
-		  :front "<%@"
-		  :back "%>"
-		  :insert ((?@ jsp-directive nil @ "<%@" @ " " _ " " @ "%>" @)))))
+;; TODO:
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(mmm-cleanup-submode-face ((t (:background "Wheat" :foreground "black"))))
+ '(mmm-code-submode-face ((t (:background "LightGray" :foreground "black"))))
+ '(mmm-comment-submode-face ((t (:background "SkyBlue" :foreground "black"))))
+ '(mmm-declaration-submode-face ((t (:background "Aquamarine" :foreground "black"))))
+ '(mmm-default-submode-face ((t (:background "gray85" :foreground "black"))))
+ '(mmm-init-submode-face ((t (:background "Pink" :foreground "black"))))
+ '(mmm-output-submode-face ((t (:background "Plum" :foreground "black"))))
+ '(mmm-special-submode-face ((t (:background "MediumSpringGreen" :foreground "black")))))
 
-(mmm-add-classes
- '((embedded-ruby
-    :submode ruby-mode
-    :front "<%[=#]?"
-    :back "%>"
-    :insert ((?r eruby-directive nil @ "<%" @ " " _ " " @ "%>" @)
-             (?= eruby-directive nil @ "<%=" @ " " _ " " @ "%>" @)))))
-(mmm-add-classes
- '((embedded-css
-    :submode css-mode
-    :face mmm-declaration-submode-face
-    :front "style=\""
-    :back "\"")))
-(mmm-add-classes
- '((embedded-javascript
-    :submode javascript-mode ;; javascript-generic-mode
-    :face mmm-declaration-submode-face
-    :front "<script\[^>\]*>"
-    :back "</script>")))
-(mmm-add-classes
- '((embedded-javascript-attribute
-    :submode javascript-mode ;; javascript-generic-mode
-    :face mmm-declaration-submode-face
-    :front "\\bon\\w+=\\s-*\""
-    :back "\"")))
- 
-;; What features should be turned on in this html-mode?
-;; (add-to-list 'mmm-mode-ext-classes-alist
-;; 	     '(html-mode nil jsp))
-(add-to-list 'mmm-mode-ext-classes-alist
-	     '(html-mode nil embedded-css))
-(add-to-list 'mmm-mode-ext-classes-alist
-	     '(html-mode nil embedded-ruby))
-(add-to-list 'mmm-mode-ext-classes-alist
-	     '(html-mode nil embedded-javascript))
-(add-to-list 'mmm-mode-ext-classes-alist
-	     '(html-mode nil embedded-javascript-attribute))
+(mmm-add-mode-ext-class nil "\\.jsp$" 'embedded-css)
+(mmm-add-mode-ext-class nil "\\.jsp$" 'html-js)
+(mmm-add-mode-ext-class nil "\\.jsp$" 'jsp) ;;
+
+;; (mmm-add-classes
+;;  '((embedded-ruby
+;;     :submode ruby-mode
+;;     :front "<%[=#]?"
+;;     :back "%>"
+;;     :insert ((?r eruby-directive nil @ "<%" @ " " _ " " @ "%>" @)
+;;              (?= eruby-directive nil @ "<%=" @ " " _ " " @ "%>" @)))))
+
+;; (mmm-add-mode-ext-class nil "\\.rb$" 'embedded-ruby)
+;; (mmm-add-mode-ext-class nil "\\.rhtml$" 'embedded-ruby)
