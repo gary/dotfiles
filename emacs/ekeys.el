@@ -45,8 +45,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; external steroids
 
-(global-set-key "\C-w" 'kill-syntax-backward)
-(global-set-key "\C-d" 'kill-syntax-forward)
+(global-set-key "\C-w" 'backward-kill-word) ;; default M-DEL
+;; (global-set-key "\C-d" 'kill-syntax-forward)
 
 ;; old habits die hard
 (global-set-key "\C-o" 'vi-open-next-line)
@@ -75,3 +75,6 @@
 (global-set-key "\C-cn" 'windmove-down)
 (global-set-key "\C-cf" 'windmove-right)
 (global-set-key "\C-cb" 'windmove-left)
+
+;; redo
+(global-set-key "\M-/" 'redo)
