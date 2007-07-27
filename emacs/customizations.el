@@ -25,14 +25,16 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
-(set-fringe-mode (quote (nil . (nil . nil))))
-(setq-default indicate-buffer-boundaries 'left)
+(if (eq emacs-major-version 22)
+    (progn
+      (set-fringe-mode (quote (nil . (nil . nil))))
+      (setq-default indicate-buffer-boundaries 'left)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; functionality customizations
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq-default indent-tabs-mode nil)             ;; bad tabs, bad
-(zone-when-idle 300)
+;; (zone-when-idle 300)
 (setq skeleton-pair t)
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -123,3 +125,11 @@
 (add-to-list 'auto-mode-alist '("\\.rhtml\\'" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.jsp\\'" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.cs$" . csharp-mode))
+
+(add-hook 'pre-abbrev-expand-hook
+          (lambda ()
+            (setq local-abbrev-table
+                  (if (inside-comment-p)
+                      text-mode-abbrev-table
+                    ruby-mode-abbrev-table)))
+          nil t)
