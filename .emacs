@@ -23,6 +23,7 @@
 
 ;; replacements, extensions
 (require 'hippie-exp)
+(require 'redo)
 (require 'ffap)
 (require 'recentf)
 (require 'cedet)
@@ -30,8 +31,9 @@
 (require 'linum)
 (require 'highlight-beyond-fill-column)
 (require 'dabbrev-highlight)
+(require 'snippet)
+(require 'smart-snippet)
 (require 'mmm-auto)
-;; (require 'browse-kill-ring)
 (require 'shell-command)
 ;; (require 'power-macros) TODO: broken, erroring on ?g L354
 (require 'bm)
