@@ -56,34 +56,29 @@ bash_prompt() {
 	local BGC='\[\033[46m\]'
 	local BGW='\[\033[47m\]'
 
-	local UC=$EMG                 # user's color
+	local UC=$EM # user's color
 	local MC=$EMC
-	[ $UID -eq "0" ] && UC=$R   # root's color
+	[ $UID -eq "0" ] && UC=$R # root's color
 
 	# backslash in front of \$ to make bash colorize the prompt
-	PS1="${EMW}${UC}\u${EMW}@${MC}\h ${Y}\${NEW_PWD}\n${EMW}${BGR}\!${BGK}|${BGM}\#${BGK}${G} \\$ ${NONE}"
+        # multi line
+	#PS1="${EMW}${UC}\u${EMW}@${MC}\h ${Y}\${NEW_PWD}\n${EMW}${BGR}\!${BGK}|${BGM}\#${BGK}${G} \\$ ${NONE}"
+        # single line
+	PS1="${EMW}${BGR}|\#|${NONE} ${BGY}${EMK}${UC}\u@\h${NONE} ${Y}\${NEW_PWD} ${BGK}${G}\\$ ${NONE}"
 }
-
-# resetvisor() {
-#     defaults write com.apple.Terminal VisorTerminal -dict-add Rows 20
-#     ~/bin/visor &
-#     killall Terminal
-# }
 
 PROMPT_COMMAND=bash_prompt_command
 bash_prompt
 unset bash_prompt
-
-irb='irb -r irb/completion -r rubygems'
-alias rdb='ruby -r debug'
 
 if [ -z $EMACS ]; then
 	alias grep='grep --color=always'
 fi
 
 # dir specific ls
-alias lsd='ls **/ | Egrep "\/:$" | tr -d ":"'
+alias lsd='find . -maxdepth 1 -type d'
 # colorful directory listing
+alias lt='ls -Glt'
 alias ll='ls -Gl'
 alias ls='ls -G'
 alias la='ls -Gla'
@@ -106,24 +101,30 @@ alias po3='popd +3'
 alias po4='popd +4'
 alias po5='popd +5'
 
-if [ -f ~/bin/itunes ]; then
-   # iTunes cli hack
-   alias play="itunes play"
-   alias pause="itunes pause"
-   alias next="itunes next"
-   alias prev="itunes prev"
-   alias cur="itunes status"
-   #alias restart="itunes pause prev next"
-fi
+alias ps='ps -aux'
+alias psc='ps -auxc'
 
+# osx
 if [ -d ~/.Trash ]; then
    alias ts='du -h -d0 $HOME/.Trash'
 fi
 
-if [ $CFGFILES ]; then
-   alias cicfg='svn commit $CFGFILES'
+## itunes
+if [ -f ~/bin/itunes ]; then
+    alias it='itunes a'
+    alias itp='itunes p'
+    alias itb='itunes b'
+    alias itn='itunes n'
+    alias itp='itunes p'
+    alias iti='itunes i'
 fi
 
-if [ -d /Applications/Aquamacs\ Emacs.app/ ]; then
-   alias aquamacs='open -a /Applications/Aquamacs\ Emacs.app/'
-fi
+# ruby
+irb='irb -r irb/completion -r rubygems'
+alias rdb='ruby -r debug'
+alias gs='gem search '
+alias gi='gem install '
+alias gl='gem list '
+
+# servers
+alias gary='ssh gary@garyis.boldlygoingnowhere.org'
