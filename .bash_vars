@@ -9,9 +9,3 @@ export HISTCONTROL=ignoreboth;
 if [ -h ~/repos ]; then
 	LOCAL_REPOS="$HOME/repos"
 fi
-
-# cfg files hard linked to a checked out dir, making for easy repo updating 
-# when changes are made
-if [ -d ~/Documents/etc/config ]; then
-	CFGFILES="$HOME/.config"
-fi
