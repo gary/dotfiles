@@ -27,13 +27,32 @@
 
 ;; shell-mode
 ;; TODO: tim's crazy .bbprofileshared still not cooperating
-;; TODO: parse .bash_aliases and dynamically add new abbrevs!
 (autoload 'ansi-color-for-comint-mode-on "ansi-color"
   "Set `ansi-color-for-comint-mode' to t." t)
 (setq ansi-color-names-vector
       ["black" "red1" "green3" "yellow3" "DodgerBlue1" "magenta1" "cyan3" "white"])
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on) ;; ?
 (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
+
+(snippet-with-abbrev-table 'shell-mode-abbrev-table
+       ("findf" . "find $${dir} $${depth} -type f -name $${name} $.")
+       ("findd" . "find $${dir} $${depth} -type d -name $${name} $.")
+       ("findg" . "find $${dir} $${depth} -type f -name $${name} -exec grep -Hn$${opts} -E -e $${regex} {} \;$.")
+       ("finde" . "find $${dir} $${depth} $${type} -name $${name} -exec $${cmd} {} \;$.")
+       ("findx" . "find $${dir} $${depth} -type d -name $${name} -print0 | xargs -0 $.")
+       ("tarc" . "tar $${cd}-cvfp$${opts} $${name}.tar $${files} $.")
+       ("tarx" . "tar $${cd}-xvfp$${opts} $${name}.tar $${files} $.")
+       ("tart" . "tar $${cd}-tvf$${opts} $${name}.tar $${files} $.")
+       ("grep" . "grep -Hn$${opts} -G -e $${regex} $.") ;; bre
+       ("grepe" . "grep -Hn$${opts} -E -e $${regex} $.") ;; ere
+       ;; ("grepp" . "grep -Hn$${opts} -P -e $${regex} $.") ;; pcre
+       ("grepr" . "grep -Hn$${opts} -E -e $${regex} -r --$${in}clude='$${ext}' $.")
+       ;; ruby
+       ("gsr" . "gem search $${gemname} --remote $.")
+       ("giv" . "gem install $${gemname} --version $${version} $.")
+       ("glr" . "gem list $${gemname} --remote $.")
+       ;; one-liners
+       ("rename" . "find -name '$${re}' | perl -ne'chomp; next unless -e; $oldname = $_; s/$${old}/$${new}/; next if -e; rename $oldname, $_'"))
 
 ;; java, jsp and friends
 ;; highlight .properties files
@@ -44,24 +63,6 @@
           '(lambda ()
              (c-subword-mode)
              (c-toggle-hungry-state)))
-
-;; TODO: mmm-mode replacement
-;; (defun jsp-mode () (interactive)
-;;       (multi-mode 1
-;;                   'html-mode
-;;                   '("<%--" indented-text-mode)
-;;                   '("<%@" indented-text-mode)
-;;                   '("<%=" html-mode)
-;;                   '("<%" java-mode)
-;;                   '("%>" html-mode)
-;;                   '("<script" java-mode)
-;;                   '("</script" html-mode)
-;;                   ))
-
-;; (setq auto-mode-alist
-;;       (append '(("\\.jsp$" . jsp-mode)) auto-mode-alist))
-;; (setq interpreter-mode-alist (append '(("jsp" . jsp-mode)
-;;                                     interpreter-mode-alist)))
 
 ;; dired
 (put 'dired-find-alternate-file 'disabled nil)
