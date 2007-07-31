@@ -64,6 +64,17 @@
              (c-subword-mode)
              (c-toggle-hungry-state)))
 
+(if (boundp 'carbon-emacs-package-version)
+    (add-hook 'html-helper-load-hook
+              '(lambda ()
+                 (define-key html-helper-mode-map (kbd "<C-tab>")
+                   'tempo-complete-tag))))
+
+;; php
+(setq php-mode-hook (lambda ()
+                      (setq indent-tabs-mode t)
+                      (setq c-basic-offset 8)))
+
 ;; dired
 (put 'dired-find-alternate-file 'disabled nil)
 (setq dired-listing-switches "-alR")   ;; recursive listings
