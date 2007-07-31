@@ -4,6 +4,20 @@
 ;;  This file is based on 'rubydb3x.el' that comes with Ruby which is
 ;;  Copyright (C) Yukihiro Matsumoto aka Matz
 ;;
+;;  This program is free software; you can redistribute it and/or
+;;  modify it under the terms of the GNU General Public License
+;;  as published by the Free Software Foundation; either version 2
+;;  of the License, or (at your option) any later version.
+;;
+;;  This program is distributed in the hope that it will be useful,
+;;  but WITHOUT ANY WARRANTY; without even the implied warranty of
+;;  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;;  GNU General Public License for more details.
+;;
+;;  You should have received a copy of the GNU General Public License
+;;  along with this program; if not, write to the Free Software
+;;  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+;;
 ;;  Installation:
 ;;  -------------
 ;;
@@ -31,7 +45,7 @@
 ;;  Bugs:
 ;;  -----
 ;;
-;;    Basic functionality works fine, though there might be a bug hiding somewhere.
+;;    Basic functionality works fine, though I'm pretty sure this is not solid proof.
 
 (require 'gud)
 (provide 'rdebug)
