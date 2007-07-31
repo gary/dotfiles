@@ -10,3 +10,5 @@ set ruler
 set showcmd
 set number
 syntax on
+
+set ffs=unix,mac,dos
