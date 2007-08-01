@@ -37,8 +37,8 @@
 (snippet-with-abbrev-table 'shell-mode-abbrev-table
        ("findf" . "find $${dir} $${depth} -type f -name $${name} $.")
        ("findd" . "find $${dir} $${depth} -type d -name $${name} $.")
-       ("findg" . "find $${dir} $${depth} -type f -name $${name} -exec grep -$${Hn} -E -e $${regex} {} \;$.")
-       ("finde" . "find $${dir} $${depth} $${type} -name $${name} -exec $${cmd} {} \;$.")
+       ("findg" . "find $${dir} $${depth} -type f -name $${name} -exec grep -$${Hn} -E -e $${regex} {} \\;$.")
+       ("finde" . "find $${dir} $${depth} $${-type} -name $${name} -exec $${cmd} {} \\;$.")
        ("findx" . "find $${dir} $${depth} -type d -name $${name} -print0 | xargs -0 $.")
        ("tarc" . "tar -C $${ } -$${cvfp} $${name}.tar $${files} $.")
        ("tarx" . "tar -C $${ } -$${xvfp} $${name}.tar $${files} $.")
