@@ -37,16 +37,16 @@
 (snippet-with-abbrev-table 'shell-mode-abbrev-table
        ("findf" . "find $${dir} $${depth} -type f -name $${name} $.")
        ("findd" . "find $${dir} $${depth} -type d -name $${name} $.")
-       ("findg" . "find $${dir} $${depth} -type f -name $${name} -exec grep -Hn$${opts} -E -e $${regex} {} \;$.")
+       ("findg" . "find $${dir} $${depth} -type f -name $${name} -exec grep -$${Hn} -E -e $${regex} {} \;$.")
        ("finde" . "find $${dir} $${depth} $${type} -name $${name} -exec $${cmd} {} \;$.")
        ("findx" . "find $${dir} $${depth} -type d -name $${name} -print0 | xargs -0 $.")
-       ("tarc" . "tar $${cd}-cvfp$${opts} $${name}.tar $${files} $.")
-       ("tarx" . "tar $${cd}-xvfp$${opts} $${name}.tar $${files} $.")
-       ("tart" . "tar $${cd}-tvf$${opts} $${name}.tar $${files} $.")
-       ("grep" . "grep -Hn$${opts} -G -e $${regex} $.") ;; bre
-       ("grepe" . "grep -Hn$${opts} -E -e $${regex} $.") ;; ere
-       ;; ("grepp" . "grep -Hn$${opts} -P -e $${regex} $.") ;; pcre
-       ("grepr" . "grep -Hn$${opts} -E -e $${regex} -r --$${in}clude='$${ext}' $.")
+       ("tarc" . "tar -C $${ } -$${cvfp} $${name}.tar $${files} $.")
+       ("tarx" . "tar -C $${ } -$${xvfp} $${name}.tar $${files} $.")
+       ("tart" . "tar -C $${ } -$${tvf} $${name}.tar $${files} $.")
+       ("grep" . "grep -$${Hn} -G -e $${regex} $.") ;; bre
+       ("grepe" . "grep -$${Hn} -E -e $${regex} $.") ;; ere
+       ;; ("grepp" . "grep -$${Hn} -P -e $${regex} $.") ;; pcre
+       ("grepr" . "grep -$${Hn} -E -e $${regex} -r --$${in}clude='$${ext}' $.")
        ;; ruby
        ("gsr" . "gem search $${gemname} --remote $.")
        ("giv" . "gem install $${gemname} --version $${version} $.")
