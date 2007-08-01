@@ -16,6 +16,8 @@ and source-file directory for your debugger.")
   (shell-command-on-region (point-min) (point-max) "ruby"))
 
 (require 'ruby-electric)
+(require 'rcodetools)
+;; (require 'icicles-rcodetools) TODO: icicles.el (http://www.emacswiki.org/cgi-bin/wiki/Icicles)
 (add-hook 'ruby-mode-hook
           '(lambda ()
              (inf-ruby-keys)
