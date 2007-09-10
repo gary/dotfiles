@@ -1,3 +1,4 @@
+#-*-mode:shell-script;-*-
 ##################################################
 # Fancy PWD display function
 ##################################################
@@ -126,5 +127,18 @@ alias gs='gem search '
 alias gi='gem install '
 alias gl='gem list '
 
-# servers
-alias gary='ssh gary@garyis.boldlygoingnowhere.org'
+# Set up aliases for all known hosts, so that you can type just the
+# name of the host to ssh to it.  This in combination with keypair
+# authentication allows for some really quick work:
+# $ mcsmos01 grep failed /var/log/httpd/error_log | more
+for FILE in "$HOME"/.ssh/known_hosts "${HOME}"/.ssh/known_hosts2
+do
+    if [ -r "$FILE" ]
+    then
+        for i in `< "$FILE" awk '{print $1}' | tr , ' '`; do
+            if ! type -p $i > /dev/null; then
+                alias "$i"="ssh gary@$i"
+            fi
+        done
+    fi
+done
