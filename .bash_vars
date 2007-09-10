@@ -1,3 +1,4 @@
+#-*-mode:shell-script;-*-
 set -o vi
 EDITOR=vim
 SVN_EDITOR=$EDITOR

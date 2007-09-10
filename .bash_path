@@ -1,3 +1,4 @@
+#-*-mode:shell-script;-*-
 # darwin ports, containing more up-to-date versions of select binaries
 export PATH="$PATH:/opt/local/bin";
 
