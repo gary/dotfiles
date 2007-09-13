@@ -1,8 +1,4 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; TODO: change key abbreviations to XEmacs style
-
-;; invoke M-x with the Alt key
+;;; invoke M-x with the Alt key
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-c\C-m" 'execute-extended-command)
 
@@ -24,15 +20,6 @@
 ;; yeah the hippies
 (global-set-key (kbd "C-SPC") 'hippie-expand)
 (global-set-key (kbd "<C-return>") 'set-mark-command)
-(setq hippie-expand-try-functions-list
-      '(try-expand-dabbrev
-        try-expand-dabbrev-all-buffers
-        try-expand-dabbrev-from-kill
-        try-expand-file-name-partially
-        try-expand-file-name
-        try-expand-lisp-symbol-partially
-        try-expand-lisp-symbol
-        try-expand-whole-kill))
 
 (if (and (boundp 'skeleton-pair)
          (eq skeleton-pair t))
@@ -41,15 +28,19 @@
       (global-set-key (kbd "(") 'skeleton-pair-insert-maybe)
       (global-set-key (kbd "{") 'skeleton-pair-insert-maybe)))
 
+;; search result summary
+(define-key isearch-mode-map (kbd "C-o")
+  (lambda ()
+    (interactive)
+    (let ((case-fold-search isearch-case-fold-search))
+      (occur (if isearch-regexp isearch-string
+               (regexp-quote isearch-string))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; external steroids
 
-(global-set-key "\C-w" 'backward-kill-word) ;; default M-DEL
-;; (global-set-key "\C-d" 'kill-syntax-forward)
-
-;; old habits die hard
-(global-set-key "\C-o" 'vi-open-next-line)
+(global-set-key "\C-w" 'backward-kill-word) ; default M-DEL
+(global-set-key "\C-o" 'vi-open-next-line) ; old habits die hard
 
 (global-set-key (kbd "<M-f1>") 'recentf-open-files)
 (if (eq emacs-major-version 22)
@@ -78,3 +69,9 @@
 
 ;; redo
 (global-set-key "\M-/" 'redo)
+
+;; timeclock
+(global-set-key (kbd "C-c t i") 'timeclock-in)
+(global-set-key (kbd "C-c t o") 'timeclock-out)
+(global-set-key (kbd "C-c t c") 'timeclock-change)
+(global-set-key (kbd "C-c t v") 'timeclock-visit-timelog)
