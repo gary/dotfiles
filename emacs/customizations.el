@@ -38,6 +38,16 @@
 (setq skeleton-pair t)
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(setq hippie-expand-try-functions-list
+      '(try-expand-dabbrev
+        try-expand-dabbrev-all-buffers
+        try-expand-dabbrev-from-kill
+        try-expand-file-name-partially
+        try-expand-file-name
+        try-expand-lisp-symbol-partially
+        try-expand-lisp-symbol
+        try-expand-whole-kill))
+
 (defconst use-backup-dir t)
 (setq backup-directory-alist (quote ((".*" . "~/emacs/tmp")))
       version-control t                ; Use version numbers for backups
@@ -62,14 +72,6 @@
 (autoload 'yank-pop-backward "yank-pop-summary" nil t)
 
 (shell-command-completion-mode)
-
-;; search result summary
-(define-key isearch-mode-map (kbd "C-o")
-  (lambda ()
-    (interactive)
-    (let ((case-fold-search isearch-case-fold-search))
-      (occur (if isearch-regexp isearch-string
-               (regexp-quote isearch-string))))))
 
 ;; bm
 (setq bm-restore-reposistory-on-load t)
