@@ -33,10 +33,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; functionality customizations
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setq-default indent-tabs-mode nil)             ;; bad tabs, bad
+(setq-default indent-tabs-mode nil)     ; bad tabs, bad
 ;; (zone-when-idle 300)
 (setq skeleton-pair t)
 (fset 'yes-or-no-p 'y-or-n-p)
+
+(setq server-auth-dir (concat emacs-root "/tmp"))
 
 (setq hippie-expand-try-functions-list
       '(try-expand-dabbrev
@@ -49,7 +51,7 @@
         try-expand-whole-kill))
 
 (defconst use-backup-dir t)
-(setq backup-directory-alist (quote ((".*" . "~/emacs/tmp")))
+(setq backup-directory-alist (quote ((".*" . (concat emacs-root "/tmp"))))
       version-control t                ; Use version numbers for backups
       kept-new-versions 16             ; Number of newest versions to keep
       kept-old-versions 2              ; Number of oldest versions to keep
@@ -61,13 +63,8 @@
 
 ;; rebind C-x C-f and others to the ffap bindings (see variable ffap-bindings)
 (ffap-bindings)
-;; C-u C-x C-f finds the file at point
 (setq ffap-require-prefix t)
-;; browse urls at point via w3m
-;; TODO: (setq ffap-url-fetcher 'w3m-browse-url)
 
-;; \M-y calls browse-kill-ring
-;; (browse-kill-ring-default-keybindings)
 (autoload 'yank-pop-forward "yank-pop-summary" nil t)
 (autoload 'yank-pop-backward "yank-pop-summary" nil t)
 
@@ -127,6 +124,12 @@
 (add-to-list 'auto-mode-alist '("\\.rhtml\\'" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.jsp\\'" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.cs$" . csharp-mode))
+
+;; TODO
+;; (setq magic-mode-alist
+;;    (cons '("<\\?xml " . nxml-mode)
+;;             magic-mode-alist))
+;; (fset 'xml-mode 'nxml-mode)
 
 (add-hook 'pre-abbrev-expand-hook
           (lambda ()
