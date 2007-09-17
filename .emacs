@@ -49,6 +49,7 @@
 (load-library "jde-mode-config")
 (load-library "ruby-mode-config")
 
+(server-start)
 (shell)
 
 ;; TODO
