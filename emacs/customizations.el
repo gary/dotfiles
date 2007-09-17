@@ -58,6 +58,8 @@
       delete-old-versions t            ; Ask to delete excess backup versions?
       backup-by-copying-when-linked t) ; Copy linked files, don't rename.
 
+(setq semanticdb-default-save-directory (concat emacs-root "/tmp/cache"))
+
 (setq recentf-max-saved-items 500)
 (setq recentf-max-mente-items 100)
 
