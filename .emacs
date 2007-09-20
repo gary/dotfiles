@@ -38,6 +38,7 @@
 ;; (require 'power-macros) TODO: broken, erroring on ?g L354
 (require 'bm)
 ;; (require 'zone)
+(require 'cheat)
 
 (read-abbrev-file)
 (load-library "efuncs")

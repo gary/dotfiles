@@ -75,3 +75,7 @@
 (global-set-key (kbd "C-c t o") 'timeclock-out)
 (global-set-key (kbd "C-c t c") 'timeclock-change)
 (global-set-key (kbd "C-c t v") 'timeclock-visit-timelog)
+
+;; cheat
+(global-set-key (kbd "C-c C-c") 'cheat)
+(global-set-key (kbd "C-c s") 'cheat-sheets)
