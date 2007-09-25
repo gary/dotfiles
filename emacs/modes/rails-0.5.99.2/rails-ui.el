@@ -212,7 +212,7 @@
   ((kbd "\C-c <down>")   'rails-lib:run-secondary-switch)
   ((kbd "<M-S-up>")      'rails-lib:run-primary-switch)
   ((kbd "<M-S-down>")    'rails-lib:run-secondary-switch)
-  ((kbd "<C-return>")    'rails-goto-file-on-current-line)
+  ;; ((kbd "<C-return>")    'rails-goto-file-on-current-line)
 
   ;; Scripts & SQL
   ((kbd "\C-c \C-c e")   'rails-script:generate)
