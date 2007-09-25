@@ -2,9 +2,6 @@
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-c\C-m" 'execute-extended-command)
 
-;; and until i start? handling email in emacs...
-(global-unset-key "\C-xm")
-
 (if (boundp 'carbon-emacs-package-version)
     (global-set-key "\C-ch" 'mark-paragraph))
 
@@ -12,10 +9,8 @@
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
 
-(global-set-key "\C-s" 'isearch-forward-regexp)
-(global-set-key "\C-r" 'isearch-backward-regexp)
-(global-unset-key "\C-\M-s")
-(global-unset-key "\C-\M-r")
+(define-key (current-global-map) [remap isearch-forward] 'isearch-forward-regexp)
+(define-key (current-global-map) [remap isearch-backward] 'isearch-backward-regexp)
 
 ;; yeah the hippies
 (global-set-key (kbd "C-SPC") 'hippie-expand)
@@ -36,8 +31,12 @@
       (occur (if isearch-regexp isearch-string
                (regexp-quote isearch-string))))))
 
+(global-unset-key "\C-xm")
+(if (eq system-type 'darwin)
+    (global-unset-key [f9]))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; external steroids
+;; External steroids
 
 (global-set-key "\C-w" 'backward-kill-word) ; default M-DEL
 (global-set-key "\C-o" 'vi-open-next-line) ; old habits die hard
@@ -77,5 +76,5 @@
 (global-set-key (kbd "C-c t v") 'timeclock-visit-timelog)
 
 ;; cheat
-(global-set-key (kbd "C-c C-c") 'cheat)
-(global-set-key (kbd "C-c s") 'cheat-sheets)
+(global-set-key (kbd "C-c h") 'cheat)
+(global-set-key (kbd "C-c C-h s") 'cheat-sheets)
