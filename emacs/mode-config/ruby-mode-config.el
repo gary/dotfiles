@@ -20,10 +20,13 @@ and source-file directory for your debugger.")
 ;; (require 'icicles-rcodetools) TODO: icicles.el (http://www.emacswiki.org/cgi-bin/wiki/Icicles)
 (add-hook 'ruby-mode-hook
           '(lambda ()
-             (inf-ruby-keys)
-             (define-key ruby-mode-map "\C-c\C-a" 'ruby-eval-buffer)
+             (ruby-electric-mode t)
              ;; (pabbrev-mode t) doh
-             (ruby-electric-mode t))
+             (inf-ruby-keys)
+             (define-key ruby-mode-map (kbd "C-c C-a") 'ruby-eval-buffer)
+             ;; (define-key rails-minor-mode-map (kbd "<C-\>") 'rails-goto-file-on-current-line)
+             (define-key rails-minor-mode-map [remap toggle-input-method] 'rails-goto-file-on-current-line) ; C-\
+             (define-key rails-minor-mode-map [f6] 'rails-svn-status-into-root)
              (if (eq emacs-major-version 22)
                  (progn
                    (make-local-variable 'write-contents-functions)
@@ -31,7 +34,7 @@ and source-file directory for your debugger.")
                                                           (untabify-buffer)
                                                           (delete-trailing-whitespace))))
                (make-local-variable 'write-contents-hooks)
-               (add-hook'write-contents-hooks 'untabify-buffer)))
+               (add-hook'write-contents-hooks 'untabify-buffer))))
 
 (add-hook 'ruby-inferior-mode-hook
           '(lambda ()
