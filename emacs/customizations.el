@@ -1,19 +1,19 @@
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; look and feel
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq initial-frame-alist '(
                             (mouse-color      . "gold")
                             (foreground-color . "cornsilk2")
                             (background-color . "grey7")
-                            (top . 25) (left . 10) (width . 125) (height . 50)))
+                            (top . 25) (left . 10) (width . 170) (height . 50)))
 
 (setq default-frame-alist '(
                       (background-color     . "grey7")
                       (foreground-color     . "cornsilk2")
                       (cursor-color         . "gold2")
                       (cursor-type          . box)
-                      (top . 25) (left . 10) (width . 125) (height . 50)))
+                      (top . 25) (left . 10) (width . 170) (height . 50)))
 
 (if (boundp 'carbon-emacs-package-version)
     (progn
@@ -30,9 +30,9 @@
       (set-fringe-mode (quote (nil . (nil . nil))))
       (setq-default indicate-buffer-boundaries 'left)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; functionality customizations
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq-default indent-tabs-mode nil)     ; bad tabs, bad
 ;; (zone-when-idle 300)
 (setq skeleton-pair t)
@@ -52,7 +52,7 @@
 
 (defvar emacs-tmp (concat emacs-root "/tmp"))
 (defconst use-backup-dir t)
-(setq backup-directory-alist (quote (".*" . emacs-tmp))
+(setq backup-directory-alist (quote ((".*" . "~/emacs/tmp")))
       version-control t                ; Use version numbers for backups
       kept-new-versions 16             ; Number of newest versions to keep
       kept-old-versions 2              ; Number of oldest versions to keep
@@ -80,9 +80,9 @@
 
 (setq windmove-wrap-around t)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; always-on modes
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq default-major-mode 'text-mode)
 (display-time-mode 1)
 (show-paren-mode t)
@@ -99,9 +99,9 @@
 (winner-mode 1)
 (setq-default abbrev-mode t)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; extensions to preloaded functionality
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 (add-hook 'after-init-hook 'bm-repository-load)
 (add-hook 'find-file-hooks 'bm-buffer-restore)
