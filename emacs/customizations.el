@@ -17,8 +17,8 @@
 
 (if (boundp 'carbon-emacs-package-version)
     (progn
-      (add-to-list 'initial-frame-alist '(alpha . 65))
-      (add-to-list 'default-frame-alist '(alpha . 65))))
+      (add-to-list 'initial-frame-alist '(alpha . 80))
+      (add-to-list 'default-frame-alist '(alpha . 80))))
 
 ;; lose the UI
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -38,7 +38,7 @@
 (setq skeleton-pair t)
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(setq server-auth-dir (concat emacs-root "/tmp"))
+(setq server-auth-dir "~/emacs/tmp")
 
 (setq hippie-expand-try-functions-list
       '(try-expand-dabbrev
@@ -50,15 +50,17 @@
         try-expand-lisp-symbol
         try-expand-whole-kill))
 
+(defvar emacs-tmp (concat emacs-root "/tmp"))
 (defconst use-backup-dir t)
-(setq backup-directory-alist (quote ((".*" . (concat emacs-root "/tmp"))))
+(setq backup-directory-alist (quote (".*" . emacs-tmp))
       version-control t                ; Use version numbers for backups
       kept-new-versions 16             ; Number of newest versions to keep
       kept-old-versions 2              ; Number of oldest versions to keep
       delete-old-versions t            ; Ask to delete excess backup versions?
       backup-by-copying-when-linked t) ; Copy linked files, don't rename.
 
-(setq semanticdb-default-save-directory (concat emacs-root "/tmp/cache"))
+(setq tramp-auto-save-directory backup-directory-alist)
+(setq semanticdb-default-save-directory (concat emacs-tmp "/cache"))
 
 (setq recentf-max-saved-items 500)
 (setq recentf-max-mente-items 100)
