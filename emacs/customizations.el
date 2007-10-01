@@ -17,6 +17,7 @@
 
 (if (boundp 'carbon-emacs-package-version)
     (progn
+      (set-face-attribute 'default nil :family "Terminus Re33" :height 120)
       (add-to-list 'initial-frame-alist '(alpha . 80))
       (add-to-list 'default-frame-alist '(alpha . 80))))
 
