@@ -78,15 +78,11 @@ fi
 
 # dir specific ls
 alias lsd='find . -maxdepth 1 -type d'
-# colorful directory listing
 alias lt='ls -Glt'
 alias ll='ls -Gl'
 alias ls='ls -G'
 alias la='ls -Gla'
 alias l='ls -Gl | less'
-
-# resolve ' escape issue
-# alias cps=`ps aux | awk '$3 != "0.0"'`
 
 # getting around faster
 alias dirs='dirs -v'
@@ -104,21 +100,6 @@ alias po5='popd +5'
 
 alias ps='ps -aux'
 alias psc='ps -auxc'
-
-# osx
-if [ -d ~/.Trash ]; then
-   alias ts='du -h -d0 $HOME/.Trash'
-fi
-
-## itunes
-if [ -f ~/bin/itunes ]; then
-    alias it='itunes a'
-    alias itp='itunes p'
-    alias itb='itunes b'
-    alias itn='itunes n'
-    alias itp='itunes p'
-    alias iti='itunes i'
-fi
 
 # ruby
 irb='irb -r irb/completion -r rubygems'
