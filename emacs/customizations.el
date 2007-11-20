@@ -2,22 +2,20 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; look and feel
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setq initial-frame-alist '(
-                            (mouse-color      . "gold")
+(setq initial-frame-alist '((mouse-color . "gold")
                             (foreground-color . "cornsilk2")
                             (background-color . "grey7")
                             (top . 25) (left . 10) (width . 170) (height . 50)))
 
-(setq default-frame-alist '(
-                      (background-color     . "grey7")
-                      (foreground-color     . "cornsilk2")
-                      (cursor-color         . "gold2")
-                      (cursor-type          . box)
-                      (top . 25) (left . 10) (width . 170) (height . 50)))
+(setq default-frame-alist '((background-color . "grey7")
+                            (foreground-color . "cornsilk2")
+                            (cursor-color . "gold2")
+                            (cursor-type . box)
+                            (top . 25) (left . 10) (width . 170) (height . 50)))
 
 (if (boundp 'carbon-emacs-package-version)
     (progn
-      (set-face-attribute 'default nil :family "Terminus Re33" :height 120)
+      (set-face-attribute 'default nil :family "Inconsolata" :height 130)
       (add-to-list 'initial-frame-alist '(alpha . 80))
       (add-to-list 'default-frame-alist '(alpha . 80))))
 
@@ -39,7 +37,8 @@
 (setq skeleton-pair t)
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(setq server-auth-dir "~/emacs/tmp")
+(timeclock-modeline-display)
+(setq display-time-24hr-format t)
 
 (setq hippie-expand-try-functions-list
       '(try-expand-dabbrev
@@ -51,6 +50,7 @@
         try-expand-lisp-symbol
         try-expand-whole-kill))
 
+(setq server-auth-dir "~/emacs/tmp")
 (defvar emacs-tmp (concat emacs-root "/tmp"))
 (defconst use-backup-dir t)
 (setq backup-directory-alist (quote ((".*" . "~/emacs/tmp")))
@@ -116,8 +116,6 @@
                                  (speedbar-add-supported-extension ".jsp")
                                  (speedbar-add-supported-extension "\\(\\.xml\\|\\.tld\\)") ;; xml files
                                  (speedbar-add-supported-extension ".r\\(b\\|html\\)")))
-
-(autoload 'perl-mode "cperl-mode" "alternate mode for editing Perl programs" t)
 
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 (add-to-list 'interpreter-mode-alist '("perl" . cperl-mode))
