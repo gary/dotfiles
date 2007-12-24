@@ -1,10 +1,11 @@
 ;;; ==================================================================
 ;;; Author:  gary iams
 ;;; File:    ini-cheat
-;;; Purpose: Setups for cheat
+;;; Purpose: Setups for Cheat Mode
 ;;; ==================================================================
+
+;;; Setups for cheat =================================================
 
 (require 'cheat)
 
-(global-set-key (kbd "C-c h") 'cheat)
-(global-set-key (kbd "C-c C-h s") 'cheat-sheets)
+(global-set-key (kbd "C-c\C-kh") 'cheat)
