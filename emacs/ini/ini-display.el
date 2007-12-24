@@ -44,7 +44,7 @@
 (require 'timeclock)
 (timeclock-modeline-display)
 
-(global-set-key "\C-c\C-gi" 'timeclock-in)
-(global-set-key "\C-c\C-go" 'timeclock-out)
-(global-set-key "\C-c\C-gc" 'timeclock-change)
-(global-set-key "\C-c\C-gv" 'timeclock-visit-timelog)
+(global-set-key "\C-c\C-ki" 'timeclock-in)
+(global-set-key "\C-c\C-ko" 'timeclock-out)
+(global-set-key "\C-c\C-kc" 'timeclock-change)
+(global-set-key "\C-c\C-kv" 'timeclock-visit-timelog)
