@@ -26,6 +26,5 @@
                                     (replace-regexp-in-string home "~" path))
                                   recentf-list)
                           nil t))))
-
 (global-set-key (kbd "<S-f1>") 'recentf-open-files)
-(global-set-key "\C-c\C-gf" 'xsteve-ido-choose-from-recentf)
+(global-set-key "\C-c\C-kf" 'xsteve-ido-choose-from-recentf)
