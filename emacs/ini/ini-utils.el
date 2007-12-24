@@ -205,7 +205,6 @@
     (open-line arg)
     (next-line 1)
     (indent-according-to-mode)))
-
 (global-set-key "\C-o" 'vi-open-next-line)
 (global-set-key "\M-o" 'open-line)
 
@@ -226,8 +225,7 @@ if the optional argument append eq t then append the line to the kill ring."
         (message "%s" (concat "copied: " (buffer-substring start end))))
       (copy-region-as-kill start end)))
   (next-line 1))
-
-(global-set-key "\C-c\C-gl" 'xsteve-copy-line)
+(global-set-key "\C-c\C-kl" 'xsteve-copy-line)
 
 (defun another-line ()
   "Copy line, preserving cursor column, and increment any numbers found.
@@ -245,6 +243,7 @@ This should probably be generalized in the future."
     (beginning-of-line)
     (insert line "\n")
     (move-to-column col)))
+(global-set-key "\C-c\C-ka" 'another-line)
 
 (defun zap-up-to-char (arg char)
   "Kill up to and excluding ARG'th occurrence of CHAR.
@@ -259,7 +258,7 @@ Goes backward if ARG is negative; error if CHAR not found."
                         (point)))))
 
 (global-set-key "\M-z" 'zap-up-to-char)
-(global-set-key "\C-z" 'zap-to-char)
+(global-set-key "\C-\M-z" 'zap-to-char)
 
 ;;; Comment Bar Insertion --------------------------------------------
 
