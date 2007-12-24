@@ -1,5 +1,5 @@
 ;;; ==================================================================
-;;; Author:  Jim Weirich
+;;; Author:  Jim Weirich (modifications by gary iams)
 ;;; File:    ini-auto
 ;;; Purpose: Define the Autoload functions and the auto-mode list
 ;;; ==================================================================
@@ -14,6 +14,7 @@
 (autoload 'ruby-mode        "ruby-mode"        "Automatic Mode for Ruby Code" t)
 (autoload 'lua-mode         "lua-mode"         "Automatic Mode for Lua Code" t)
 (autoload 'filladapt-mode   "filladapt"        "Adaptive Filling Minor mode" t)
+(autoload 'applescript-mode "applescript-mode" "Major Mode for editing AppleScript source." t)
 
 (make-auto "\\.awk$"     'awk-mode)
 (make-auto "\\.html$"    'html-helper-mode) ; was html-mode
@@ -42,6 +43,8 @@
 (make-auto "\\.rake$"    'ruby-mode)
 (make-auto "^Rakefile$"  'ruby-mode)
 (make-auto "\\.lua$"     'lua-mode)
+(make-auto "\\.applescript$" 'applescript-mode)
+(make-auto "\\.scpt$"    'applescript-mode)
 
 ;;;(make-auto "\\.h$"   'c++-c-mode)
 ;;;(make-auto "\\.c$"   'c++-c-mode)
