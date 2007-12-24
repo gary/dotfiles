@@ -4,6 +4,7 @@
 ;;; Purpose: Setups for Multiple Major Modes
 ;;; ==================================================================
 
+(attach-package "mmm-mode-0.4.8")
 (require 'mmm-auto)
 
 ;;; Setups for MMM mode ==============================================
