@@ -1,0 +1,5 @@
+name:    cedet
+version: 1.0pre4
+
+cmd:     curl
+url:     http://superb-west.dl.sourceforge.net/sourceforge/cedet/cedet-1.0pre4.tar.gz
