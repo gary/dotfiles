@@ -4,7 +4,7 @@
 ;;; Purpose: Setups for the JDEE
 ;;; ==================================================================
 
-(attach-package "/jde-2.3.5.1")
+(attach-package "/jde")
 
 ;;; Customized JDE Mode Variables ------------------------------------
 
@@ -26,7 +26,7 @@
 (setq jde-compiler (quote ("javac" "")))
 (setq jde-complete-function (quote jde-complete-minibuf))
 
-(setq bsh-jar (concat package-directory "/jde-2.3.5.1/java/lib/bsh.jar"))
+(setq bsh-jar (concat package-directory "/jde/java/lib/bsh.jar"))
 
 ;;; Better Completion ------------------------------------------------
 
