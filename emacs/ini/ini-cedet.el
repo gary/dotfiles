@@ -6,7 +6,7 @@
 
 ;;; Setups for CEDET =================================================
 
-(attach-package "/cedet-1.0pre4/common")
+(attach-package "/cedet/common")
 (require 'cedet)
 
 ;;; Setups for EIEIO -------------------------------------------------
