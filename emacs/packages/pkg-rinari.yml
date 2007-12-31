@@ -1,0 +1,7 @@
+name:        rinari
+version:     svn
+include_dirs:
+  - rhtml
+
+cmd:         svn
+url:         http://rinari.rubyforge.org/svn/trunk
