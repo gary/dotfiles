@@ -1,0 +1,5 @@
+name:    jde
+version: 2.3.5.1
+
+cmd:     curl
+url:     http://jdee.sunsite.dk/jde-latest.tar.gz
