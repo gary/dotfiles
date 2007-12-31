@@ -1,0 +1,5 @@
+name:    mmm-mode
+version: 0.4.8
+
+cmd:     curl
+url:     http://superb-west.dl.sourceforge.net/sourceforge/mmm-mode/mmm-mode-0.4.8.tar.gz
