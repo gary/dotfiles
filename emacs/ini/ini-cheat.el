@@ -8,4 +8,4 @@
 
 (require 'cheat)
 
-(global-set-key (kbd "C-c\C-kh") 'cheat)
+(global-set-key "\C-c\C-kh" 'cheat)
