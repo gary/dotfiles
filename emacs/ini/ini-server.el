@@ -6,5 +6,5 @@
 
 ;;; Setups for the Emacs Client Server ===============================
 
-(setq server-auth-dir "~/.emacs.d/tmp")
+(setq server-auth-dir tmp-directory)
 (server-start)
