@@ -1,8 +1,17 @@
 ;;; ==================================================================
-;;; Author:  Jim Weirich
-;;; File:    ini-color-scheme
-;;; Purpose: Setup color schemes
+;;; Author:  Jim Weirich (modifications by gary iams)
+;;; File:    ini-color-theme
+;;; Purpose: Setups for Color Theme
 ;;; ==================================================================
+
+;;; Setups for Color Theme ===========================================
+
+(attach-package "/color-theme")
+(require 'color-theme)
+
+;;; Additional Color Themes ------------------------------------------
+
+(autoload 'zenburn "zenburn" "just some alien fruit salad to keep you in the zone" t)
 
 (defun color-theme-billc ()
   "Bill Clementson's white background custom color theme."
@@ -228,4 +237,3 @@ With a prefix arg, changes to my custom white background theme."
     (if arg
 	(color-theme-billc)
       (color-theme-billc1))))
-
