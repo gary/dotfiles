@@ -177,7 +177,7 @@ The lisp and info subdirectories are added to the load-path and info lookup list
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (defconst use-backup-dir t)
-(setq backup-directory-alist (quote ((".*" . "~/emacs/tmp")))
+(setq backup-directory-alist (quote ((".*" . "~/.emacs.d/tmp"))) ; TODO: tmp-directory
       version-control t                ; Use version numbers for backups
       kept-new-versions 16             ; Number of newest versions to keep
       kept-old-versions 2              ; Number of oldest versions to keep
