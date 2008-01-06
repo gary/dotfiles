@@ -77,4 +77,4 @@
     (if (not incomplete)
         (insert ": "))))
 
-(provide 'rcirc-completion
+(provide 'rcirc-completion)
