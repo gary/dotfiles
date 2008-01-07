@@ -5,6 +5,13 @@
 ;;; ==================================================================
 
 (attach-package "/jde")
+(add-to-load-path (concat package-directory "/jde/lisp"))
+(require 'jde)
+
+;;; Location Specific ------------------------------------------------
+
+(if (eq jw-site 'miami)
+    (load-library "muoh-classpath"))
 
 ;;; Customized JDE Mode Variables ------------------------------------
 
