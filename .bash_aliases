@@ -78,11 +78,11 @@ fi
 
 # dir specific ls
 alias lsd='find . -maxdepth 1 -type d'
-alias lt='ls -Glt'
-alias ll='ls -Gl'
-alias ls='ls -G'
-alias la='ls -Gla'
-alias l='ls -Gl | less'
+alias ls='ls -pG'
+alias ll='ls -l'
+alias lt='ll -t'
+alias la='ll -a'
+alias l='ll | less'
 
 # getting around faster
 alias dirs='dirs -v'
@@ -99,14 +99,18 @@ alias po4='popd +4'
 alias po5='popd +5'
 
 alias ps='ps -aux'
-alias psc='ps -auxc'
+alias psc='ps -c'
 
-# ruby
-irb='irb -r irb/completion -r rubygems'
-alias rdb='ruby -r debug'
-alias gs='gem search '
-alias gi='gem install '
-alias gl='gem list '
+alias rl='readlink'
+
+if [ -e /usr/bin/ruby ]; then
+    irb='irb -r irb/completion -r rubygems'
+    alias rdb='ruby -r debug'
+    alias gs='gem search '
+    alias gi='gem install '
+    alias gl='gem list '
+    alias spec='spec -cfs'
+fi
 
 # Set up aliases for all known hosts, so that you can type just the
 # name of the host to ssh to it.  This in combination with keypair
