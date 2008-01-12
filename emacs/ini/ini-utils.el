@@ -80,6 +80,39 @@
           (set-window-buffer w2 b1)
           (set-window-start w1 s2)
           (set-window-start w2 s1)))))
+(global-set-key "\C-c\C-sw" 'swap-windows)
+
+;; TODO: rework this kluge (incorporate fringe into window width
+;; calculation at the very least).
+(defun window-split-horizontally-p ()
+  (let ((width-threshold 10)            ; TODO: dynamic threshold
+        (window-width (- 
+                       (third (window-edges))
+                       (first (window-edges)))))
+    (if (<= (abs (- (screen-width) window-width)) ; within threshold?
+            width-threshold)
+        t nil)))
+
+(defun swap-split ()
+  "Swaps the orientation of two split windows."
+  (interactive)
+  (save-excursion
+    (let* ((orig-w2 (second (window-list)))
+           (b2 (window-buffer orig-w2))
+           (s2 (window-start orig-w2))
+           (side-by-side (not (window-split-horizontally-p))))
+      (if (one-window-p)
+          (message "You need exactly 2 windows to do this.")
+        (delete-other-windows)
+        (if side-by-side                ; swap
+            (split-window-vertically)
+          (split-window-horizontally (/ (third (window-edges)) 2)))
+      
+        ;; restore
+        (let (new-w2 (second (window-list)))
+          (set-window-buffer new-w2 b2)
+          (set-window-start new-w2 s2))))))
+(global-set-key "\C-c\C-ss" 'swap-split)
 
 ;;; Buffer Manipulation ----------------------------------------------
 
