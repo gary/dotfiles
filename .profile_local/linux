@@ -1,0 +1,2 @@
+#-*- mode: shell-script; -*-
+alias ls='ls -p --color=always'
