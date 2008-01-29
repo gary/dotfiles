@@ -39,8 +39,6 @@
     (setq compilation-last-buffer outbuf)
     (compilation-mode) ))
 
-(global-set-key "\C-ce" 'find-errors)
-
 (defun af ()
   "Toggle Auto-Fill Mode"
   (interactive)
@@ -80,39 +78,33 @@
           (set-window-buffer w2 b1)
           (set-window-start w1 s2)
           (set-window-start w2 s1)))))
-(global-set-key "\C-c\C-sw" 'swap-windows)
 
-;; TODO: rework this kluge (incorporate fringe into window width
-;; calculation at the very least).
+;; TODO: incorporate fringe into window width
 (defun window-split-horizontally-p ()
-  (let ((width-threshold 10)            ; TODO: dynamic threshold
-        (window-width (- 
-                       (third (window-edges))
-                       (first (window-edges)))))
-    (if (<= (abs (- (screen-width) window-width)) ; within threshold?
-            width-threshold)
+  (let ((width-range 10) ; kluge
+        (window-width (-
+                       (third (window-edges))     ; right
+                       (first (window-edges)))))  ; left
+    (if (<= (abs (- (screen-width) window-width)) ; within range?
+            width-range)
         t nil)))
 
 (defun swap-split ()
   "Swaps the orientation of two split windows."
   (interactive)
   (save-excursion
-    (let* ((orig-w2 (second (window-list)))
-           (b2 (window-buffer orig-w2))
-           (s2 (window-start orig-w2))
-           (side-by-side (not (window-split-horizontally-p))))
+    (let ((b2 (window-buffer (second (window-list))))
+          (side-by-side (not (window-split-horizontally-p))))
       (if (one-window-p)
           (message "You need exactly 2 windows to do this.")
         (delete-other-windows)
-        (if side-by-side                ; swap
-            (split-window-vertically)
-          (split-window-horizontally (/ (third (window-edges)) 2)))
-      
-        ;; restore
-        (let (new-w2 (second (window-list)))
-          (set-window-buffer new-w2 b2)
-          (set-window-start new-w2 s2))))))
-(global-set-key "\C-c\C-ss" 'swap-split)
+        (if side-by-side
+            (progn
+              (split-window-vertically)         ; spatial
+              (message "Swapped horizontally")) ; visual!
+          (split-window-horizontally (/ (third (window-edges)) 2))
+          (message "Swapped vertically")))
+      (display-buffer b2 t nil))))
 
 ;;; Buffer Manipulation ----------------------------------------------
 
@@ -238,8 +230,6 @@
     (open-line arg)
     (next-line 1)
     (indent-according-to-mode)))
-(global-set-key "\C-o" 'vi-open-next-line)
-(global-set-key "\M-o" 'open-line)
 
 (defun xsteve-copy-line (&optional append)
   "Copies the actual line to the kill ring.
@@ -258,7 +248,6 @@ if the optional argument append eq t then append the line to the kill ring."
         (message "%s" (concat "copied: " (buffer-substring start end))))
       (copy-region-as-kill start end)))
   (next-line 1))
-(global-set-key "\C-c\C-kl" 'xsteve-copy-line)
 
 (defun another-line ()
   "Copy line, preserving cursor column, and increment any numbers found.
@@ -276,7 +265,6 @@ This should probably be generalized in the future."
     (beginning-of-line)
     (insert line "\n")
     (move-to-column col)))
-(global-set-key "\C-c\C-ka" 'another-line)
 
 (defun zap-up-to-char (arg char)
   "Kill up to and excluding ARG'th occurrence of CHAR.
@@ -290,40 +278,31 @@ Goes backward if ARG is negative; error if CHAR not found."
                          (if (> arg 0) (1- (point)) (1+ (point))))
                         (point)))))
 
-(global-set-key "\M-z" 'zap-up-to-char)
-(global-set-key "\C-\M-z" 'zap-to-char)
-
 ;;; Comment Bar Insertion --------------------------------------------
 
 (defun cmt-insert-bar-dots ()
   (interactive)
   (cmt-insert-bar-line ". "))
-;;;(global-set-key "\C-c." 'cmt-insert-bar-dots)
 
 (defun cmt-insert-bar-heavy ()
   (interactive)
   (cmt-insert-bar-line "="))
-(global-set-key "\C-c=" 'cmt-insert-bar-heavy)
 
 (defun cmt-insert-bar-hash ()
   (interactive)
   (cmt-insert-bar-line "#"))
-(global-set-key "\C-c#" 'cmt-insert-bar-hash)
 
 (defun cmt-insert-bar-light ()
   (interactive)
   (cmt-insert-bar-line "-"))
-(global-set-key "\C-c-" 'cmt-insert-bar-light)
 
 (defun cmt-insert-bar-star ()
   (interactive)
   (cmt-insert-bar-line "*"))
-(global-set-key "\C-c*" 'cmt-insert-bar-star)
 
 (defun cmt-insert-bar-hash ()
   (interactive)
   (cmt-insert-bar-line "#"))
-(global-set-key "\C-c#" 'cmt-insert-bar-hash)
 
 (defun snip ()
   (interactive)
@@ -373,16 +352,6 @@ Goes backward if ARG is negative; error if CHAR not found."
       (pop-to-buffer buf)
       (goto-char (point-max))
       ))
-
-(global-set-key "\C-c " 'multi-shell)   ; override the default binding here
-(global-set-key [M-f1] (lambda () (interactive) (mshell 1)))
-(global-set-key [M-f2] (lambda () (interactive) (mshell 2)))
-(global-set-key [M-f3] (lambda () (interactive) (mshell 3)))
-(global-set-key [M-f4] (lambda () (interactive) (mshell 4)))
-(global-set-key [M-f5] (lambda () (interactive) (mshell 5)))
-(global-set-key [M-f6] (lambda () (interactive) (mshell 6)))
-(global-set-key [M-f7] (lambda () (interactive) (mshell 7)))
-(global-set-key [M-f12] 'jw-select-gud-buffer)
 
 (defun send-shell-command (str)
   "Send commands to a shell process"
@@ -646,3 +615,34 @@ Goes backward if ARG is negative; error if CHAR not found."
     (goto-char 0)
     (while t (jw-zap-ansi-clutter))  ))
 
+;;; Key bindings -----------------------------------------------------
+
+(global-set-key "\C-ce" 'find-errors)
+
+(global-set-key "\C-c\C-sw" 'swap-windows)
+(global-set-key "\C-c\C-ss" 'swap-split)
+
+(global-set-key "\C-o" 'vi-open-next-line)
+(global-set-key "\M-o" 'open-line)
+(global-set-key "\C-c\C-kl" 'xsteve-copy-line)
+(global-set-key "\C-c\C-ka" 'another-line)
+
+(global-set-key "\M-z" 'zap-up-to-char)
+(global-set-key "\C-\M-z" 'zap-to-char)
+
+;;;(global-set-key "\C-c." 'cmt-insert-bar-dots)
+(global-set-key "\C-c=" 'cmt-insert-bar-heavy)
+(global-set-key "\C-c#" 'cmt-insert-bar-hash)
+(global-set-key "\C-c-" 'cmt-insert-bar-light)
+(global-set-key "\C-c*" 'cmt-insert-bar-star)
+(global-set-key "\C-c#" 'cmt-insert-bar-hash)
+
+(global-set-key "\C-c " 'multi-shell) ; override the default binding here
+(global-set-key [M-f1] (lambda () (interactive) (mshell 1)))
+(global-set-key [M-f2] (lambda () (interactive) (mshell 2)))
+(global-set-key [M-f3] (lambda () (interactive) (mshell 3)))
+(global-set-key [M-f4] (lambda () (interactive) (mshell 4)))
+(global-set-key [M-f5] (lambda () (interactive) (mshell 5)))
+(global-set-key [M-f6] (lambda () (interactive) (mshell 6)))
+(global-set-key [M-f7] (lambda () (interactive) (mshell 7)))
+(global-set-key [M-f12] 'jw-select-gud-buffer)
