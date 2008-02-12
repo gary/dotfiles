@@ -619,8 +619,8 @@ Goes backward if ARG is negative; error if CHAR not found."
 
 (global-set-key "\C-ce" 'find-errors)
 
-(global-set-key "\C-c\C-sw" 'swap-windows)
-(global-set-key "\C-c\C-ss" 'swap-split)
+(global-set-key [S-f12] 'swap-windows)
+(global-set-key [C-f12] 'swap-split)
 
 (global-set-key "\C-o" 'vi-open-next-line)
 (global-set-key "\M-o" 'open-line)
