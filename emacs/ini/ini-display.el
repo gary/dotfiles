@@ -23,12 +23,12 @@
 (setq initial-frame-alist '((mouse-color . "gold")
                             ;; (foreground-color . "cornsilk2")
                             ;; (background-color . "grey7")
-                            (top . 25) (left . 10) (width . 160) (height . 50)))
+                            (top . 25) (left . 10) (width . 161) (height . 50)))
 (setq default-frame-alist '((cursor-color . "gold2")
                             ;; (background-color . "grey7")
                             ;; (foreground-color . "cornsilk2")
                             (cursor-type . box)
-                            (top . 25) (left . 10) (width . 160) (height . 50)))
+                            (top . 25) (left . 10) (width . 161) (height . 50)))
 
 ;;; Fringe -----------------------------------------------------------
 
