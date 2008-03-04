@@ -408,7 +408,8 @@ Null prefix argument turns off the mode.
 '(("\C-c\C-tp" . twit-post)
   ("\C-c\C-tr" . twit-post-region)
   ("\C-c\C-tb" . twit-post-buffer)
-  ("\C-c\C-tf" . twit-list-followers))
+  ("\C-c\C-tf" . twit-list-followers)
+  ("\C-c\C-ts" . twit-show-recent-tweets))
  :global t
  :group 'twit
  :version twit-version-number)
