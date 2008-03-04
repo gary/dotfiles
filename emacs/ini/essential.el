@@ -57,6 +57,8 @@
 (defun at-who-knows-where () (eq jw-site 'unknown))
 (defun on-osx () (eq gi-os 'osx))
 
+;;; Always-on Minor Modes --------------------------------------------
+
 (if (and (or (is-emacs-19) (is-emacs-20)) (not (is-xemacs)))
     (transient-mark-mode t)
   (transient-mark-mode 1))
