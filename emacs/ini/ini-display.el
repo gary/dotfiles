@@ -29,6 +29,7 @@
                             ;; (foreground-color . "cornsilk2")
                             (cursor-type . box)
                             (top . 25) (left . 10) (width . 161) (height . 50)))
+(setq-default show-trailing-whitespace t)
 
 ;;; Fringe -----------------------------------------------------------
 
