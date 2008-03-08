@@ -8,5 +8,5 @@ export HISTCONTROL=ignoreboth;
 
 # easy access to the various vc repositories
 if [ -h ~/repos ]; then
-	LOCAL_REPOS="$HOME/repos"
+	REPOS="$HOME/repos"
 fi
