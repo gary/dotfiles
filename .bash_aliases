@@ -98,16 +98,18 @@ alias po3='popd +3'
 alias po4='popd +4'
 alias po5='popd +5'
 
-alias ps='ps -aux'
-alias psc='ps -c'
+# TODO: research and migrate to profile_local accordingly
+alias ps='ps aux'
+alias psc='ps c'
 
 alias rl='readlink'
 
 if [ -e /usr/bin/ruby ]; then
-    irb='irb -r irb/completion -r rubygems'
+    alias irb='irb -r irb/completion -r rubygems'
     alias rdb='ruby -r debug'
     alias gs='gem search '
     alias gi='gem install '
+    alias gli='gem install --install-dir $HOME/.gems'
     alias gl='gem list '
     alias spec='spec -cfs'
 fi
