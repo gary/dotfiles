@@ -17,8 +17,9 @@
 
 (setq semanticdb-default-save-directory (concat tmp-directory "/cache"))
 
-;;; Setups for Speedbar
+;;; Setups for Speedbar ----------------------------------------------
 (global-set-key [(f5)] 'speedbar-get-focus)
+(global-set-key (kbd "<C-f11>") 'viss-bookmark-toggle)
 
 (add-hook 'speedbar-load-hook (speedbar-add-supported-extension "\\.tld$"))
 (add-hook 'speedbar-load-hook (speedbar-add-supported-extension "\\.r\\(b\\|html\\)$"))
