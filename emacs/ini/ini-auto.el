@@ -15,6 +15,7 @@
 (autoload 'lua-mode         "lua-mode"         "Automatic Mode for Lua Code" t)
 (autoload 'filladapt-mode   "filladapt"        "Adaptive Filling Minor mode" t)
 (autoload 'applescript-mode "applescript-mode" "Major Mode for editing AppleScript source." t)
+(autoload 'markdown-mode "markdown-mode.el"    "Major mode for editing Markdown files" t)
 
 (make-auto "\\.awk$"     'awk-mode)
 (make-auto "\\.html$"    'html-helper-mode) ; was html-mode
@@ -36,6 +37,7 @@
 (make-auto "\\.ph$"      'cperl-mode)
 (make-auto "\\.pm$"      'cperl-mode)
 (make-auto "\\.java$"    'jde-mode)        ; was java-mode
+(make-auto "\\.js$"      'javascript-mode)
 (make-auto "\\.jav$"     'jde-mode)
 (make-auto "\\.jsp$"     'html-mode)
 (make-auto "\\.rb$"      'ruby-mode)
@@ -45,7 +47,7 @@
 (make-auto "\\.lua$"     'lua-mode)
 (make-auto "\\.applescript$" 'applescript-mode)
 (make-auto "\\.scpt$"    'applescript-mode)
-
+(make-auto "\\.mdml$"    'markdown-mode)
 ;;;(make-auto "\\.h$"   'c++-c-mode)
 ;;;(make-auto "\\.c$"   'c++-c-mode)
 
