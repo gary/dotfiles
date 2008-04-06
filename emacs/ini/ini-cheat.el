@@ -6,6 +6,4 @@
 
 ;;; Setups for cheat =================================================
 
-(require 'cheat)
-
 (global-set-key "\C-c\C-kh" 'cheat)

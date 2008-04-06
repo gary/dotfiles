@@ -6,6 +6,4 @@
 
 ;;; Setups for Redo Functionality ====================================
 
-(require 'redo)
-
 (global-set-key "\M-/" 'redo)

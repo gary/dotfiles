@@ -6,5 +6,4 @@
 
 ;;; Setups for Elisp Installer =======================================
 
-(require 'install-elisp)
 (setq install-elisp-repository-directory root-directory)

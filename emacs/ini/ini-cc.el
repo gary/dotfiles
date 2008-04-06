@@ -74,9 +74,6 @@
 (add-hook 'java-mode-hook  '(lambda () (c-set-style "jw-java")) )
 (add-hook 'java-mode-hook  '(lambda () (setq c-access-key nil)))
 
-;(add-hook 'java-mode-hook  '(lambda () (require 'jde)))
-
-
 ;;; CC Aid Autoloads -------------------------------------------------
 
 (autoload 'ccaid-new-class               "cc-aid" "Create a new class" t)

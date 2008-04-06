@@ -6,6 +6,8 @@
 
 (setq default-major-mode 'indented-text-mode)
 
+;;; Mode-specific autoloads ------------------------------------------
+
 (autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
 (autoload 'html-mode        "html-mode"        "HTML major mode." t)
 (autoload 'tcl-mode         "tcl-mode"         "Major Mode for TCL" t)
@@ -15,7 +17,9 @@
 (autoload 'lua-mode         "lua-mode"         "Automatic Mode for Lua Code" t)
 (autoload 'filladapt-mode   "filladapt"        "Adaptive Filling Minor mode" t)
 (autoload 'applescript-mode "applescript-mode" "Major Mode for editing AppleScript source." t)
-(autoload 'markdown-mode "markdown-mode.el"    "Major mode for editing Markdown files" t)
+(autoload 'markdown-mode    "markdown-mode"    "Major mode for editing Markdown files" t)
+(autoload 'haml-mode        "haml-mode"        "Major mode for editing HAML files" t)
+(autoload 'jde-mode         "jde"              "A Java Development Environment for Emacs." t)
 
 (make-auto "\\.awk$"     'awk-mode)
 (make-auto "\\.html$"    'html-helper-mode) ; was html-mode
@@ -55,4 +59,15 @@
 ;;;            // -*-Mode: c++; -*-
 ;;;        as the first line
 
+;;; Dependency autoloads ---------------------------------------------
 
+(autoload 'cheat             "cheat"             "A handy interface go cheat.errtheblog.com" t)
+(autoload 'install-elisp     "install-elisp"     "Simple Emacs Lisp Installer" t)
+(autoload 'rcirc-color       "rcirc-color"       "Color nickname for rcirc" t)
+(autoload 'rcirc-completion  "rcirc-completion"  "Completion for rcirc" t)
+(autoload 'redo              "redo"              "Redo" t)
+(autoload 'ri                "ri-ruby.el"        nil t)
+(autoload 'shell-command     "shell-command"     "Tab completion for shell-comamnd" t)
+(autoload 'svn-status        "psvn"              "Subversion interface for Emacs" t)
+(autoload 'yank-pop-forward  "yank-pop-summary"  nil t)
+(autoload 'yank-pop-backward "yank-pop-summary"  nil t)

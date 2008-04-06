@@ -8,5 +8,3 @@
 
 (setq ri-ruby-script
       (expand-file-name (concat root-directory "/ri-emacs.rb")))
-(autoload 'ri "ri-ruby.el" nil t)
-

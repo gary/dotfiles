@@ -4,8 +4,6 @@
 ;;; Purpose: Setups for compiling with Ant
 ;;; ==================================================================
 
-(require 'compile)
-
 ;;; Ant adds a banner to error messages.  This should handle it.
 
 (setq compilation-error-regexp-alist

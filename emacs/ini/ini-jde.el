@@ -6,7 +6,6 @@
 
 (attach-package "/jde")
 (add-to-load-path (concat package-directory "/jde/lisp"))
-(require 'jde)
 
 ;;; Location Specific ------------------------------------------------
 
