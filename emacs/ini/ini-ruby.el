@@ -6,13 +6,6 @@
 
 ;;; Ruby Mode Setups ===============================================
 
-
-(require 'font-lock)
-(autoload
-  'jw-ruby-insert-template
-  "rails-templates"   ;;; or "ruby-templates"
-  "Insert an Ruby Template")
-
 ;;; We might need this function --------------------------------------
 
 (or (fboundp 'char-before)
@@ -30,8 +23,6 @@
  (shell-command-on-region reg-start reg-end
    "ruby -r xmp -n -e 'xmp($_, \"%l\t\t# %r\n\")'"
    t))
-
-(global-set-key [(meta f10)] 'ruby-xmp-region)
 
 ;;; TestUnit Compilation Patterns ------------------------------------
 ;;; Add the compilation patterns used by Test::Unit to the list of
@@ -132,13 +123,11 @@
   "Run an inferior Ruby process")
 (autoload 'inf-ruby-keys "inf-ruby"
   "Set local key defs for inf-ruby in ruby-mode")
-(defun jw-ruby-init-keys ()
-  (define-key ruby-mode-map "\C-ci"  'jw-ruby-insert-template)
-  (define-key ruby-mode-map "\M-q"   'jw-rb-fill-comment-region)
-  (define-key ruby-mode-map "\C-C\C-t" 'jw-toggle-buffer))
 
-(global-set-key "\C-cm" 'jw-mark-for-rdebug)
-(global-set-key "\C-cd" 'jw-select-gud-buffer)
+(autoload
+  'jw-ruby-insert-template
+  "rails-templates"   ;;; or "ruby-templates"
+  "Insert an Ruby Template")
 
 (add-hook 'ruby-mode-hook 'jw-ruby-init-keys)
 (add-hook 'ruby-mode-hook '(lambda () (jwfd) (font-lock-mode)))
@@ -146,3 +135,11 @@
 (add-hook 'ruby-mode-hook '(lambda () (inf-ruby-keys) ))
 (add-hook 'ruby-mode-hook '(lambda () (setq zoom-step 2) ))
 (add-hook 'ruby-mode-hook '(lambda () (load-library "rubydb3x")))
+
+;;; Key bindings -----------------------------------------------------
+(defun jw-ruby-init-keys ()
+  (define-key ruby-mode-map "\C-ci"  'jw-ruby-insert-template)
+  (define-key ruby-mode-map "\M-q"   'jw-rb-fill-comment-region)
+  (define-key ruby-mode-map "\C-C\C-t" 'jw-toggle-buffer)
+  (define-key ruby-mode-map "\C-cm" 'jw-mark-for-rdebug)
+  (define-key ruby-mode-map [(meta f10)] 'ruby-xmp-region))

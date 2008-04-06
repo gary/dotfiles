@@ -4,39 +4,31 @@
 ;;; Purpose: Setups for common shell interpreters
 ;;; ==================================================================
 
-;;; Comint setup =======================================================
+;;; Setups for Comint ================================================
 
-(setq comint-input-ring-size 100)
-(setq comint-password-prompt-regexp
-  "\\(^[Pp]assword\\|^enter password\\|pass phrase\\|[Pp]assword for '[a-zA-Z0-9]+'\\):\\s *\\'")
+(require 'comint)
+(require 'shell)
+(require 'shell-command)
+
+;;; ANSI colors ------------------------------------------------------
 
 (autoload 'ansi-color-for-comint-mode-on "ansi-color"
   "Set `ansi-color-for-comint-mode' to t." t)
 (setq ansi-color-names-vector
       ["black" "red1" "green3" "yellow3" "DodgerBlue1" "magenta1" "cyan3" "white"])
 
-(add-hook 'shell-mode-hook '(lambda () (setq tab-width 8)))
-(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on) ; ?
+;;; Tab Completion for shell-command ---------------------------------
 
-(defun jnw-set-shell-prompt-hookcode ()
-  (setq comint-prompt-regexp "^[^#$%>- \n]*[#$%>-] *")
-  (setq telnet-prompt-pattern comint-prompt-regexp))
+(shell-command-completion-mode)
 
-(add-hook 'telnet-mode-hook 'jnw-set-shell-prompt-hookcode)
+;;; Customized Comint Mode Variables ---------------------------------
 
-(require 'shell)
-(define-key shell-mode-map  "\C-c\C-i" 'send-invisible)
+(setq comint-input-ring-size 100)
+(setq comint-password-prompt-regexp
+  "\\(^[Pp]assword\\|^enter password\\|pass phrase\\|[Pp]assword for '[a-zA-Z0-9]+'\\):\\s *\\'")
+(setq comint-process-echoes nil)
 
-(require 'comint)
-(define-key comint-mode-map "\C-c\C-i" 'send-invisible)
-(define-key comint-mode-map "\C-c " 'multi-shell)
-
-(defun jnw-add-invisible-telnethookcode ()
-  (define-key telnet-mode-map "\C-c\C-i" 'send-invisible) )
-(add-hook 'telnet-mode-hook 'jnw-add-invisible-telnethookcode)
-(add-hook 'telnet-mode-hook 'jnw-fix-telnet-output-filter)
-
-;; Fix Telnet to honor the output-filter filter stuff
+;; Fix Telnet to honor the output-filter filter stuff ----------------
 
 (defun jnw-fix-telnet-output-filter ()
   (defun telnet-filter (proc string) (jnw-telnet-filter proc string)))
@@ -74,10 +66,24 @@
           (funcall (car functions) string)
           (setq functions (cdr functions)))) )))
 
-(setq comint-process-echoes nil)
+(defun jnw-add-invisible-telnethookcode ()
+  (define-key telnet-mode-map "\C-c\C-i" 'send-invisible) )
+(add-hook 'telnet-mode-hook 'jnw-add-invisible-telnethookcode)
+(add-hook 'telnet-mode-hook 'jnw-fix-telnet-output-filter)
 
-;;; Key sequence to toggle the process echo flag.
-(global-set-key "\C-cs"
+(defun jnw-set-shell-prompt-hookcode ()
+  (setq comint-prompt-regexp "^[^#$%>- \n]*[#$%>-] *")
+  (setq telnet-prompt-pattern comint-prompt-regexp))
+
+;;; Autoloads --------------------------------------------------------
+
+(add-hook 'telnet-mode-hook 'jnw-set-shell-prompt-hookcode)
+(add-hook 'shell-mode-hook '(lambda () (setq tab-width 8)))
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on) ; ?
+
+;;; Key bindings -----------------------------------------------------
+(define-key shell-mode-map "\C-c\C-i" 'send-invisible)
+(define-key shell-mode-map "\C-cs" ; Key sequence to toggle the process echo flag.
                 (lambda ()
                   (interactive)
                   (cond
@@ -87,9 +93,3 @@
                    (t
                     (setq comint-process-echoes t)
                     (message "shell processing echoes")) )))
-
-;;; Tab Completion for shell-command ---------------------------------
-
-(require 'shell-command)
-
-(shell-command-completion-mode)
