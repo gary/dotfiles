@@ -30,7 +30,7 @@
                    ) ))
 
 (toggle-style 'jw-ruby)
-ii
+
 ;;; Simple insertion macro for .togglerc files.
 
 (define-key text-mode-map "\C-ci"

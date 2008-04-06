@@ -8,8 +8,6 @@
 
 ;;; The following are substiutes for when ^s/^q are not available
 
-;;; The following is needed for the forth-mode stuff
-
 (defun sleep-for-millisecs (n)
   (sleep-for (/ n 1000)))
 
