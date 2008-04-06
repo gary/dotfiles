@@ -1,0 +1,5 @@
+name:    apel
+version: 10.7
+
+cmd:     curl
+url:     http://kanji.zinbun.kyoto-u.ac.jp/~tomo/lemi/dist/apel/apel-10.7.tar.gz
