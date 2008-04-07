@@ -41,7 +41,7 @@
 (make-auto "\\.ph$"      'cperl-mode)
 (make-auto "\\.pm$"      'cperl-mode)
 (make-auto "\\.java$"    'jde-mode)        ; was java-mode
-(make-auto "\\.js$"      'javascript-mode)
+(make-auto "\\.js$"      'js2-mode)
 (make-auto "\\.jav$"     'jde-mode)
 (make-auto "\\.jsp$"     'html-mode)
 (make-auto "\\.rb$"      'ruby-mode)
@@ -63,6 +63,9 @@
 
 (autoload 'cheat             "cheat"             "A handy interface go cheat.errtheblog.com" t)
 (autoload 'install-elisp     "install-elisp"     "Simple Emacs Lisp Installer" t)
+(autoload 'pastie-buffer     "pastie"            "Emacs integration for pastie.caboo.se." t)
+(autoload 'pastie-get        "pastie"            "Emacs integration for pastie.caboo.se." t)
+(autoload 'pastie-region     "pastie"            "Emacs integration for pastie.caboo.se." t)
 (autoload 'rcirc-color       "rcirc-color"       "Color nickname for rcirc" t)
 (autoload 'rcirc-completion  "rcirc-completion"  "Completion for rcirc" t)
 (autoload 'redo              "redo"              "Redo" t)
