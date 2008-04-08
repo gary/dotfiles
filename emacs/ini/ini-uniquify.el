@@ -6,6 +6,8 @@
 
 ;;; Setups for Uniquify ==============================================
 
+(require 'uniquify)
+
 ;;; Customizations ---------------------------------------------------
 
 (setq uniquify-buffer-name-style 'reverse)
