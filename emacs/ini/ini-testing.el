@@ -1,4 +1,3 @@
-
 ;;; ==================================================================
 ;;; Author:  Jim Weirich
 ;;; File:    ini-testing
@@ -36,6 +35,20 @@
 ;;; Name of the last buffer running a file or method style test.
 (defvar jw-testing-last-test-buffer nil)
 
+(set-face-attribute (make-face 'spec-case-pass) nil
+                    ;; :family "arial"
+;;                     :height 240
+                    :background (if window-system "#00CC00" "#001100")
+                    :foreground (if window-system "black" "white"))
+                    ;; :weight 'bold)
+
+(set-face-attribute (make-face 'spec-case-fail) nil
+                    ;; :family "arial"
+;;                     :height 240
+                    :background (if window-system "#00CC00" "#001100")
+                    :foreground (if window-system "black" "white"))
+;;                     :weight 'bold)
+
 (set-face-attribute (make-face 'test-heading1) nil
                     :family "arial"
                     :height 240
@@ -67,11 +80,23 @@
 (setq compilation-mode-font-lock-keywords ())
 
 (add-to-list 'compilation-mode-font-lock-keywords
-             '("^\\(.* 0 failures, 0 errors.*\n\\)"
-                                     (1 'test-success)))
+             '(".*FAILED.*"
+               (1 'spec-case-fail)))
 
 (add-to-list 'compilation-mode-font-lock-keywords
-             '("^\\(.* [1-9][0-9]* \\(failures\\|errors\\).*\n\\)"
+             '("^expect \\([1-9][0-9]*\\) \\sw+, got [^\\1]"
+               (1 'spec-case-fail)))
+
+(add-to-list 'compilation-mode-font-lock-keywords
+             '("^\\(.* 0 failures.*\n\\)"
+               (1 'test-success)))
+
+(add-to-list 'compilation-mode-font-lock-keywords
+             '("^\\(.* 0 failures, 0 errors.*\n\\)"
+               (1 'test-success)))
+
+(add-to-list 'compilation-mode-font-lock-keywords
+             '("^\\(.* [1-9][0-9]* \\(failure\\|error\\)s?.*\n\\)"
                (1 'test-failure)))
 
 (add-to-list 'compilation-mode-font-lock-keywords
@@ -104,7 +129,7 @@
    nil
    (lambda (x) "*testing*"))
   )
-  
+
 (defun jw-test-start-debugging (&rest args)
   (rdebug (mapconcat (lambda (x) x) args " ")) )
 
@@ -116,7 +141,7 @@
   "Are we at the top of a project?
 Redefine as needed to define the top directory of a project."
   (or
-   (jw-dir-contains-p path "Rakefile") 
+   (jw-dir-contains-p path "Rakefile")
    (jw-dir-contains-p path "config/database.yml") ))
 
 (defun jw-parent-dir (path)
@@ -146,7 +171,7 @@ Redefine as needed to define the top directory of a project."
 
 (defun jw-test-file-name-p (file-name)
   "Is the given file name a test file?"
-  (string-match "\\btest\\b" file-name) )
+  (string-match "\\b\\(test\\|spec\\)\\b" file-name) )
 
 (defun jw-test-file-name (file-name)
   "Return the test file name associated with the given file name."
@@ -193,7 +218,7 @@ test headers."
     (jw-test-deal-with-mode-line)
     (apply 'insert headers)
     (setq buffer-read-only t)
-    (goto-char (point-max)) 
+    (goto-char (point-max))
     (if jw-testing-single-window (delete-other-windows)) ))
 
 ;;; -- Test Run Commands ---------------------------------------------
@@ -202,7 +227,7 @@ test headers."
   "Run the default rake command as a test."
   (interactive)
   (jw-prep-test-buffer)
-  (jw-test-start-process jw-rake-command) 
+  (jw-test-start-process jw-rake-command)
   (jw-test-insert-headers
    "= Test Rake\n"
    "== Target: default\n\n") )
@@ -242,6 +267,51 @@ test headers."
   (jw-test-insert-headers
    "= Test Rake\n"
    "== Target: cruise\n\n") )
+
+(defun gi-run-spec ()
+  "Run the spec rake command as a test."
+  (interactive)
+  (jw-prep-test-buffer)
+  (jw-test-start-process jw-rake-command "spec")
+  (jw-test-insert-headers
+   "= Test Rake\n"
+   "== Target: spec\n\n"))
+
+(defun gi-run-spec-controllers ()
+  "Run the spec:controllers rake command as a test."
+  (interactive)
+  (jw-prep-test-buffer)
+  (jw-test-start-process jw-rake-command "spec:controllers")
+  (jw-test-insert-headers
+   "= Test Rake\n"
+   "== Target: spec:controllers\n\n"))
+
+(defun gi-run-spec:helpers ()
+  "Run the spec:helpers rake command as a test."
+  (interactive)
+  (jw-prep-test-buffer)
+  (jw-test-start-process jw-rake-command "spec:helpers")
+  (jw-test-insert-headers
+   "= Test Rake\n"
+   "== Target: spec:helpers\n\n"))
+
+(defun gi-run-spec:lib ()
+  "Run the spec:lib rake command as a test."
+  (interactive)
+  (jw-prep-test-buffer)
+  (jw-test-start-process jw-rake-command "spec:lib")
+  (jw-test-insert-headers
+   "= Test Rake\n"
+   "== Target: spec:lib\n\n"))
+
+(defun gi-run-spec-models ()
+  "Run the spec:models rake command as a test."
+  (interactive)
+  (jw-prep-test-buffer)
+  (jw-test-start-process jw-rake-command "spec:models")
+  (jw-test-insert-headers
+   "= Test Rake\n"
+   "== Target: spec:models\n\n"))
 
 (defun jw-run-test-file (arg)
   "Run the current file as a test.
@@ -323,7 +393,7 @@ project .togglerc file."
   (if (null jw-testing-toggle-style)
       (jw-test-load-project-toggle-style) )
   (setq toggle-mappings (toggle-style jw-testing-toggle-style)) )
-  
+
 (defun jw-toggle-buffer ()
   "Enhanced version of the Ryan Davis's toggle-buffer function
 Check for a .togglerc file at the top level of the project
@@ -384,14 +454,25 @@ mappings from other projects."
 
 ;;; -- Key mappings --------------------------------------------------
 
-;;; Map the various run test commands
+;;; Test::Unit
 (global-set-key "\C-Ctr" 'jw-run-test-rake)
 (global-set-key "\C-Ctu" 'jw-run-test-units)
-(global-set-key "\C-Ctl" 'jw-run-test-functionals)
+(global-set-key "\C-Cto" 'jw-run-test-functionals)
 (global-set-key "\C-Cti" 'jw-run-test-integration)
-(global-set-key "\C-Ctc" 'jw-run-test-cruise)
-(global-set-key "\C-Ctf" 'jw-run-test-file)
-(global-set-key "\C-Ctm" 'jw-run-test-method)
+
+;;; rSpec
+(global-set-key "\C-Ctz" 'gi-run-spec)
+(global-set-key "\C-Ctc" 'gi-run-spec-controllers)
+(global-set-key "\C-Cth" 'gi-run-spec-helpers)
+(global-set-key "\C-Ctl" 'gi-run-spec-lib)
+(global-set-key "\C-Ctm" 'gi-run-spec-models)
+
+;;; CruiseControlRB
+;; (global-set-key "\C-Ctc" 'jw-run-test-cruise)
+
+;;; Generic
+(global-set-key "\C-Ctt" 'jw-run-test-file)
+(global-set-key "\C-Ctd" 'jw-run-test-method)
 
 (global-set-key "\C-Ct1" (lambda () (interactive)(setq jw-testing-single-window t)))
 (global-set-key "\C-Ct2" (lambda () (interactive)(setq jw-testing-single-window nil)))

@@ -1,10 +1,12 @@
 ;;; ==================================================================
-;;; Author:  Jim Weirich
+;;; Author:  Jim Weirich (modifications by gary iams)
 ;;; File:    ini-toggle
-;;; Purpose: Setups for Ruby test file toggle
+;;; Purpose: Setups for Quickly Opening a Corresponding File.
 ;;; ==================================================================
 
-(require 'toggle)
+;;; Setups for toggle ================================================
+
+(toggle-style 'rspec)
 
 ;;; Note that we have switched the order of test/code files in these
 ;;; rules.  This allows the lib/*.rb rules to work properly.
@@ -29,15 +31,18 @@
                    ("test_\\1.rb"      . "\\1.rb")
                    ) ))
 
-(toggle-style 'jw-ruby)
+;;; Customized Toggle variables --------------------------------------
+
+(setq toggle-mapping-style 'rspec) ; TODO: default mapping style blocking
+                                   ;       (toggle-style) ?
 
 ;;; Simple insertion macro for .togglerc files.
 
 (define-key text-mode-map "\C-ci"
-  (lambda () 
+  (lambda ()
     (interactive)
     (insert ";; (buffer-toggle-style 'jw-rails)\n")
-    (insert ";; (buffer-toggle-style 'jw-postfix)\n") 
+    (insert ";; (buffer-toggle-style 'jw-postfix)\n")
     (insert ";; (buffer-toggle-style 'jw-prefix)\n") ))
 
 ;;; Debugging ========================================================
