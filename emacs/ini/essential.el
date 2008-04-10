@@ -152,13 +152,6 @@ The lisp and info subdirectories are added to the load-path and info lookup list
         (t (setq ini-not-loaded (cons inifn ini-not-loaded))
            (message (concat inifn " not found")))))
 
-;;; Use bindings for finding files at point (FFAP) ---------------------
-
-(require 'ffap)
-
-(ffap-bindings)
-(setq ffap-require-prefix t)
-
 ;;; Customized Variables -----------------------------------------------
 
 (setq rlogin-initially-track-cwd t)     ; track dirs in rlogin
