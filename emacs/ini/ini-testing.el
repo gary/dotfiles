@@ -35,20 +35,6 @@
 ;;; Name of the last buffer running a file or method style test.
 (defvar jw-testing-last-test-buffer nil)
 
-(set-face-attribute (make-face 'spec-case-pass) nil
-                    ;; :family "arial"
-;;                     :height 240
-                    :background (if window-system "#00CC00" "#001100")
-                    :foreground (if window-system "black" "white"))
-                    ;; :weight 'bold)
-
-(set-face-attribute (make-face 'spec-case-fail) nil
-                    ;; :family "arial"
-;;                     :height 240
-                    :background (if window-system "#00CC00" "#001100")
-                    :foreground (if window-system "black" "white"))
-;;                     :weight 'bold)
-
 (set-face-attribute (make-face 'test-heading1) nil
                     :family "arial"
                     :height 240
@@ -63,6 +49,34 @@
                     :foreground "#9999ff"
                     :weight 'bold)
 
+;; rSpec
+(set-face-attribute (make-face 'spec-success) nil
+                    :family "arial"
+                    :height 240
+                    :background (if window-system "#33ff33" "#001100")
+                    :foreground (if window-system "black" "white")
+                    :weight 'bold)
+
+(set-face-attribute (make-face 'spec-pending) nil
+                    :family "arial"
+                    :height 240
+                    :background (if window-system "#ccff33" "#001100")
+                    :foreground (if window-system "black" "white")
+                    :weight 'bold)
+
+(set-face-attribute (make-face 'spec-case-pass) nil
+                    :background (if window-system "black" "white"))
+                    :foreground (if window-system "#00cc00" "#001100")
+
+(set-face-attribute (make-face 'spec-case-pending) nil
+                    :background (if window-system "black" "white")
+                    :foreground (if window-system "#ccff00" "#001100"))
+
+(set-face-attribute (make-face 'spec-case-fail) nil
+                    :background (if window-system "black" "white")
+                    :foreground (if window-system "#ff0000" "#001100"))
+
+;; test/unit
 (set-face-attribute (make-face 'test-success) nil
                     :family "arial"
                     :height 240
@@ -80,21 +94,30 @@
 (setq compilation-mode-font-lock-keywords ())
 
 (add-to-list 'compilation-mode-font-lock-keywords
-             '(".*FAILED.*"
-               (1 'spec-case-fail)))
-
-(add-to-list 'compilation-mode-font-lock-keywords
-             '("^expect \\([1-9][0-9]*\\) \\sw+, got [^\\1]"
-               (1 'spec-case-fail)))
-
-(add-to-list 'compilation-mode-font-lock-keywords
-             '("^\\(.* 0 failures.*\n\\)"
+             '("^\\(.*0 failures.*\n\\)$"
                (1 'test-success)))
+
+(add-to-list 'compilation-mode-font-lock-keywords
+             '("^\\(.*\\([1-9][0-9]*\\) pending.*\n\\)$"
+               (1 'spec-pending)))
+
+(add-to-list 'compilation-mode-font-lock-keywords
+             '("^\\(.*PENDING: Not Yet Implemented)\\)$"
+               (1 'spec-case-pending)))
+
+(add-to-list 'compilation-mode-font-lock-keywords
+             '("\\(.*FAILED.*\\)"
+               (1 'spec-case-fail)))
+
+(add-to-list 'compilation-mode-font-lock-keywords
+             '("^\\(expect\\(ed\\)? \\S+.*got.*\\)$"
+               (1 'spec-case-fail)))
 
 (add-to-list 'compilation-mode-font-lock-keywords
              '("^\\(.* 0 failures, 0 errors.*\n\\)"
                (1 'test-success)))
 
+;; covers rSpec and test/unit
 (add-to-list 'compilation-mode-font-lock-keywords
              '("^\\(.* [1-9][0-9]* \\(failure\\|error\\)s?.*\n\\)"
                (1 'test-failure)))
