@@ -62,19 +62,19 @@ bash_prompt() {
 	[ $UID -eq "0" ] && UC=$R # root's color
 
 	# backslash in front of \$ to make bash colorize the prompt
-        # multi line
+    # multi line
 	#PS1="${EMW}${UC}\u${EMW}@${MC}\h ${Y}\${NEW_PWD}\n${EMW}${BGR}\!${BGK}|${BGM}\#${BGK}${G} \\$ ${NONE}"
-        # single line
-	PS1="${EMW}${BGR}|\#|${NONE} ${BGY}${EMK}${UC}\u@\h${NONE} ${Y}\${NEW_PWD} ${BGK}${G}\\$ ${NONE}"
+    # single line
+	PS1="${EMW}${BGR}|\#|${NONE} ${BGY}${EMK}${UC}\h${NONE} ${Y}\${NEW_PWD} ${BGK}${G}\\$ ${NONE}"
 }
 
 PROMPT_COMMAND=bash_prompt_command
 bash_prompt
 unset bash_prompt
 
-if [ -z $EMACS ]; then
-	alias grep='grep --color=always'
-fi
+function authme {
+    ssh $1 'cat >>.ssh/authorized_keys' <~/.ssh/id_dsa.pub 
+}
 
 # dir specific ls
 alias lsd='find . -maxdepth 1 -type d'
@@ -104,14 +104,42 @@ alias psc='ps c'
 
 alias rl='readlink'
 
+if [ `which ack` ]; then
+    alias ack='ack --group'
+fi
+
+if [ -z $EMACS ]; then
+	alias grep='grep --color=always'
+    if [ `which ack` ]; then
+        alias ack='ack --group --color'
+    fi
+fi
+
 if [ -e /usr/bin/ruby ]; then
+    # TODO: use shell aliases if not in emacs; yasnippets otherwise
     alias irb='irb -r irb/completion -r rubygems'
     alias rdb='ruby -r debug'
     alias gs='gem search '
     alias gi='gem install '
     alias gli='gem install --install-dir $HOME/.gems'
     alias gl='gem list '
-    alias spec='spec -cfs'
+    alias spec='spec -c -f specdoc'
+fi
+
+if [ `which git` ]; then
+    alias gb='git branch -a -v'
+    alias gs='git status'
+    alias gd='git diff'
+
+    # gc      => git checkout master
+    # gc bugs => git checkout bugs
+    function gc {
+        if [ -z "$1" ]; then
+            git checkout master
+        else
+            git checkout $1
+        fi
+    }
 fi
 
 # Set up aliases for all known hosts, so that you can type just the

@@ -1,2 +1,6 @@
 #-*-mode:shell-script;-*-
-export PATH="$PATH:/opt/local/bin:$HOME/bin";
+export PATH="$HOME/bin:/opt/local/bin:$PATH"
+
+if [ -e /usr/bin/ruby ]; then
+    export PATH="$HOME/.gems/bin:$PATH"
+fi
