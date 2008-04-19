@@ -3,7 +3,7 @@
 ;; Copyright 2008 pluskid
 ;; 
 ;; Author: pluskid <pluskid@gmail.com>
-;; Version: 0.4.4
+;; Version: 0.5.1
 ;; X-URL: http://code.google.com/p/yasnippet/
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -50,7 +50,8 @@ foo-bar
 will first try \"bar\", if not found, then \"foo-bar\" is tried.")
 
 (defvar yas/root-directory nil
-  "The root directory that stores the snippets for each major modes.")
+  "The (list of) root directory that stores the snippets for each 
+major modes.")
 
 (defvar yas/indent-line t
   "Each (except the 1st) line of the snippet template is indented to
@@ -68,6 +69,7 @@ current column if this variable is non-`nil'.")
 (define-key yas/keymap (kbd "S-TAB") 'yas/prev-field-group)
 (define-key yas/keymap (kbd "<S-iso-lefttab>") 'yas/prev-field-group)
 (define-key yas/keymap (kbd "<S-tab>") 'yas/prev-field-group)
+(define-key yas/keymap (kbd "<backtab>") 'yas/prev-field-group)
 
 (defvar yas/show-all-modes-in-menu nil
   "Currently yasnippet only all \"real modes\" to menubar. For
@@ -105,7 +107,7 @@ them. `yas/window-system-popup-function' is used instead when in
 a window system.")
 
 (defvar yas/extra-mode-hooks
-  '(ruby-mode-hook)
+  '(ruby-mode-hook actionscript-mode-hook)
   "A list of mode-hook that should be hooked to enable yas/minor-mode.
 Most modes need no special consideration. Some mode (like ruby-mode)
 doesn't call `after-change-major-mode-hook' need to be hooked explicitly.")
@@ -122,7 +124,16 @@ proper values:
   '()
   "Hooks to run after a before expanding a snippet.")
 
-(defvar yas/buffer-local-condition t
+(defvar yas/buffer-local-condition 
+  '(if (and (not (bobp))
+	    (or (string= "font-lock-comment-face"
+			 (get-char-property (1- (point))
+					    'face))
+		(string= "font-lock-string-face"
+			 (get-char-property (1- (point))
+					    'face))))
+       '(require-snippet-condition . force-in-comment)
+     t)
   "Condition to yasnippet local to each buffer.
 
     * If yas/buffer-local-condition evaluate to nil, snippet
@@ -156,10 +167,18 @@ Here's an example:
                          '(require-snippet-condition . force-in-comment)
                        t))))")
 
+(defvar yas/fallback-behavior 'call-other-command
+  "The fall back behavior of YASnippet when it can't find a snippet
+to expand. 
+
+ * 'call-other-command means try to temporarily disable
+    YASnippet and call other command bound to `yas/trigger-key'.
+ * 'return-nil means return nil.")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Internal variables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defvar yas/version "0.4.4")
+(defvar yas/version "0.5.1")
 
 (defvar yas/snippet-tables (make-hash-table)
   "A hash table of snippet tables corresponding to each major-mode.")
@@ -171,6 +190,8 @@ Here's an example:
   '(menu-item "About" yas/about))
 (define-key yas/menu-keymap [yas/reload]
   '(menu-item "Reload all snippets" yas/reload-all))
+(define-key yas/menu-keymap [yas/load]
+  '(menu-item "Load snippets..." yas/load-directory))
 (define-key yas/menu-keymap [yas/separator]
   '(menu-item "--"))
 
@@ -274,6 +295,12 @@ You can customize the key through `yas/trigger-key'."
   "A table to store snippets for a perticular mode."
   (hash (make-hash-table :test 'equal))
   (parent nil))
+
+(defun yas/snippet-valid? (snippet)
+  "See if snippet is valid (ie. still alive)."
+  (and (not (null snippet))
+       (not (null (yas/snippet-overlay snippet)))
+       (not (null (overlay-start (yas/snippet-overlay snippet))))))
 
 (defun yas/snippet-add-field (snippet field)
   "Add FIELD to SNIPPET."
@@ -444,43 +471,46 @@ the template of a snippet in the current snippet-table."
   (let ((start (point))
 	(end (point))
 	(syntaxes yas/key-syntaxes)
-	syntax done)
+	syntax done templates)
     (while (and (not done) syntaxes)
       (setq syntax (car syntaxes))
       (setq syntaxes (cdr syntaxes))
       (save-excursion
 	(skip-syntax-backward syntax)
 	(setq start (point)))
-      (if (yas/snippet-table-fetch
-	   (yas/current-snippet-table)
-	   (buffer-substring-no-properties start end))
+      (setq templates
+	    (yas/snippet-table-fetch
+	     (yas/current-snippet-table)
+	     (buffer-substring-no-properties start end)))
+      (if templates
 	  (setq done t)
 	(setq start end)))
-    (list (buffer-substring-no-properties start end)
+    (list templates
 	  start
 	  end)))
 
 (defun yas/synchronize-fields (field-group)
   "Update all fields' text according to the primary field."
-  (save-excursion
-    (let* ((inhibit-modification-hooks t)
-	   (primary (yas/group-primary-field field-group))
-	   (primary-overlay (yas/field-overlay primary))
-	   (text (buffer-substring-no-properties (overlay-start primary-overlay)
-						 (overlay-end primary-overlay))))
-      (dolist (field (yas/group-fields field-group))
-	(let* ((field-overlay (yas/field-overlay field))
-	       (original-length (- (overlay-end field-overlay)
-				   (overlay-start field-overlay))))
-	  (unless (eq field-overlay primary-overlay)
-	    (goto-char (overlay-start field-overlay))
-	    (insert (yas/calculate-field-value field text))
-	    (if (= (overlay-start field-overlay)
-		   (overlay-end field-overlay))
-		(move-overlay field-overlay
-			      (overlay-start field-overlay)
-			      (point))
-	      (delete-char original-length))))))))
+  (when (yas/snippet-valid? (yas/group-snippet field-group))
+    (save-excursion
+      (let* ((inhibit-modification-hooks t)
+	     (primary (yas/group-primary-field field-group))
+	     (primary-overlay (yas/field-overlay primary))
+	     (text (buffer-substring-no-properties (overlay-start primary-overlay)
+						   (overlay-end primary-overlay))))
+	(dolist (field (yas/group-fields field-group))
+	  (let* ((field-overlay (yas/field-overlay field))
+		 (original-length (- (overlay-end field-overlay)
+				     (overlay-start field-overlay))))
+	    (unless (eq field-overlay primary-overlay)
+	      (goto-char (overlay-start field-overlay))
+	      (insert (yas/calculate-field-value field text))
+	      (if (= (overlay-start field-overlay)
+		     (overlay-end field-overlay))
+		  (move-overlay field-overlay
+				(overlay-start field-overlay)
+				(point))
+		(delete-char original-length)))))))))
   
 (defun yas/overlay-modification-hook (overlay after? beg end &optional length)
   "Modification hook for snippet field overlay."
@@ -502,34 +532,39 @@ the template of a snippet in the current snippet-table."
   "Insert behind hook sometimes doesn't get called. I don't know why.
 So I add modification hook in the big overlay and try to detect `insert-behind'
 event manually."
-  (when (and after?
-	     (= length 0)
-	     (> end beg)
-	     (null (yas/current-snippet-overlay beg))
-	     (not (bobp)))
-    (let ((field-overlay (yas/current-snippet-overlay (1- beg))))
-      (if field-overlay
-	  (when (= beg (overlay-end field-overlay))
-	    (move-overlay field-overlay
-			  (overlay-start field-overlay)
-			  end)
-	    (yas/synchronize-fields (overlay-get field-overlay 'yas/group)))
-	(let ((snippet (yas/snippet-of-current-keymap))
-	      (done nil))
-	  (if snippet
-	      (do* ((groups (yas/snippet-groups snippet) (cdr groups))
-		    (group (car groups) (car groups)))
-		  ((or (null groups)
-		       done))
-		(setq field-overlay (yas/field-overlay 
-				     (yas/group-primary-field group)))
-		(when (and (= (overlay-start field-overlay)
-			      (overlay-end field-overlay))
-			   (= beg
-			      (overlay-start field-overlay)))
-		  (move-overlay field-overlay beg end)
-		  (yas/synchronize-fields group)
-		  (setq done t)))))))))
+  (when after?
+    (cond ((and (= beg end)
+		(> length 0)
+		(= (overlay-start overlay)
+		   (overlay-end overlay)))
+	   (yas/exit-snippet (overlay-get overlay 'yas/snippet-reference)))
+	  ((and (= length 0)
+		(> end beg)
+		(null (yas/current-snippet-overlay beg))
+		(not (bobp)))
+	   (let ((field-overlay (yas/current-snippet-overlay (1- beg))))
+	     (if field-overlay
+		 (when (= beg (overlay-end field-overlay))
+		   (move-overlay field-overlay
+				 (overlay-start field-overlay)
+				 end)
+		   (yas/synchronize-fields (overlay-get field-overlay 'yas/group)))
+	       (let ((snippet (yas/snippet-of-current-keymap))
+		     (done nil))
+		 (if snippet
+		     (do* ((groups (yas/snippet-groups snippet) (cdr groups))
+			   (group (car groups) (car groups)))
+			 ((or (null groups)
+			      done))
+		       (setq field-overlay (yas/field-overlay 
+					    (yas/group-primary-field group)))
+		       (when (and (= (overlay-start field-overlay)
+				     (overlay-end field-overlay))
+				  (= beg
+				     (overlay-start field-overlay)))
+			 (move-overlay field-overlay beg end)
+			 (yas/synchronize-fields group)
+			 (setq done t)))))))))))
 
 (defun yas/undo-expand-snippet (start end key snippet)
   "Undo a snippet expansion. Delete the overlays. This undo can't be
@@ -875,7 +910,6 @@ NOTE: You need to download and install dropdown-list.el to use this."
     (error "Please download and install dropdown-list.el to use this")))
 
 (defun yas/popup-for-template (templates)
-
   (if window-system
       (funcall yas/window-system-popup-function templates)
     (funcall yas/text-popup-function templates)))
@@ -989,7 +1023,10 @@ all the parameters:
   "Reload all snippets."
   (interactive)
   (if yas/root-directory
-      (yas/load-directory-1 yas/root-directory)
+      (if (listp yas/root-directory)
+	  (dolist (directory yas/root-directory)
+	    (yas/load-directory directory))
+	(yas/load-directory yas/root-directory))
     (call-interactively 'yas/load-directory))
   (message "done."))
 
@@ -1000,8 +1037,9 @@ name. And under each subdirectory, each file is a definition
 of a snippet. The file name is the trigger key and the
 content of the file is the template."
   (interactive "DSelect the root directory: ")
-  (unless yas/root-directory
-    (setq yas/root-directory directory))
+  (when (and (interactive-p)
+	     (file-directory-p directory))
+    (add-to-list 'yas/root-directory directory))
   (dolist (dir (yas/directory-files directory nil))
     (yas/load-directory-1 dir))
   (when (interactive-p)
@@ -1090,6 +1128,20 @@ when the condition evaluated to non-nil."
 		       (list (list key template name condition))))
     
 
+(defun yas/hippie-try-expand (first-time?)
+  "Integrate with hippie expand. Just put this function in
+`hippie-expand-try-functions-list'."
+  (if (not first-time?)
+      (let ((yas/fallback-behavior 'return-nil))
+	(yas/expand))
+    (when (and (null (car buffer-undo-list))
+	       (eq 'apply
+		   (car (cadr buffer-undo-list)))
+	       (eq 'yas/undo-expand-snippet
+		   (cadr (cadr buffer-undo-list))))
+      (undo 1))
+    nil))
+
 (defun yas/expand ()
   "Expand a snippet."
   (interactive)
@@ -1102,15 +1154,17 @@ when the condition evaluated to non-nil."
 			(symbolp (cdr local-condition)))
 		   (cdr local-condition)
 		 nil)))
-	  (multiple-value-bind (key start end) (yas/current-key)
-	    (let ((templates (yas/snippet-table-fetch (yas/current-snippet-table)
-						      key)))
-	      (if templates
-		  (let ((template (if (null (cdr templates)) ; only 1 template
-				      (yas/template-content (cdar templates))
-				    (yas/popup-for-template templates))))
-		    (when template
-		      (yas/expand-snippet start end template)))
+	  (multiple-value-bind (templates start end) (yas/current-key)
+	    (if templates
+		(let ((template (if (null (cdr templates)) ; only 1 template
+				    (yas/template-content (cdar templates))
+				  (yas/popup-for-template templates))))
+		  (if template
+		    (progn (yas/expand-snippet start end template)
+			   'expanded)	; expanded successfully
+		    'interruptted))	; interrupted by user
+	      (if (eq yas/fallback-behavior 'return-nil)
+		  nil			; return nil
 		(let* ((yas/minor-mode nil)
 		       (command (key-binding yas/trigger-key)))
 		  (when (commandp command)
@@ -1134,10 +1188,12 @@ when the condition evaluated to non-nil."
 			  (keymap (overlay-get overlay 'keymap))
 			  (command nil))
 		     (overlay-put overlay 'keymap nil)
+		     (overlay-put overlay 'yas/snippet-reference nil)
 		     (setq command (key-binding yas/next-field-key))
 		     (when (commandp command)
 		       (call-interactively command))
-		     (overlay-put overlay 'keymap keymap))))
+		     (overlay-put overlay 'keymap keymap)
+		     (overlay-put overlay 'yas/snippet-reference snippet))))
 	      (when (= (point)
 		       (overlay-start
 			(yas/field-overlay
@@ -1205,33 +1261,77 @@ handle the end-of-buffer error fired in it by calling
 ;; dropdown-list.el is used by yasnippet to select multiple
 ;; candidate snippets.
 ;;
-;; This is a slightly modified version of the original
-;; dropdown-list.el
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;; dropdown-list.el --- dropdown menu interface
-
+;;; dropdown-list.el --- Drop-down menu interface
+;;
+;; Filename: dropdown-list.el
+;; Description: Drop-down menu interface
+;; Author: Jaeyoun Chung [jay.chung@gmail.com]
+;; Maintainer:
 ;; Copyright (C) 2008 Jaeyoun Chung
-
-;; Author: jay AT kldp DOT org
-;; Keywords: convenience
+;; Created: Sun Mar 16 11:20:45 2008 (Pacific Daylight Time)
+;; Version: 
+;; Last-Updated: Sun Mar 16 12:19:49 2008 (Pacific Daylight Time)
+;;           By: dradams
+;;     Update #: 43
+;; URL: http://www.emacswiki.org/cgi-bin/wiki/dropdown-list.el
+;; Keywords: convenience menu
+;; Compatibility: GNU Emacs 21.x, GNU Emacs 22.x
 ;;
-;; overlay code stolen from company-mode.el
+;; Features that might be required by this library:
 ;;
-
+;;   `cl'.
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;; Commentary:
+;;
+;;  According to Jaeyoun Chung, "overlay code stolen from company-mode.el."
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;; Change log:
+;;
+;; 2008/03/16 dadams
+;;     Clean-up - e.g. use char-to-string for control chars removed by email posting.
+;;     Moved example usage code (define-key*, command-selector) inside the library.
+;;     Require cl.el at byte-compile time.
+;;     Added GPL statement.
+;; 2008/01/06 Jaeyoun Chung
+;;     Posted to gnu-emacs-sources@gnu.org at 9:10 p.m.
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License as
+;; published by the Free Software Foundation; either version 3, or
+;; (at your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;; General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with this program; see the file COPYING.  If not, write to
+;; the Free Software Foundation, Inc., 51 Franklin Street, Fifth
+;; Floor, Boston, MA 02110-1301, USA.
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;;; Code:
+
+(eval-when-compile (require 'cl)) ;; decf, fourth, incf, loop, mapcar*
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defface dropdown-list-face
-  '((t :inherit default
-       :background "lightyellow"
-       :foreground "black"))
-  "*Bla."
-  :group 'dropdown-list)
+    '((t :inherit default :background "lightyellow" :foreground "black"))
+  "*Bla." :group 'dropdown-list)
 
 (defface dropdown-list-selection-face
-  '((t :inherit dropdown-list
-       :background "purple"))
-  "*Bla."
-  :group 'dropdown-list)
+    '((t :inherit dropdown-list :background "purple"))
+  "*Bla." :group 'dropdown-list)
 
 (defvar dropdown-list-overlays nil)
 
@@ -1239,14 +1339,12 @@ handle the end-of-buffer error fired in it by calling
   (while dropdown-list-overlays
     (delete-overlay (pop dropdown-list-overlays))))
 
-(defun dropdown-list-put-overlay (beg end &optional prop value prop2
-value2)
+(defun dropdown-list-put-overlay (beg end &optional prop value prop2 value2)
   (let ((ov (make-overlay beg end)))
     (overlay-put ov 'window t)
     (when prop
       (overlay-put ov prop value)
-      (when prop2
-        (overlay-put ov prop2 value2)))
+      (when prop2 (overlay-put ov prop2 value2)))
     ov))
 
 (defun dropdown-list-line (start replacement &optional no-insert)
@@ -1257,8 +1355,7 @@ value2)
         before-string after-string)
     (goto-char (point-at-eol))
     (if (< (current-column) start)
-        (progn (setq before-string
-                     (make-string (- start (current-column)) ? ))
+        (progn (setq before-string (make-string (- start (current-column)) ? ))
                (setq beg-point (point)))
       (goto-char (point-at-bol)) ;; Emacs bug, move-to-column is wrong otherwise
       (move-to-column start)
@@ -1270,40 +1367,29 @@ value2)
     (move-to-column end)
     (setq end-point (point))
     (let ((end-offset (- (current-column) end)))
-      (when (> end-offset 0)
-        (setq after-string (make-string end-offset ?b))))
+      (when (> end-offset 0) (setq after-string (make-string end-offset ?b))))
     (when no-insert
       ;; prevent inheriting of faces
-      (setq before-string (when before-string
-                            (propertize before-string 'face 'default)))
-      (setq after-string (when after-string
-                           (propertize after-string 'face 'default))))
-    (let ((string (concat before-string
-                          replacement
-                          after-string)))
+      (setq before-string (when before-string (propertize before-string 'face 'default)))
+      (setq after-string (when after-string (propertize after-string 'face 'default))))
+    (let ((string (concat before-string replacement after-string)))
       (if no-insert
           string
-        (push (dropdown-list-put-overlay beg-point end-point
-                                        'invisible t
-                                        'after-string string)
+        (push (dropdown-list-put-overlay beg-point end-point 'invisible t
+                                         'after-string string)
               dropdown-list-overlays)))))
 
 (defun dropdown-list-start-column (display-width)
   (let ((column (mod (current-column) (window-width)))
         (width (window-width)))
-    (cond ((<= (+ column display-width) width)
-           column)
-          ((> column display-width)
-           (- column display-width))
-          ((>= width display-width)
-           (- width display-width))
-          (t
-           nil))))
+    (cond ((<= (+ column display-width) width) column)
+          ((> column display-width) (- column display-width))
+          ((>= width display-width) (- width display-width))
+          (t nil))))
 
 (defun dropdown-list-move-to-start-line (candidate-count)
   (decf candidate-count)
-  (let ((above-line-count (save-excursion (- (vertical-motion (-
-candidate-count)))))
+  (let ((above-line-count (save-excursion (- (vertical-motion (- candidate-count)))))
         (below-line-count (save-excursion (vertical-motion candidate-count))))
     (cond ((= below-line-count candidate-count)
            t)
@@ -1313,8 +1399,7 @@ candidate-count)))))
           ((>= (+ below-line-count above-line-count) candidate-count)
            (vertical-motion (- (- candidate-count below-line-count)))
            t)
-          (t
-           nil))))
+          (t nil))))
 
 (defun dropdown-list-at-point (candidates &optional selidx)
   (dropdown-list-hide)
@@ -1332,48 +1417,100 @@ candidate-count)))))
                                    'face (if (eql (incf i) selidx)
                                              'dropdown-list-selection-face
                                            'dropdown-list-face))))
-                              candidates lengths)))
+                              candidates
+                              lengths)))
     (save-excursion
       (and start
            (dropdown-list-move-to-start-line (length candidates))
            (loop initially (vertical-motion 0)
-                 for candidate in candidates
-                 do (dropdown-list-line (+ (current-column) start) candidate)
-                 while (/= (vertical-motion 1) 0)
-                 finally return t)))))
+              for candidate in candidates
+              do (dropdown-list-line (+ (current-column) start) candidate)
+              while (/= (vertical-motion 1) 0)
+              finally return t)))))
 
 (defun dropdown-list (candidates)
-  (let ((selection) (temp-buffer))
+  (let ((selection)
+        (temp-buffer))
     (save-window-excursion
       (unwind-protect
-          (let ((candidate-count (length candidates))
-                done key selidx)
-            (while (not done)
-              (unless (dropdown-list-at-point candidates selidx)
-                (switch-to-buffer (setq temp-buffer (get-buffer-create "*selection*")) 'norecord)
-                (delete-other-windows)
-                (delete-region (point-min) (point-max))
-                (insert (make-string (length candidates) ?\n))
-                (goto-char (point-min))
-                (dropdown-list-at-point candidates selidx))
-              (setq key (read-key-sequence ""))
-              (cond ((and (stringp key) (>= (aref key 0) ?1) (<= (aref key 0)
-								 (+ ?0 (min 9 candidate-count))))
-                     (setq selection (- (aref key 0) ?1)
-                           done t))
-                    ((member key '("" [up]))
-                     (setq selidx (mod (+ candidate-count (1- (or selidx 0)))
-				       candidate-count)))
-                    ((member key '("" [down]))
-                     (setq selidx (mod (1+ (or selidx -1)) candidate-count)))
-                    ((member key '("")))
-                    ((member key (list (kbd "C-j") (kbd "RET") (kbd "<return>")))
-                     (setq selection selidx
-                           done t))
-                    (t
-                     (setq done t)))))
+           (let ((candidate-count (length candidates))
+                 done key selidx)
+             (while (not done)
+               (unless (dropdown-list-at-point candidates selidx)
+                 (switch-to-buffer (setq temp-buffer (get-buffer-create "*selection*"))
+                                   'norecord)
+                 (delete-other-windows)
+                 (delete-region (point-min) (point-max))
+                 (insert (make-string (length candidates) ?\n))
+                 (goto-char (point-min))
+                 (dropdown-list-at-point candidates selidx))
+               (setq key (read-key-sequence ""))
+               (cond ((and (stringp key)
+                           (>= (aref key 0) ?1)
+                           (<= (aref key 0) (+ ?0 (min 9 candidate-count))))
+                      (setq selection (- (aref key 0) ?1)
+                            done      t))
+                     ((member key `(,(char-to-string ?\C-p) [up]))
+                      (setq selidx (mod (+ candidate-count (1- (or selidx 0)))
+                                        candidate-count)))
+                     ((member key `(,(char-to-string ?\C-n) [down]))
+                      (setq selidx (mod (1+ (or selidx -1)) candidate-count)))
+                     ((member key `(,(char-to-string ?\f))))
+                     ((member key `(,(char-to-string ?\r) [return]))
+                      (setq selection selidx
+                            done      t))
+                     (t (setq done t)))))
         (dropdown-list-hide)
         (and temp-buffer (kill-buffer temp-buffer)))
+      ;;     (when selection
+      ;;       (message "your selection => %d: %s" selection (nth selection candidates))
+      ;;       (sit-for 1))
       selection)))
 
-;;; contents dropdown-list.el ends here
+(defun define-key* (keymap key command)
+  "Add COMMAND to the multiple-command binding of KEY in KEYMAP.
+Use multiple times to bind different COMMANDs to the same KEY."
+  (define-key keymap key (combine-command command (lookup-key keymap key))))
+
+(defun combine-command (command defs)
+  "$$$$$ FIXME - no doc string"
+  (cond ((null defs) command)
+        ((and (listp defs)
+              (eq 'lambda (car defs))
+              (= (length defs) 4)
+              (listp (fourth defs))
+              (eq 'command-selector (car (fourth defs))))
+         (unless (member `',command (cdr (fourth defs)))
+           (setcdr (fourth defs) (nconc (cdr (fourth defs)) `(',command))))
+         defs)
+        (t
+         `(lambda () (interactive) (command-selector ',defs ',command)))))
+
+(defvar command-selector-last-command nil "$$$$$ FIXME - no doc string")
+
+(defun command-selector (&rest candidates)
+  "$$$$$ FIXME - no doc string"
+  (if (and (eq last-command this-command) command-selector-last-command)
+      (call-interactively command-selector-last-command)
+    (let* ((candidate-strings
+            (mapcar (lambda (candidate)
+                      (format "%s" (if (symbolp candidate)
+                                       candidate
+                                     (let ((s (format "%s" candidate)))
+                                       (if (>= (length s) 7)
+                                           (concat (substring s 0 7) "...")
+                                         s)))))
+                    candidates))
+           (selection (dropdown-list candidate-strings)))
+      (when selection
+        (let ((cmd (nth selection candidates)))
+          (call-interactively cmd)
+          (setq command-selector-last-command cmd))))))
+
+;;;;;;;;;;;;;;;;;;;;
+
+(provide 'dropdown-list)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; dropdown-list.el ends here
+

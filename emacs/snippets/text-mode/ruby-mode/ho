@@ -1,0 +1,5 @@
+#-*- require-final-newline: nil -*-
+#contributor: gary <ge.iams@gmail.com>
+#has one
+# --
+`(if (string-match ".+_spec.+rb$" (file-name-nondirectory (buffer-file-name))) "have_one(:${1:assoc})" "has_one :${1:assoc}")`
