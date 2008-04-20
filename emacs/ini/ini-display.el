@@ -14,21 +14,22 @@
 
 ;;; Fonts ------------------------------------------------------------
 
-;; (custom-set-faces
-;;  '(default ((t (:size "12pt" :family "Fixed"))) t))
-;; (setq mac-option-modifier 'meta)        ; for aquamacs
+(if (is-carbon-emacs)
+    (set-face-attribute 'default nil :family "Inconsolata" :height 110))
 
 ;;; Frame ------------------------------------------------------------
 
 (setq initial-frame-alist '((mouse-color . "gold")
-                            ;; (foreground-color . "cornsilk2")
-                            ;; (background-color . "grey7")
                             (top . 25) (left . 10) (width . 161) (height . 50)))
 (setq default-frame-alist '((cursor-color . "gold2")
-                            ;; (background-color . "grey7")
-                            ;; (foreground-color . "cornsilk2")
                             (cursor-type . box)
                             (top . 25) (left . 10) (width . 161) (height . 50)))
+
+(if (is-carbon-emacs)
+    (progn
+      (add-to-list 'initial-frame-alist '(alpha . 80))
+      (add-to-list 'default-frame-alist '(alpha . 80))))
+
 (setq-default show-trailing-whitespace t)
 
 ;;; Fringe -----------------------------------------------------------
