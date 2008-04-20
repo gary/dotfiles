@@ -106,11 +106,15 @@
                (1 'spec-case-pending)))
 
 (add-to-list 'compilation-mode-font-lock-keywords
-             '("\\(.*FAILED.*\\)"
+             '("^\\(.*FAILED.*\n\\)"
                (1 'spec-case-fail)))
 
 (add-to-list 'compilation-mode-font-lock-keywords
              '("^\\(expect\\(ed\\)? \\S+.*got.*\\)$"
+               (1 'spec-case-fail)))
+
+(add-to-list 'compilation-mode-font-lock-keywords
+             '("^\\(should have.*but it is.*\\)$"
                (1 'spec-case-fail)))
 
 (add-to-list 'compilation-mode-font-lock-keywords
@@ -336,6 +340,15 @@ test headers."
    "= Test Rake\n"
    "== Target: spec:models\n\n"))
 
+(defun gi-run-spec-views ()
+  "Run the spec:views rake command as a test."
+  (interactive)
+  (jw-prep-test-buffer)
+  (jw-test-start-process jw-rake-command "spec:views")
+  (jw-test-insert-headers
+   "= Test Rake\n"
+   "== Target: spec:views\n\n"))
+
 (defun jw-run-test-file (arg)
   "Run the current file as a test.
 If this file name does not include the string 'test' and there is
@@ -489,12 +502,13 @@ mappings from other projects."
 (global-set-key "\C-Cth" 'gi-run-spec-helpers)
 (global-set-key "\C-Ctl" 'gi-run-spec-lib)
 (global-set-key "\C-Ctm" 'gi-run-spec-models)
+(global-set-key "\C-Ctv" 'gi-run-spec-views)
 
 ;;; CruiseControlRB
 ;; (global-set-key "\C-Ctc" 'jw-run-test-cruise)
 
 ;;; Generic
-(global-set-key "\C-Ctt" 'jw-run-test-file)
+(global-set-key "\C-Ctf" 'jw-run-test-file)
 (global-set-key "\C-Ctd" 'jw-run-test-method)
 
 (global-set-key "\C-Ct1" (lambda () (interactive)(setq jw-testing-single-window t)))
