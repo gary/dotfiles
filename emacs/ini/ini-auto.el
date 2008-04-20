@@ -20,6 +20,7 @@
 (autoload 'markdown-mode    "markdown-mode"    "Major mode for editing Markdown files" t)
 (autoload 'haml-mode        "haml-mode"        "Major mode for editing HAML files" t)
 (autoload 'jde-mode         "jde"              "A Java Development Environment for Emacs." t)
+(autoload 'js2-mode         "js2"              "an improved JavaScript editing mode" t)
 
 (make-auto "\\.awk$"     'awk-mode)
 (make-auto "\\.html$"    'html-helper-mode) ; was html-mode
@@ -78,5 +79,6 @@
 (autoload 'shell-command                "shell-command"     "Tab completion for shell-comamnd" t)
 (autoload 'svn-status                   "psvn"              "Subversion interface for Emacs" t)
 (autoload 'toggle-style                 "toggle"            "quickly open corresponding file (eg test vs impl)." t)
+(autoload 'twit-mode                    "twit"              "interface with twitter.com" t)
 (autoload 'yank-pop-forward             "yank-pop-summary"  nil t)
 (autoload 'yank-pop-backward            "yank-pop-summary"  nil t)
