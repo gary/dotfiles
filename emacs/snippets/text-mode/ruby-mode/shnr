@@ -1,5 +1,5 @@
 #-*- require-final-newline: nil -*-
 #contributor: gary <ge.iams@gmail.com>
-#should_not_receive
+#name : should_not_receive
 # --
 ${1:mock}.should_not_receive(:${2:message})$0

@@ -1,6 +1,6 @@
 #-*- require-final-newline: nil -*-
 #contributor: gary <ge.iams@gmail.com>
-#mock_with mocha
+#name : mock_with mocha
 # --
 Spec::Runner.configure do |config|
   config.mock_with :mocha

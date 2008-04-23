@@ -1,6 +1,6 @@
 #-*- require-final-newline: nil -*-
 #contributor: gary <ge.iams@gmail.com>
-#should_not satisfy
+#name : should_not satisfy
 # --
 ${1:target}.should_not satisfy { |obj| ${2: } }
 $0

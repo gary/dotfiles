@@ -1,6 +1,6 @@
 #-*- require-final-newline: nil -*-
 #contributor: gary <ge.iams@gmail.com>
-#describe (String)
+#name : describe (String)
 # --
 describe '${1:description}' do
 

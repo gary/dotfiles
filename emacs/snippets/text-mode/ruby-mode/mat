@@ -1,6 +1,6 @@
 #-*- require-final-newline: nil -*-
 #contributor: gary <ge.iams@gmail.com>
-#custom matcher
+#name : custom matcher
 # --
 class ${1:ReverseTo}
   def initialize($3)

@@ -1,5 +1,5 @@
 #-*- require-final-newline: nil -*-
 #contributor: gary <ge.iams@gmail.com>
-#Require spec_helper
+#name : Require spec_helper
 # --
 require File.dirname(__FILE__) + '/../spec_helper'
