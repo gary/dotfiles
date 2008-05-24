@@ -161,6 +161,7 @@ The lisp and info subdirectories are added to the load-path and info lookup list
     (error
      (ini-load-error inifn "error during load"))))
 
+;; TODO: incorporate reasons, report along with ini-file
 (defun ini-load-error (inifn reason)
   "Report a reason for the failure to load an ini-type elisp file."
   (setq ini-not-loaded (cons inifn ini-not-loaded))
