@@ -43,13 +43,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; view toggling
 
-(defun rinari-find-view ()
+(defun rinari-find-view ()              ; TODO: cleanup erb/rhtml checking
   (interactive)
   (let* ((funname (which-function))
- 	 (cls (rinari-make-dirname (rinari-name-components funname)))
-	 (fn (and (string-match "#\\(.*\\)" funname) (match-string 1 funname)))
- 	 (railsdir (rails-root (directory-file-name (file-name-directory (buffer-file-name))))))
-    (find-file (concat railsdir "/app/views/" cls "/" fn ".rhtml"))))
+         (cls (rinari-make-dirname (rinari-name-components funname)))
+         (fn (and (string-match "#\\(.*\\)" funname) (match-string 1 funname)))
+         (railsdir (rails-root (directory-file-name (file-name-directory (buffer-file-name))))))
+    (if (file-exists-p (concat railsdir "/app/views/" cls "/" fn ".html.erb"))
+        (find-file (concat railsdir "/app/views/" cls "/" fn ".html.erb"))
+      (find-file (concat railsdir "/app/views/" cls "/" fn ".rhtml")))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; find-file-in-project
@@ -164,12 +166,13 @@ exec-to-string command, but it works and seems fast"
 
 (defun rinari-console ()
   (interactive)
+  (setq inferior-ruby-first-prompt-pattern ">> *")
   (run-ruby (concat (rails-root) "/script/console")))
 
 (define-key ruby-mode-map
   "\C-c\C-s" 'rinari-console)
 (define-key ruby-mode-map
-  "\C-c\C-v" (lambda () (interactive) (toggle-buffer 'rails-view)))
+  "\C-c\C-v" 'rinari-find-view) ;; (lambda () (interactive) (toggle-buffer 'rails-view))
 (define-key ruby-mode-map
   "\C-c\C-t" 'toggle-buffer)
 (define-key ruby-mode-map

@@ -124,11 +124,6 @@
 (autoload 'inf-ruby-keys "inf-ruby"
   "Set local key defs for inf-ruby in ruby-mode")
 
-(autoload
-  'jw-ruby-insert-template
-  "rails-templates"   ;;; or "ruby-templates"
-  "Insert an Ruby Template")
-
 (add-hook 'ruby-mode-hook 'jw-ruby-init-keys)
 (add-hook 'ruby-mode-hook '(lambda () (jwfd) (font-lock-mode)))
 (add-hook 'ruby-mode-hook 'font-lock-fontify-buffer)
@@ -137,9 +132,10 @@
 (add-hook 'ruby-mode-hook '(lambda () (load-library "rubydb3x")))
 
 ;;; Key bindings -----------------------------------------------------
+
 (defun jw-ruby-init-keys ()
-  (define-key ruby-mode-map "\C-ci"  'jw-ruby-insert-template)
   (define-key ruby-mode-map "\M-q"   'jw-rb-fill-comment-region)
   (define-key ruby-mode-map "\C-C\C-t" 'jw-toggle-buffer)
   (define-key ruby-mode-map "\C-cm" 'jw-mark-for-rdebug)
-  (define-key ruby-mode-map [(meta f10)] 'ruby-xmp-region))
+  (define-key ruby-mode-map [(meta f10)] 'ruby-xmp-region)
+  (define-key ruby-mode-map [f1] 'ri))

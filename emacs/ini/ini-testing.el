@@ -72,6 +72,10 @@
                     :background (if window-system "black" "white")
                     :foreground (if window-system "#ccff00" "#001100"))
 
+(set-face-attribute (make-face 'spec-case-error) nil
+                    :background (if window-system "black" "white")
+                    :foreground (if window-system "#cc00cc" "#001100"))
+
 (set-face-attribute (make-face 'spec-case-fail) nil
                     :background (if window-system "black" "white")
                     :foreground (if window-system "#ff0000" "#001100"))
@@ -104,6 +108,14 @@
 (add-to-list 'compilation-mode-font-lock-keywords
              '("^\\(.*PENDING: Not Yet Implemented)\\)$"
                (1 'spec-case-pending)))
+
+(add-to-list 'compilation-mode-font-lock-keywords
+             '("^\\(.*ERROR.*\n\\)"
+               (1 'spec-case-error)))
+
+(add-to-list 'compilation-mode-font-lock-keywords
+             '("^\\(NoMethodError.*\n\\)"
+               (1 'spec-case-error)))
 
 (add-to-list 'compilation-mode-font-lock-keywords
              '("^\\(.*FAILED.*\n\\)"
