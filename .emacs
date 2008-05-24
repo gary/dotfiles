@@ -42,4 +42,10 @@ miscellaneous files.")
     (ini-load (substring (car files) 0 -3))
     (setq files (cdr files)) ))
 
-(message "Initialization Files Loaded")
+(if (eq ini-not-loaded nil)
+    (message "All Initialization Files Loaded")
+  (message (concat "Failed to Load "
+          (int-to-string (length ini-not-loaded)) " Initialization Files: "
+          (list-to-string
+           (mapcar
+            (function (lambda (x) (concat x " "))) ini-not-loaded)))))

@@ -276,6 +276,16 @@ Goes backward if ARG is negative; error if CHAR not found."
                          (if (> arg 0) (1- (point)) (1+ (point))))
                         (point)))))
 
+;;; List Manipulation ------------------------------------------------
+
+(defun list-to-string (l)
+  "Return a STRING which is the concatenation of the elements of L."
+  (if (not l)
+      nil
+    (if (stringp (car l))
+        (concat (car l) (list-to-string (cdr l)))
+      (list-to-string (cdr l)))))
+
 ;;; Comment Bar Insertion --------------------------------------------
 
 (defun cmt-insert-bar-dots ()

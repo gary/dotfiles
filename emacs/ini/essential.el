@@ -138,11 +138,15 @@ The lisp and info subdirectories are added to the load-path and info lookup list
 (defvar ini-not-loaded ()
   "List of files that failed to load during initialization.")
 
+(defvar ini-disable ()
+  "List of ini- prefixes to disable during initialization.")
+
 (defun ini-try-load (inifn ext)
   "Attempt to load an ini-type elisp file."
   (let ((fn (concat ini-directory "/" inifn ext)))
     (if (jw-check-file fn)
-        (progn
+        (if (member inifn ini-disable)
+            (ini-load-error inifn "disabled")
           (message (concat "Loading " inifn))
           (load-file fn)
           (setq ini-loaded (cons inifn ini-loaded)) ))))
@@ -150,10 +154,17 @@ The lisp and info subdirectories are added to the load-path and info lookup list
 (defun ini-load (inifn)
   "Load a ini-type elisp file"
   (cc)
-  (cond ((ini-try-load inifn ".elc"))
+  (condition-case nil
+      (cond ((ini-try-load inifn ".elc"))
         ((ini-try-load inifn ".el"))
-        (t (setq ini-not-loaded (cons inifn ini-not-loaded))
-           (message (concat inifn " not found")))))
+        (t (ini-load-error inifn "not found")))
+    (error
+     (ini-load-error inifn "error during load"))))
+
+(defun ini-load-error (inifn reason)
+  "Report a reason for the failure to load an ini-type elisp file."
+  (setq ini-not-loaded (cons inifn ini-not-loaded))
+  (message (concat inifn " " reason)))
 
 ;;; Customized Variables -----------------------------------------------
 
@@ -209,7 +220,7 @@ The lisp and info subdirectories are added to the load-path and info lookup list
 ;;(global-set-key "\C-x\C-m" 'compile)    ; do the compile command
 (global-set-key "\C-x\C-n" 'next-error) ; goto next compile error
 (global-set-key "\C-x " 'big-shell)     ; select a full screen shell
- 
+
 (setq shell-dirstack-query "resync_dirs")
 
 ;;; The following are only done in emacs-19 --------------------------
