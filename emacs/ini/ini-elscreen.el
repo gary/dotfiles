@@ -7,9 +7,9 @@
 ;;; Setups for ElScreen ==============================================
 
 (load-library "elscreen")
-(load-library "elscreen-dired")         ; find-file-in-other-window (o)
+;; (load-library "elscreen-dired") ; find-file-in-other-window (o)
 (load-library "elscreen-dnd")           ; drag-n-drop with osx and x11
-(load-library "elscreen-speedbar")
+;; (load-library "elscreen-speedbar")
 
 ;;; Create a screen at startup ---------------------------------------
 
