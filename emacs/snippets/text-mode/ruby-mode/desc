@@ -2,7 +2,7 @@
 #contributor: gary <ge.iams@gmail.com>
 #name : describe (Controller)
 # --
-require File.direname(__FILE__) + '/.../spec_helper'
+require File.dirname(__FILE__) + '/../spec_helper'
 
 describe ${1:controller} do
 
