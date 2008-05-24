@@ -161,6 +161,7 @@ The lisp and info subdirectories are added to the load-path and info lookup list
 (setq next-line-add-newlines nil)       ; C-n will not add lines
 (setq require-final-newline t)          ; require files end with newline
 (setq auto-save-default nil)            ; don't auto-save (it annoys me)
+(setq minibuffer-max-depth nil)
 
 (defvar compile-command "make ")        ; set the default make command
 (make-variable-buffer-local 'compile-command)
@@ -169,10 +170,13 @@ The lisp and info subdirectories are added to the load-path and info lookup list
                                         ;  own custom compile command)
 
 (put 'narrow-to-region 'disabled nil)   ; narrow enabled
+(put 'narrow-to-page 'disabled nil)
 (put 'upcase-region 'disabled nil)      ; change case enabled
 (put 'eval-expression 'disabled nil)    ; allow eval commands
 
 (fset 'yes-or-no-p 'y-or-n-p)
+
+(setq custom-file (concat tmp-directory "/customizations.el"))
 
 (defconst use-backup-dir t)
 (setq backup-directory-alist (quote ((".*" . "~/.emacs.d/tmp"))) ; TODO: tmp-directory
