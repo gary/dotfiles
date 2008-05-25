@@ -67,6 +67,7 @@
 (autoload 'ack                          "ack"               "Use ack where you might usually use grep." t)
 (autoload 'autotest                     "autotest"          "ZenTest's autotest integration with emacs." t)
 (autoload 'cheat                        "cheat"             "A handy interface go cheat.errtheblog.com" t)
+(autoload 'ecb-activate                 "ecb-autoloads"      "Emacs Code Browser" t)
 (autoload 'ffap-bindings                "ffap"              "Find file (or url) at point" t)
 (autoload 'install-elisp                "install-elisp"     "Simple Emacs Lisp Installer" t)
 (autoload 'install-elisp-from-emacswiki "install-elisp"     "Simple Emacs Lisp Installer" t)
