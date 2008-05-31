@@ -65,7 +65,7 @@ bash_prompt() {
     # multi line
 	#PS1="${EMW}${UC}\u${EMW}@${MC}\h ${Y}\${NEW_PWD}\n${EMW}${BGR}\!${BGK}|${BGM}\#${BGK}${G} \\$ ${NONE}"
     # single line
-	PS1="${EMW}${BGR}|\#|${NONE} ${BGY}${EMK}${UC}\h${NONE} ${Y}\${NEW_PWD} ${BGK}${G}\\$ ${NONE}"
+	PS1="${EMW}${BGR}|\#|${NONE} ${BGY}${EMK}${UC}\h${NONE} ${BGB}${W}\$(parse_git_branch)\$(parse_svn_branch)${Y}\${NEW_PWD} ${BGK}${G}\\$ ${NONE}"
 }
 
 PROMPT_COMMAND=bash_prompt_command
@@ -74,6 +74,19 @@ unset bash_prompt
 
 function authme {
     ssh $1 'cat >>.ssh/authorized_keys' <~/.ssh/id_dsa.pub 
+}
+
+function parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(git::\1)/'
+}
+function parse_svn_branch() {
+    parse_svn_url | sed -e 's#^'"$(parse_svn_repository_root)"'##g' | awk -F / '{print "(svn::"$1 "/" $2 ")"}'
+}
+function parse_svn_url() {
+    svn info 2>/dev/null | grep -e '^URL*' | sed -e 's#^URL: *\(.*\)#\1#g '
+}
+function parse_svn_repository_root() {
+    svn info 2>/dev/null | grep -e '^Repository Root:*' | sed -e 's#^Repository Root: *\(.*\)#\1\/#g '
 }
 
 # dir specific ls
