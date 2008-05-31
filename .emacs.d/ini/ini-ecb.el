@@ -25,10 +25,12 @@
 
 ;;; Additional Compilation Patterns ----------------------------------
 
-(add-to-list 'ecb-compilation-buffer-names (cons "*Buffer List*"  nil))
-(add-to-list 'ecb-compilation-buffer-names (cons "*testing*"  nil))
+(add-to-list 'ecb-compilation-buffer-names (cons "*msg*"  nil))
 (add-to-list 'ecb-compilation-buffer-names (cons "*ruby*"  nil))
 (add-to-list 'ecb-compilation-buffer-names (cons "*autotest*"  nil))
+(add-to-list 'ecb-compilation-buffer-names (cons "*git-branch*"  nil))
+(add-to-list 'ecb-compilation-buffer-names (cons "*svn-info*"  nil))
+(add-to-list 'ecb-compilation-buffer-names (cons "*svn-process*"  nil))
 
 ;;; Source Path ------------------------------------------------------
 
