@@ -1,0 +1,25 @@
+#-*-mode:shell-script;-*-
+if [ -d /Applications/Emacs.app ]; then
+    export EDITOR=/Applications/Emacs.app/Contents/MacOS/bin/emacsclient
+    export SVN_EDITOR=$EDITOR
+fi
+
+alias ts='du -h -d0 $HOME/.Trash'
+
+## itunes
+if [ -f ~/bin/itunes ]; then
+    alias it='itunes a'
+    alias itp='itunes p'
+    alias itb='itunes b'
+    alias itn='itunes n'
+    alias itp='itunes p'
+    alias iti='itunes i'
+fi
+
+if type -p qlmanage > /dev/null; then
+    function ql
+    {
+        qlmanage -p $* 2>/dev/null &
+    }
+fi
+
