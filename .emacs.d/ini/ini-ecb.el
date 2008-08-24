@@ -30,7 +30,7 @@
 (add-to-list 'ecb-compilation-buffer-names (cons "*autotest*"  nil))
 (add-to-list 'ecb-compilation-buffer-names (cons "*git-branch*"  nil))
 (add-to-list 'ecb-compilation-buffer-names (cons "*svn-info*"  nil))
-(add-to-list 'ecb-compilation-buffer-names (cons "*svn-process*"  nil))
+(add-to-list 'ecb-compilation-buffer-names (cons "*magit-process*"  nil))
 
 ;;; Source Path ------------------------------------------------------
 

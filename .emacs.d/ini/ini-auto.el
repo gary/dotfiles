@@ -71,6 +71,7 @@
 (autoload 'ffap-bindings                "ffap"              "Find file (or url) at point" t)
 (autoload 'install-elisp                "install-elisp"     "Simple Emacs Lisp Installer" t)
 (autoload 'install-elisp-from-emacswiki "install-elisp"     "Simple Emacs Lisp Installer" t)
+(autoload 'magit-status                 "magit"             "It's magit!  A Emacs mode for Git." t)
 (autoload 'pastie-buffer                "pastie"            "Emacs integration for pastie.caboo.se." t)
 (autoload 'pastie-get                   "pastie"            "Emacs integration for pastie.caboo.se." t)
 (autoload 'pastie-region                "pastie"            "Emacs integration for pastie.caboo.se." t)
