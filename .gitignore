@@ -1,4 +1,5 @@
 *
+!.gitmodules
 !.abbrev_defs
 !.bash_aliases
 !.bash_path
@@ -17,3 +18,4 @@
 !.railsrc
 !.screenrc
 *elc
+!.emacs.d/packages/*
