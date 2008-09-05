@@ -38,7 +38,7 @@ miscellaneous files.")
 ;;; Now load all the ini-xxx files in the initialization directory
 
 ;; TODO: extract disabled files to a .txt, load them into ini-disable
-(setq ini-disabled '("ini-jde" "ini-nxml"))
+(setq ini-disable '("ini-ecb" "ini-jde" "ini-nxml"))
 
 (let ((files (directory-files ini-directory nil "^ini-.*\\.el$")))
   (while (not (null files))
