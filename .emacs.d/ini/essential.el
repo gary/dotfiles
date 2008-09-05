@@ -189,6 +189,7 @@ The lisp and info subdirectories are added to the load-path and info lookup list
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (setq custom-file (concat tmp-directory "/customizations.el"))
+(load custom-file)
 
 (defconst use-backup-dir t)
 (setq backup-directory-alist (quote ((".*" . "~/.emacs.d/tmp"))) ; TODO: tmp-directory
