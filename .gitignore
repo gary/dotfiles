@@ -1,5 +1,4 @@
 *
-!.gitmodules
 !.abbrev_defs
 !.bash_aliases
 !.bash_path
@@ -7,16 +6,17 @@
 !.bash_vars
 !.bashrc
 !.cshrc
-!.emacs
+*elc
 !.emacs.d/*
+!.emacs.d/ini/*
+!.emacs.d/packages/*
+!.emacs.d/snippets/contrib/*
 !.exrc
 !.gitignore
+!.gitmodules
 !.gvimrc
 !.inputrc
 !.irbrc
 !.profile_local
 !.railsrc
 !.screenrc
-*elc
-!.emacs.d/packages/*
-!.emacs.d/snippets/contrib/*
