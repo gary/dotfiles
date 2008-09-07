@@ -17,6 +17,9 @@ their own subdirectories")
 (defvar snippet-directory (concat root-directory "/snippets")
   "The directory for where all modes' snippets live.")
 
+(defvar snippet-contrib-directory (concat snippet-directory "/contrib")
+  "User-contributed snippets.")
+
 (defvar tmp-directory (concat root-directory "/tmp")
   "The directory that houses backups, cache files, and other
 miscellaneous files.")

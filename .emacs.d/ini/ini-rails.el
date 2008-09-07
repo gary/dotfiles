@@ -6,6 +6,11 @@
 
 ;;; Setups for Rails Specific Functionality ==========================
 
+(add-to-load-path (concat package-directory "/rinari"))
+(add-to-load-path (concat package-directory "/rinari/rhtml"))
+
+(require 'rinari)
+
 ;;; Setup for dark fonts in rinari/rhtml mode ------------------------
 
 (defface erb-face
@@ -18,7 +23,6 @@
   "Default inherited face for ERB tag delimeters"
   :group 'rhtml-faces)
 
-(add-to-load-path (concat package-directory "/rinari"))
-(add-to-load-path (concat package-directory "/rinari/rhtml"))
+;;; YASnippets -------------------------------------------------------
 
-(require 'rinari)
+(load-library (concat snippet-contrib-directory "/yasnippets-rails/setup.el"))
