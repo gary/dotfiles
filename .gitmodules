@@ -3,4 +3,4 @@
 	url = git@github.com:gary/magit.git
 [submodule ".emacs.d/snippets/contrib/yasnippets-rails"]
 	path = .emacs.d/snippets/contrib/yasnippets-rails
-	url = git://github.com/eschulte/yasnippets-rails.git
+	url = git@github.com:gary/yasnippets-rails.git
