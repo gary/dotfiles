@@ -117,6 +117,10 @@
 (defun rd () (interactive) (rdebug))
 (defun rdr () (interactive) (rdebug-rails))
 
+;;; YASnippets -------------------------------------------------------
+
+(load-library (concat snippet-contrib-directory "/yasnippets-rspec/setup.el"))
+
 ;;; Auto loads -------------------------------------------------------
 
 (autoload 'run-ruby "inf-ruby"
