@@ -6,6 +6,5 @@
 
 ;;; Key Bindings -----------------------------------------------------
 
-(global-set-key "\C-c\C-kg" 'pastie-get)
-(global-set-key "\C-c\C-kb" 'pastie-buffer)
-(global-set-key "\C-c\C-kr" 'pastie-region)
+(global-set-key "\C-c\C-kb" 'gist-buffer)
+(global-set-key "\C-c\C-kr" 'gist-region)
