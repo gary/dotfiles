@@ -7,3 +7,29 @@ end
 def sql(query)
   ActiveRecord::Base.connection.select_all(query)
 end
+
+if Dir.pwd =~ /conferencecaster/
+
+  def v(permalink)
+    Video.find_by_permalink(permalink)
+  end
+
+  def c(permalink)
+    Conference.find_by_permalink(permalink)
+  end
+
+  def o(permalink)
+    Organization.find_by_permalink(permalink)
+  end
+
+  def u(permalink)
+    User.find_by_permalink(permalink)
+  end
+
+  def cp(conference_permalink)
+    ConferencePass.find_by_conference_id(
+      Conference.id_for_permalink(conference_permalink)
+    )
+  end
+
+end
