@@ -56,6 +56,7 @@
 (make-auto "\\.scpt$"    'applescript-mode)
 (make-auto "\\.mdml$"    'markdown-mode)
 (make-auto "\\.erb$"     'rhtml-mode)
+(make-auto "\\.clj$"     'clojure-mode)
 ;;;(make-auto "\\.h$"   'c++-c-mode)
 ;;;(make-auto "\\.c$"   'c++-c-mode)
 
@@ -68,6 +69,7 @@
 (autoload 'ack                          "ack"               "Use ack where you might usually use grep." t)
 (autoload 'autotest                     "autotest"          "ZenTest's autotest integration with emacs." t)
 (autoload 'cheat                        "cheat"             "A handy interface go cheat.errtheblog.com" t)
+(autoload 'clojure-mode                 "clojure-mode"      "A mode for clojure lisp" t)
 (autoload 'ecb-activate                 "ecb-autoloads"      "Emacs Code Browser" t)
 (autoload 'ffap-bindings                "ffap"              "Find file (or url) at point" t)
 (autoload 'install-elisp                "install-elisp"     "Simple Emacs Lisp Installer" t)
