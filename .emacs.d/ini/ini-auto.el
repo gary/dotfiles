@@ -55,6 +55,7 @@
 (make-auto "\\.applescript$" 'applescript-mode)
 (make-auto "\\.scpt$"        'applescript-mode)
 (make-auto "\\.mdml$"        'markdown-mode)
+(make-auto "\\.markdown$"    'markdown-mode)
 (make-auto "\\.erb$"         'rhtml-mode)
 (make-auto "\\.clj$"         'clojure-mode)
 ;;;(make-auto "\\.h$"   'c++-c-mode)
