@@ -134,6 +134,7 @@
 (add-hook 'ruby-mode-hook '(lambda () (inf-ruby-keys) ))
 (add-hook 'ruby-mode-hook '(lambda () (setq zoom-step 2) ))
 (add-hook 'ruby-mode-hook '(lambda () (load-library "rubydb3x")))
+(add-hook 'ruby-mode-hook '(lambda () (ruby-hs-minor-mode)))
 
 ;;; Key bindings -----------------------------------------------------
 
