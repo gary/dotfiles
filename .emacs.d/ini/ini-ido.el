@@ -9,9 +9,11 @@
       (require 'ido)
       (ido-mode 1)
       (ido-everywhere t)
+      (setq ido-enable-flex-matching t)
       (setq ido-confirm-unique-completion t)
-      (setq ido-default-buffer-method 'samewindow)
+      (setq ido-default-buffer-method 'other-window)
       (setq ido-use-filename-at-point t)
+
       (set-face-background 'ido-first-match "blue3")
       (set-face-foreground 'ido-subdir "SteelBlue1")
       (set-face-foreground 'ido-only-match "blue3")
