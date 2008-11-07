@@ -13,3 +13,6 @@
 [submodule ".emacs.d/packages/gist.el"]
 	path = .emacs.d/packages/gist.el
 	url = git://github.com/defunkt/gist.el.git
+[submodule ".emacs.d/packages/markdown-mode"]
+	path = .emacs.d/packages/markdown-mode
+	url = git://github.com/defunkt/markdown-mode.git
