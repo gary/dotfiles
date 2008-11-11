@@ -89,6 +89,10 @@ function parse_svn_repository_root() {
     svn info 2>/dev/null | grep -e '^Repository Root:*' | sed -e 's#^Repository Root: *\(.*\)#\1\/#g '
 }
 
+function pless {
+    pygmentize $1 | less -r
+}
+
 # dir specific ls
 alias lsd='find . -maxdepth 1 -type d'
 alias ls='ls -pG'
