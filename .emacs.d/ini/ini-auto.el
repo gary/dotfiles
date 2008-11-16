@@ -58,6 +58,7 @@
 (make-auto "\\.rake$"        'ruby-mode)
 (make-auto "^Rakefile$"      'ruby-mode)
 (make-auto "\\.rjs$"         'ruby-mode)
+(make-auto "\\.sake$"        'ruby-mode)
 (make-auto "\\.thor$"        'ruby-mode)
 (make-auto "\\.tcl$"         'tcl-mode)
 
