@@ -5,3 +5,4 @@ startup_message off
 defshell bash
 vbell on
 vbell_msg "slap! slap!"
+multiuser on
