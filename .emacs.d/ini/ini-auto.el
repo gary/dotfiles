@@ -42,8 +42,8 @@
 (make-auto "\\.e$"           'eiffel-mode)
 (make-auto "\\.4th$"         'forth-mode)
 (make-auto "\\.f83$"         'forth-mode)
-(make-auto "\\.html$"        'html-helper-mode) ; was html-mode
-(make-auto "\\.htm$"         'html-helper-mode)
+(make-auto "\\.html$"        'html-mode)
+(make-auto "\\.htm$"         'html-mode)
 (make-auto "\\.jsp$"         'html-mode)
 (make-auto "\\.java$"        'jde-mode) ; was java-mode
 (make-auto "\\.jav$"         'jde-mode)
