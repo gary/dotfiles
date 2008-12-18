@@ -10,3 +10,7 @@ export HISTCONTROL=ignoreboth;
 if [ -h ~/repos ]; then
 	REPOS="$HOME/repos"
 fi
+
+if [ -n `which most` ]; then
+    export PAGER=/opt/local/bin/most
+fi
