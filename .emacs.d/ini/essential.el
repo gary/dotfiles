@@ -215,6 +215,7 @@ The lisp and info subdirectories are added to the load-path and info lookup list
 (global-set-key (kbd "C-SPC") 'hippie-expand)
 (global-set-key (kbd "<C-return>") 'set-mark-command)
 (global-set-key (kbd "C-c <tab>") 'indent-relative)
+(global-set-key (kbd "<C-tab>") 'bury-buffer)
 
 (global-set-key "\M-x" 'ispell)
 (global-set-key "\M-g" 'goto-line)      ; goto a line position
