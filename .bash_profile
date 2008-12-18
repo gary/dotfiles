@@ -10,6 +10,6 @@ if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
 
-if [ -h ~/.profile_local ]; then
+if [ -f ~/.profile_local ]; then
     source ~/.profile_local
 fi
