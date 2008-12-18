@@ -15,7 +15,7 @@
 ;;; Fonts ------------------------------------------------------------
 
 (if (is-carbon-emacs)
-    (set-face-attribute 'default nil :family "Inconsolata" :height 110))
+    (set-face-attribute 'default nil :family "Inconsolata" :height 130))
 
 ;;; Frame ------------------------------------------------------------
 
