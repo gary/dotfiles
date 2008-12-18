@@ -60,12 +60,18 @@
 (defun at-who-knows-where () (eq jw-site 'unknown))
 (defun on-osx () (eq gi-os 'osx))
 
+;;; Highlight the Current Line ---------------------------------------
+(defface hl-line '((t (:background "grey15")))
+  "Face to use for `hl-line-face'." :group 'hl-line)
+(setq hl-line-face 'hl-line)
+
 ;;; Always-on Minor Modes --------------------------------------------
 
 (if (and (or (is-emacs-19) (is-emacs-20)) (not (is-xemacs)))
     (transient-mark-mode t)
   (transient-mark-mode 1))
 
+(global-hl-line-mode t)
 (global-font-lock-mode 1)
 (display-time-mode 1)
 (column-number-mode 1)
