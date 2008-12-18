@@ -65,7 +65,7 @@ bash_prompt() {
     # multi line
 	#PS1="${EMW}${UC}\u${EMW}@${MC}\h ${Y}\${NEW_PWD}\n${EMW}${BGR}\!${BGK}|${BGM}\#${BGK}${G} \\$ ${NONE}"
     # single line
-	PS1="${EMW}${BGR}|\#|${NONE} ${BGY}${EMK}${UC}\h${NONE} ${BGB}${W}\$(parse_git_branch)\$(parse_svn_branch)${Y}\${NEW_PWD} ${BGK}${G}\\$ ${NONE}"
+	PS1="${EMW}${BGR}|\#|${NONE} ${BGY}${EMK}${UC}\h${NONE} ${BGB}${W}\$(parse_git_branch)\$(parse_svn_branch)${Y} ${BGK}${G}\\$ ${NONE}"
 }
 
 PROMPT_COMMAND=bash_prompt_command
