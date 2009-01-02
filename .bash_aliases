@@ -102,18 +102,24 @@ alias la='ll -a'
 alias l='ll | less'
 
 # getting around faster
+alias cdu='cd ..'
+
 alias dirs='dirs -v'
 alias pd='pushd'
-alias pd2='pushd +2'
-alias pd3='pushd +3'
-alias pd4='pushd +4'
-alias pd5='pushd +5'
-
 alias po='popd'
-alias po2='popd +2'
-alias po3='popd +3'
-alias po4='popd +4'
-alias po5='popd +5'
+for ((n = 2; n < 10; n++))
+do
+    alias pd$n="pushd +$n"
+    alias po$n="popd +$n"
+    i=1
+    parentdir=../
+    until [ "$i" -eq "$n" ]
+    do
+        parentdir="${parentdir}../"
+        i=`expr $i + 1`
+    done
+    alias cdu$n="cd $parentdir"
+done
 
 # TODO: research and migrate to profile_local accordingly
 alias ps='ps aux'
