@@ -65,7 +65,7 @@ bash_prompt() {
     # multi line
 	#PS1="${EMW}${UC}\u${EMW}@${MC}\h ${Y}\${NEW_PWD}\n${EMW}${BGR}\!${BGK}|${BGM}\#${BGK}${G} \\$ ${NONE}"
     # single line
-	PS1="${EMW}${BGR}|\#|${NONE} ${BGY}${EMK}${UC}\h${NONE} ${BGB}${W}\$(parse_git_branch)\$(parse_svn_branch)${Y} ${BGK}${G}\\$ ${NONE}"
+	PS1="${EMW}${BGR}|\#|${NONE} ${BGY}${EMK}${UC}\h${NONE}${BGB}${W}\$(__git_ps1)\$(parse_svn_branch)${Y} ${BGK}${G}\\$ ${NONE}"
 }
 
 PROMPT_COMMAND=bash_prompt_command
@@ -76,9 +76,6 @@ function authme {
     ssh $1 'cat >>.ssh/authorized_keys' <~/.ssh/id_dsa.pub 
 }
 
-function parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(git::\1)/'
-}
 function parse_svn_branch() {
     parse_svn_url | sed -e 's#^'"$(parse_svn_repository_root)"'##g' | awk -F / '{print "(svn::"$1 "/" $2 ")"}'
 }
@@ -150,6 +147,9 @@ if [ -e /usr/bin/ruby ]; then
 fi
 
 if [ `which git` ]; then
+    if [ -f ~/.git-completion.sh ]; then
+        source ~/.git-completion.sh
+    fi
     alias gb='git branch -a -v'
     alias gs='git status'
     alias gd='git diff'
