@@ -2,17 +2,17 @@
 gems = %w{ irb/completion rubygems wirble map_by_method what_methods pp english
            extlib active_support
          }
-raise gems.reject { |g| g == 'active_support' }.inspect # each do |d|
+gems.reject { |g| g == 'active_support' }.each do |d|
   require d rescue nil
   puts " ~ loaded #{d}..."
 end
 
-puts " ~ loaded Towelie..."
+puts ' ~ loaded Towelie...'
 require File.join(ENV['HOME'], '/src/towelie/lib/towelie.rb')
 
-if IRB.conf[:LOAD_MODULES].any? { |m| m =~ %r{ config/environment$ } }
+if IRB.conf[:LOAD_MODULES].any? { |m| m =~ %r{config/environment$} }
   require 'active_support'
-  puts " ~ loaded ActiveSupport"
+  puts ' ~ loaded ActiveSupport...'
 end
 # remember your hacks, gary
 if !File.exists? Dir.pwd + '/script/console'
