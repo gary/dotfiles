@@ -1,34 +1,30 @@
 #-*-mode:ruby;-*-
-%w{
-    irb/completion
-    rubygems
-    wirble
-    map_by_method
-    what_methods
-    pp
-    english
-}.each do |d|
+gems = %w{ irb/completion rubygems wirble map_by_method what_methods pp english
+           extlib active_support
+         }
+raise gems.reject { |g| g == 'active_support' }.inspect # each do |d|
   require d rescue nil
-  puts "loaded #{d}"
+  puts " ~ loaded #{d}..."
 end
+
+puts " ~ loaded Towelie..."
+require File.join(ENV['HOME'], '/src/towelie/lib/towelie.rb')
+
+if IRB.conf[:LOAD_MODULES].any? { |m| m =~ %r{ config/environment$ } }
+  require 'active_support'
+  puts " ~ loaded ActiveSupport"
+end
+# remember your hacks, gary
+if !File.exists? Dir.pwd + '/script/console'
+  puts "** remember the changed inferior-ruby-first-prompt-pattern in rinari.el:169 **"
+end
+load File.dirname(__FILE__) + '/.railsrc' if $0 == 'irb' && ENV['RAILS_ENV']
 
 wirble_opts = {
   :init_color => true,
 }
 Wirble.init
 Wirble.colorize
-
-require File.join(ENV['HOME'], '/src/towelie/lib/towelie.rb')
-
-unless IRB.conf[:LOAD_MODULES].join =~ /config\/environment/
-  require 'active_support'
-end
-
-# remember your hacks, gary
-if !File.exists? Dir.pwd + '/script/console'
-  puts "** remember the changed inferior-ruby-first-prompt-pattern in rinari.el:169 **"
-end
-load File.dirname(__FILE__) + '/.railsrc' if $0 == 'irb' && ENV['RAILS_ENV']
 
 %x{ stty -echo } if ENV['EMACS']
 
