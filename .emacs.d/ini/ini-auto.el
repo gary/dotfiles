@@ -21,6 +21,7 @@
 (autoload 'markdown-mode    "markdown-mode"    "Major mode for editing Markdown files" t)
 (autoload 'ruby-mode        "ruby-mode"        "Automatic Mode for Ruby Code" t)
 (autoload 'python-mode      "python-mode"      "Automatic Mode for Python Code" t)
+(autoload 'sass-mode        "sass-mode"        "Major mode for editing Sass files" t)
 (autoload 'tcl-mode         "tcl-mode"         "Major Mode for TCL" t)
 (autoload 'twit-mode        "twit"             "interface with twitter.com" t)
 
@@ -63,6 +64,7 @@
 (make-auto "\\.rjs$"         'ruby-mode)
 (make-auto "\\.ru$"          'ruby-mode)
 (make-auto "\\.sake$"        'ruby-mode)
+(make-auto "\\.sass$"        'sass-mode)
 (make-auto "\\.thor$"        'ruby-mode)
 (make-auto "\\.tcl$"         'tcl-mode)
 
