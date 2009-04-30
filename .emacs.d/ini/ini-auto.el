@@ -24,6 +24,8 @@
 (autoload 'sass-mode        "sass-mode"        "Major mode for editing Sass files" t)
 (autoload 'tcl-mode         "tcl-mode"         "Major Mode for TCL" t)
 (autoload 'twit-mode        "twit"             "interface with twitter.com" t)
+(autoload 'wget             "wget"             "wget interface for Emacs." t)
+(autoload 'wget-web-page    "wget"             "wget interface to download whole web page." t)
 
 (make-auto "\\.applescript$" 'applescript-mode)
 (make-auto "\\.scpt$"        'applescript-mode)
