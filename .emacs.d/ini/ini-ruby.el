@@ -134,7 +134,6 @@
 (add-hook 'ruby-mode-hook '(lambda () (inf-ruby-keys) ))
 (add-hook 'ruby-mode-hook '(lambda () (setq zoom-step 2) ))
 (add-hook 'ruby-mode-hook '(lambda () (load-library "rubydb3x")))
-(add-hook 'ruby-mode-hook '(lambda () (ruby-hs-minor-mode)))
 
 ;;; Key bindings -----------------------------------------------------
 
@@ -143,5 +142,4 @@
   (define-key ruby-mode-map "\C-C\C-t" 'jw-toggle-buffer)
   (define-key ruby-mode-map "\C-cm" 'jw-mark-for-rdebug)
   (define-key ruby-mode-map [(meta f10)] 'ruby-xmp-region)
-  (define-key ruby-mode-map [f1] 'ri)
-  (define-key ruby-mode-map "\C-s" 'ruby-toggle-string<>simbol))
+  (define-key ruby-mode-map [f1] 'ri))
