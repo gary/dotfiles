@@ -6,6 +6,8 @@
 
 ;;; Setups for Emacs' Display ========================================
 
+(setq inhibit-startup-message t)
+
 ;;; Discourage use of the mouse --------------------------------------
 
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -30,6 +32,9 @@
       (add-to-list 'initial-frame-alist '(alpha . 80))
       (add-to-list 'default-frame-alist '(alpha . 80))))
 
+;;; Whitespace -------------------------------------------------------
+
+(setq-default indent-tabs-mode nil)
 (setq-default show-trailing-whitespace t)
 
 ;;; Fringe -----------------------------------------------------------
