@@ -16,3 +16,6 @@
 [submodule ".emacs.d/packages/magit"]
 	path = .emacs.d/packages/magit
 	url = git://gitorious.org/magit/mainline.git
+[submodule ".emacs.d/packages/smex"]
+	path = .emacs.d/packages/smex
+	url = git://github.com/nonsequitur/smex.git

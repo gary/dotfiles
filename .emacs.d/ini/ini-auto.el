@@ -94,6 +94,7 @@
 (autoload 'redo                         "redo"              "Redo" t)
 (autoload 'ri                           "ri-ruby.el"        nil t)
 (autoload 'shell-command                "shell-command"     "Tab completion for shell-comamnd" t)
+(autoload 'smex-initialize              "smex"              "A smart M-x enhancement for Emacs." t)
 (autoload 'svn-status                   "psvn"              "Subversion interface for Emacs" t)
 (autoload 'toggle-style                 "toggle"            "quickly open corresponding file (eg test vs impl)." t)
 (autoload 'yank-pop-forward             "yank-pop-summary"  nil t)
