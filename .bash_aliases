@@ -92,7 +92,7 @@ function pless {
 
 # dir specific ls
 alias lsd='find . -maxdepth 1 -type d'
-alias ls='ls -pG'
+alias ls='ls -FG'
 alias ll='ls -l'
 alias lt='ll -t'
 alias la='ll -a'
