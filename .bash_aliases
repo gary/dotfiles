@@ -91,6 +91,7 @@ function pless {
 }
 
 # dir specific ls
+# core ls alias set in ~/.profile_local
 alias lsd='find . -maxdepth 1 -type d'
 alias ls='ls -FG'
 alias ll='ls -l'
