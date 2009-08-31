@@ -1,3 +1,7 @@
+if [ -f ~/.servers ]; then
+    source ~/.servers
+fi
+
 if [ -f ~/.profile_local ]; then
     source ~/.profile_local
 fi
