@@ -136,6 +136,7 @@ if [ -z $EMACS ]; then
 fi
 
 if [ -e /usr/bin/ruby ]; then
+    if [ -s ~/.rvm/scripts/rvm ] ; then source ~/.rvm/scripts/rvm ; fi
     # TODO: use shell aliases if not in emacs; yasnippets otherwise
     alias irb='irb -r irb/completion -r rubygems'
     alias rdb='ruby -r debug'
