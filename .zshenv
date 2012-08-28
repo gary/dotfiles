@@ -1,4 +1,4 @@
-export PATH=$HOME/bin:$HOME/.gem/ruby/1.8/bin/:$PATH
+export PATH=$PATH:$HOME/bin
 
 if [ $EMACS ]; then export TZ='America/New_York'; fi
 
