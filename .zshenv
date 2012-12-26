@@ -1,4 +1,4 @@
-export PATH=$PATH:$HOME/bin
+export PATH=$HOME/bin:$PATH
 
 if [ $EMACS ]; then export TZ='America/New_York'; fi
 
