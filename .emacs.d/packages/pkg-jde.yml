@@ -1,7 +1,0 @@
-name:         jde
-version:      2.3.5.1
-include_dirs:
-  - lisp
-
-cmd:          curl
-url:          http://jdee.sunsite.dk/jde-latest.tar.gz

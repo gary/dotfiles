@@ -1,5 +1,0 @@
-name:    color-theme
-version: 6.6.0
-
-cmd:     curl
-url:     http://download.gna.org/color-theme/color-theme-6.6.0.tar.gz

@@ -1,5 +1,0 @@
-name:         ecb
-version:      2.3.2
-
-cmd:          curl
-url:          http://internap.dl.sourceforge.net/sourceforge/ecb/ecb-2.32.tar.gz
