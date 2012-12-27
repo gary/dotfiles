@@ -1,8 +1,21 @@
+# -*- mode: conf -*-
+
 activity "something going on in %n"
+attrcolor u "G"
 autodetach off
+
+defflow off
+defscrollback 10000
+
+hardstatus off
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'
+
+multiuser on
+
 startup_message off
-#attrcolor u "G"
-defshell bash
+
+termcapinfo xterm* ti@:te@
+
 vbell on
 vbell_msg "slap! slap!"
-multiuser on
