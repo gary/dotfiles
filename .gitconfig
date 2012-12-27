@@ -1,0 +1,51 @@
+[user]
+        name = Gary Iams
+        email = ge.iams@gmail.com
+
+[github]
+        user = gary
+
+[core]
+        excludesfile = /Users/gary/.gitignore.global
+        ignorecase = false
+
+[apply]
+        whitespace = warn
+
+[color]
+        ui = true
+[color "branch"]
+        current = yellow reverse
+        local = yellow
+        remote = green
+[color "diff"]
+        meta = yellow bold
+        frag = magenta bold
+        old = red bold
+        new = green bold
+        whitespace      = red reverse
+[color "status"]
+        added = yellow
+        changed = green
+        untracked = cyan
+
+[push]
+        # Only push branches that have been set up to track a remote branch.
+        default = current
+
+[rerere]
+        enabled = 1
+
+[alias]
+        co = checkout
+        current-branch = !git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||'
+        # Log display from screencast, with train tracks.
+        l = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset'
+        # Alternate log display from Scott Chacon
+        lol = log --pretty=oneline --abbrev-commit --graph --decorate
+        # Other useful aliases:
+        staged = diff --cached
+        # Usage: git track origin/feature-123-login-form
+        track = checkout -t
+        unstage = reset HEAD
+        unstaged = diff
