@@ -1,0 +1,34 @@
+# -*- mode: conf-unix -*-
+session = .session
+directory = ~/torrents/
+
+scgi_local = 127.0.0.1:5000
+
+##
+# 2 watch/download dir combos:
+#
+# most torrents, stop and resume as needed via moving the .torrent
+# watch ~/torrents/watch; move to ~/torrents/completed when done
+schedule = watch_directory_1,10,10,"load_start=~/torrents/src/*.torrent,d.set_custom1=~/torrents/completed/"
+schedule = tied_directory_1,10,10,start_tied=
+schedule = untied_directory_1,10,10,close_untied=
+
+##
+# symlink status
+# created a .started symlink in the watch dir when started
+# on_start = link1,"create_link=tied,,.started"
+# create a .finished symlink in the watch dir when finished
+# on_finished = link1,"create_link=tied,,.finished"
+
+##
+# listen and open ports randomly within a range
+port_range = 6690-7230
+port_random = yes
+
+##
+# incomplete torrent colors
+# active_fg_color = 2
+# active_bg_color = 0
+# completed torrent colors
+# done_fg_color = 3
+# done_bg_color = 0
