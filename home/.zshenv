@@ -6,5 +6,5 @@ if [ -h ~/repos ]; then REPOS="$HOME/repos"; fi
 
 export CDPATH=$HOME/src:$HOME/work:$HOME/src/work/
 
-export PATH="$HOME/.rbenv/bin:$PATH"
+export RBENV_ROOT=/usr/local/var/rbenv
 eval "$(rbenv init -)"
