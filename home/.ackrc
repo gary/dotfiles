@@ -3,4 +3,5 @@
 --type-set=haml=.haml
 --type-set=cron=.cron
 --type-set=sass=.sass
+--type-set=scss=.scss
 --type-set=builder=.builder
