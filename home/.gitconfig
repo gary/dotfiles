@@ -13,7 +13,7 @@
         whitespace = warn
 
 [color]
-        ui = true
+	ui = true
 [color "branch"]
         current = yellow reverse
         local = yellow
@@ -31,10 +31,10 @@
 
 [push]
         # Only push branches that have been set up to track a remote branch.
-        default = current
+	default = matching
 
 [rerere]
-        enabled = 1
+	enabled = 1
 
 [alias]
         co = checkout
@@ -49,3 +49,5 @@
         track = checkout -t
         unstage = reset HEAD
         unstaged = diff
+[branch]
+	autosetuprebase = always
