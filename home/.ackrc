@@ -5,3 +5,4 @@
 --type-set=sass=.sass
 --type-set=scss=.scss
 --type-set=builder=.builder
+--type-set=slim=.slim
