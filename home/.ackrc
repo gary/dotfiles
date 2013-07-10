@@ -6,3 +6,4 @@
 --type-set=scss=.scss
 --type-set=builder=.builder
 --type-set=slim=.slim
+--type-set=eco=.eco
