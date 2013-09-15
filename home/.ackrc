@@ -1,5 +1,3 @@
---text
-
 --type-set=erb=.erb
 --type-set=haml=.haml
 --type-set=cron=.cron
