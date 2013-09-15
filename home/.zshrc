@@ -9,3 +9,4 @@ if [ -e ~/.profile_local ]; then source ~/.profile_local; fi
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
