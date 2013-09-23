@@ -6,7 +6,7 @@
         user = gary
 
 [core]
-        excludesfile = /Users/gary/.gitignore.global
+        excludesfile = /opt/boxen/config/git/gitignore
         ignorecase = false
 
 [apply]
@@ -51,3 +51,9 @@
         unstaged = diff
 [branch]
 	autosetuprebase = always
+
+[credential]
+	helper = /opt/boxen/bin/boxen-git-credential
+
+[hub]
+	protocol = https
