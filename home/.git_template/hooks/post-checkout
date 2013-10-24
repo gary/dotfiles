@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require 'etc'
+
+if Dir.pwd =~ %r|^/Users/#{Etc.getlogin}/src/work/|
+  `git config --add user.email gary@intridea.com`
+end
