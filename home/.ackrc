@@ -7,4 +7,7 @@
 --type-set=slim=.slim
 --type-set=eco=.eco
 
+--ignore-dir=coverage
+--ignore-dir=doc
 --ignore-dir=log
+--ignore-dir=tmp
