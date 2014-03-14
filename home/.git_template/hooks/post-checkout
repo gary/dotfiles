@@ -2,6 +2,8 @@
 
 require 'etc'
 
+work_email = 'gary@intridea.com'
+
 if Dir.pwd =~ %r|^/Users/#{Etc.getlogin}/src/work/| &&
     `git config --get user.email`.strip != work_email
   `git config --add user.email gary@intridea.com`
