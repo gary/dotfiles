@@ -8,4 +8,3 @@ export ZSH_THEME="robbyrussell"
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-[ -e /Users/gary/.profile_local ] && source /Users/gary/.profile_local
