@@ -9,3 +9,5 @@ export PATH=.bundle/binstubs:$HOME/bin:$PATH
 export BRAWN="$HOME/brawn"
 export GF="/Volumes/Girlfriend"
 export TM="$HOME/tm"
+
+export TAPAS="${HOME}/src/rubytapas"
