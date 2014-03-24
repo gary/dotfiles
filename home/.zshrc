@@ -5,6 +5,8 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 export ZSH_THEME="robbyrussell"
 
+plugins=(battery brew bundler emacs git heroku history osx rails)
+
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
