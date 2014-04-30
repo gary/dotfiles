@@ -5,7 +5,9 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 export ZSH_THEME="eastwood"
 
-plugins=(battery brew bundler emacs git heroku history osx rails)
+plugins=(battery brew emacs git heroku history osx)
+
+[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 
 source $ZSH/oh-my-zsh.sh
 
