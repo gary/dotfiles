@@ -1,11 +1,11 @@
+--type-set=builder=.builder
+--type-set=cron=.cron
+--type-set=eco=.eco
 --type-set=erb=.erb
 --type-set=haml=.haml
---type-set=cron=.cron
 --type-set=sass=.sass
 --type-set=scss=.scss
---type-set=builder=.builder
 --type-set=slim=.slim
---type-set=eco=.eco
 
 --ignore-dir=coverage
 --ignore-dir=doc
