@@ -2,6 +2,7 @@
 --type-set=cron=.cron
 --type-set=eco=.eco
 --type-set=erb=.erb
+--type-set=feature=.feature
 --type-set=haml=.haml
 --type-set=sass=.sass
 --type-set=scss=.scss
