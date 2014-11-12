@@ -11,4 +11,5 @@ export TM="$HOME/tm"
 
 export TAPAS="${HOME}/src/rubytapas"
 
+export ZSH=$HOME/.oh-my-zsh
 export ZSH_THEME="blinks"
