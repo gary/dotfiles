@@ -1,5 +1,7 @@
 # -*- mode: ruby -*-
 
+Pry.config.correct_indent = false if ENV['INSIDE_EMACS']
+
 # Load plugins (only those I whitelist)
 Pry.config.should_load_plugins = false
 Pry.plugins["doc"].activate!
