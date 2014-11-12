@@ -10,3 +10,5 @@ export GF="/Volumes/Girlfriend"
 export TM="$HOME/tm"
 
 export TAPAS="${HOME}/src/rubytapas"
+
+export ZSH_THEME="blinks"
