@@ -9,6 +9,7 @@
 --type-set=slim=.slim
 
 --ignore-dir=.bundle
+--ignore-dir=.tmp
 --ignore-dir=coverage
 --ignore-dir=doc
 --ignore-dir=log
