@@ -1,2 +1,5 @@
 ---
-BUNDLE_BIN: .bundle/binstubs
+BUNDLE_BIN: ".bundle/binstubs"
+BUNDLE_GEM__COC: true
+BUNDLE_GEM__MIT: true
+BUNDLE_GEM__TEST: rspec
