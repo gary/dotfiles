@@ -9,6 +9,7 @@
 --type-set=slim=.slim
 
 --ignore-dir=.bundle
+--ignore-dire=.cask
 --ignore-dir=.rbenv
 --ignore-dir=.tmp
 --ignore-dir=coverage
