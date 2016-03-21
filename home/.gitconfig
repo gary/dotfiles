@@ -57,3 +57,6 @@
 
 [hub]
 	protocol = https
+
+[github "encrypted"]
+	oauth-token = U2FsdGVkX19T2Ia7gdRkfrbjIZc+ANwvtlNVlK5UkBsYfFqbwcBqKfBop6kcrVZkAXohEuPZCVao562LJLvAWw==
