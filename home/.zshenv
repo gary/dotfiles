@@ -9,6 +9,8 @@ export BRAWN="$HOME/brawn"
 export GF="/Volumes/Girlfriend"
 export TM="$HOME/tm"
 
+export BREWS="$HOME/.dotfiles/../brews"
+export GEMS="$HOME/.dotfiles/../gems"
 export TAPAS="${HOME}/src/rubytapas"
 
 export ZSH=$HOME/.oh-my-zsh
