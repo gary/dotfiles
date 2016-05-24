@@ -12,6 +12,7 @@ export TM="$HOME/tm"
 export BREWS="$HOME/.dotfiles/../brews"
 export CASKS="$HOME/.dotfiles/../casks"
 export GEMS="$HOME/.dotfiles/../gems"
+export PIPS="$HOME/.dotfiles/../pips"
 export TAPAS="${HOME}/src/rubytapas"
 
 export ZSH=$HOME/.oh-my-zsh
