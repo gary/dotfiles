@@ -3,6 +3,8 @@ if [ $EMACS ]; then export TZ='America/New_York'; fi
 export CDPATH=.:$HOME/apps
 
 export PATH=$HOME/bin:$PATH
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/shims:$PATH"
 
 export BREWS="$HOME/.dotfiles/../brews"
 export CASKS="$HOME/.dotfiles/../casks"
