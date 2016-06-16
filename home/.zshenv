@@ -12,4 +12,4 @@ export GEMS="$HOME/.dotfiles/../gems"
 export PIPS="$HOME/.dotfiles/../pips"
 
 export ZSH=$HOME/.oh-my-zsh
-export ZSH_THEME="blinks"
+export ZSH_THEME="kolo"
