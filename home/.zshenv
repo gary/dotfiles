@@ -6,6 +6,8 @@ export PATH=$HOME/bin:$PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
 
+export REPO_PATH=$HOME/work
+
 export BREWS="$HOME/.dotfiles/../brews"
 export CASKS="$HOME/.dotfiles/../casks"
 export GEMS="$HOME/.dotfiles/../gems"
