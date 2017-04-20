@@ -15,7 +15,6 @@ moneta
 nokogiri
 pry
 pry-byebug
-pry-doc
 rest-client
 rcodetools
 rspec
