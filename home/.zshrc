@@ -12,4 +12,5 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
+eval "$(hub alias -s)"
 eval "$(rbenv init -)"
