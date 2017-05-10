@@ -6,7 +6,7 @@
         user = gary
 
 [core]
-        excludesfile = /opt/boxen/config/git/gitignore
+        excludesFile = /Users/gary/src/gitignore/Global/Emacs.gitignore
         # disambigutate = committish
         ignorecase = false
 
