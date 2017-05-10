@@ -1,6 +1,9 @@
-[user]
-        name = Gary Iams
-        email = ge.iams@gmail.com
+[includeIf "gitdir:~/Documents/Employment"]
+	path = .gitconfig-home
+[includeIf "gitdir:~/src/"]
+	path = .gitconfig-home
+[includeIf "gitdir:~/src/work/"]
+	path = .gitconfig-work
 
 [github]
         user = gary
