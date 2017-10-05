@@ -10,7 +10,7 @@
 
 [core]
         excludesFile = /Users/gary/src/gitignore/Global/Emacs.gitignore
-        # disambigutate = committish
+        disambiguate = committish
         ignorecase = false
 
 [apply]
@@ -38,7 +38,7 @@
 	default = matching
 
 [rerere]
-	enabled = 1
+	enabled = true
 
 [alias]
         co = checkout
