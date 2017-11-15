@@ -6,7 +6,15 @@ then
     print -P "\033AnSiTc %d"
 fi
 
-plugins=(battery brew emacs git heroku history osx)
+plugins=(
+    battery bundler brew
+    common-aliases
+    emacs
+    fastfile
+    git
+    heroku history
+    osx
+)
 
 source $ZSH/oh-my-zsh.sh
 
