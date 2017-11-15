@@ -69,3 +69,8 @@ cask 'viscosity'
 cask 'vlc'
 cask 'wakeonlan'
 cask 'xld'
+
+mas 'Airmail', id: 918858936
+mas 'AntiRSI', id: 442007571
+mas 'DaliClock', id: 1121019667
+mas 'Xcode', id: 497799835
