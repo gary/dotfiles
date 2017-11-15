@@ -7,7 +7,6 @@ factory_girl
 fattr
 gem-versions
 gem-whois
-homesick
 lunchy
 main
 memoizable
