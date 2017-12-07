@@ -11,6 +11,7 @@ brew 'mysql', restart_service: true, link: true
 brew 'nmap'
 brew 'pidof'
 brew 'postgresql', restart_service: true, link: true
+brew 'python3'
 brew 'rbenv'
 brew 'ruby-build'
 brew 'sl'
