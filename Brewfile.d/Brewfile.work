@@ -1,2 +1,4 @@
 brew 'go'
 brew 'graphviz'
+
+cask 'vmware-fusion'
