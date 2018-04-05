@@ -7,7 +7,7 @@
         user = gary
 
 [core]
-        excludesFile = /Users/gary/src/gitignore/Global/Emacs.gitignore
+        excludesFile = /Users/giams/src/gitignore/Global/Emacs.gitignore
         disambiguate = committish
         ignorecase = false
 
