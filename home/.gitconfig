@@ -1,10 +1,7 @@
 [includeIf "gitdir:~/src/"]
 	path = .gitconfig-home
-[includeIf "gitdir:~/src/work/"]
+[includeIf "gitdir:~/work/"]
 	path = .gitconfig-work
-
-[github]
-        user = gary
 
 [core]
         excludesFile = /Users/giams/src/gitignore/Global/Emacs.gitignore
