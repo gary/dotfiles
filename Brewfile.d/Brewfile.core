@@ -1,5 +1,4 @@
 brew 'aspell'
-brew 'cask'
 brew 'emacs', args: ['with-cocoa', 'with-gnutls', 'with-imagemagick@6']
 brew 'git'
 brew 'heroku-toolbelt'
