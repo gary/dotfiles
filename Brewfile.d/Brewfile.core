@@ -1,6 +1,7 @@
 brew 'aspell'
 brew 'emacs', args: ['with-cocoa', 'with-gnutls', 'with-imagemagick@6']
-brew 'git'
+brew 'fsevents-tools'
+brew 'git', args: ['--HEAD']
 brew 'heroku-toolbelt'
 brew 'hub'
 brew 'markdown'
