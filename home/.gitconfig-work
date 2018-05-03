@@ -1,3 +1,6 @@
 # -*- mode: gitconfig -*-
+[hub]
+	host = github.on-site.com
+
 [user]
 	email = gary.iams@realpage.com
