@@ -1,8 +1,3 @@
-[includeIf "gitdir:~/src/"]
-	path = .gitconfig-home
-[includeIf "gitdir:~/work/"]
-	path = .gitconfig-work
-
 [core]
         excludesFile = /Users/giams/src/gitignore/Global/Emacs.gitignore
         disambiguate = committish
@@ -53,6 +48,17 @@
 
 [hub]
 	protocol = https
+
+[github] # magithub
+	user = gary
+
+[user]
+	name = Gary Iams
+
+[includeIf "gitdir:~/src/"]
+	path = .gitconfig-home
+[includeIf "gitdir:~/work/"]
+	path = .gitconfig-work
 
 [github "encrypted"]
 	oauth-token = U2FsdGVkX19T2Ia7gdRkfrbjIZc+ANwvtlNVlK5UkBsYfFqbwcBqKfBop6kcrVZkAXohEuPZCVao562LJLvAWw==
