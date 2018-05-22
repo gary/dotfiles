@@ -1,4 +1,5 @@
 brew 'go'
 brew 'graphviz'
 
+cask 'onedrive'
 cask 'vmware-fusion'
