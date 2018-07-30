@@ -2,5 +2,6 @@ brew 'go'
 brew 'graphviz'
 
 cask 'atom'
+cask 'harvest'
 cask 'onedrive'
 cask 'vmware-fusion'
