@@ -3,5 +3,6 @@ brew 'graphviz'
 
 cask 'atom'
 cask 'harvest'
+cask 'microsoft-teams'
 cask 'onedrive'
 cask 'vmware-fusion'
