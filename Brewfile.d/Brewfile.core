@@ -4,6 +4,7 @@ brew 'fsevents-tools'
 brew 'git', args: ['--HEAD']
 brew 'heroku-toolbelt'
 brew 'hub'
+brew 'jsonpp'
 brew 'markdown'
 brew 'media-info'
 brew 'most'
