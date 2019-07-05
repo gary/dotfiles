@@ -11,4 +11,4 @@ export GEMS="$HOME/.dotfiles/../gems"
 export TAPAS="${HOME}/src/rubytapas"
 
 export ZSH=$HOME/.oh-my-zsh
-export ZSH_THEME="blinks"
+export ZSH_THEME="ys"
