@@ -1,11 +1,8 @@
 # -*- mode: yaml -*-
 ---
-gem: --no-rdoc --no-ri
-install: --no-rdoc --no-ri
-update: --no-rdoc --no-ri
+install: -N
+update: -N
 update_sources: true
-sources:
-- http://rubygems.org
 verbose: true
 bulk_threshold: 1000
 backtrace: false
