@@ -1,5 +1,5 @@
 [core]
-        excludesFile = /Users/gary/src/gitignore/Global/Emacs.gitignore
+        excludesFile = ~/src/gitignore/Global/Emacs.gitignore
         disambiguate = committish
         ignorecase = false
 
