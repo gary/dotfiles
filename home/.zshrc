@@ -23,4 +23,3 @@ source $ZSH/oh-my-zsh.sh
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 eval "$(hub alias -s)"
 eval "$(rbenv init -)"
-export PATH=.bundle/binstubs:$HOME/bin:$PATH
