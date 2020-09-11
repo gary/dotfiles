@@ -20,6 +20,10 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
+unalias cp
+unalias mv
+unalias rm
+
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 eval "$(hub alias -s)"
 eval "$(rbenv init -)"
