@@ -26,4 +26,7 @@ unalias rm
 
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 eval "$(hub alias -s)"
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+fi
 eval "$(rbenv init -)"
