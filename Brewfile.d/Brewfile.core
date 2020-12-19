@@ -27,6 +27,7 @@ tap 'caskroom/drivers'
 tap 'caskroom/fonts'
 
 cask '1password'
+cask 'alacritty'
 # cask 'amazon-drive' FIXME: formula busted, manually install
 cask 'bartender'
 cask 'blockblock'
