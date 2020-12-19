@@ -1,5 +1,6 @@
 brew 'aspell'
 brew 'emacs', args: ['with-cocoa', 'with-gnutls', 'with-imagemagick@6']
+brew 'freetube'
 brew 'fsevents-tools'
 brew 'git', args: ['--HEAD']
 brew 'heroku-toolbelt'
