@@ -62,3 +62,9 @@
 
 [github "encrypted"]
 	oauth-token = U2FsdGVkX19T2Ia7gdRkfrbjIZc+ANwvtlNVlK5UkBsYfFqbwcBqKfBop6kcrVZkAXohEuPZCVao562LJLvAWw==
+
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
