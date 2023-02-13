@@ -13,7 +13,6 @@ plugins=(
     fastfile
     git
     heroku history
-    osx
 )
 
 source $ZSH/oh-my-zsh.sh
