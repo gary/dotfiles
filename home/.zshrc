@@ -9,6 +9,7 @@ fi
 plugins=(
     battery bundler brew
     common-aliases
+    direnv
     emacs
     fastfile
     git
