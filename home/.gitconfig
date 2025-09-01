@@ -46,12 +46,6 @@
 [branch]
 	autosetuprebase = always
 
-[hub]
-	protocol = https
-
-[github] # magithub
-	user = gary
-
 [user]
 	name = Gary Iams
 
