@@ -1,2 +1,6 @@
 # -*- mode: gitconfig -*-
 [user]
+	email = giams@breakpoint-labs.com
+
+[includeIf "hasconfig:remote.*.url:git@lumber.cedar.hpc.mil:**"]
+	path = .gitconfig-hpc
